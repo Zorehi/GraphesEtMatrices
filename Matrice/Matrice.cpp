@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "CMInt.h"
+#include "CMDouble.h"
 
 
 int main()
@@ -71,6 +72,75 @@ int main()
 
     printf("(B) * (C) : (H)\n");
     MatriceIntTestMutiplieMatrice->MINTAfficherMatrice();
+    printf("\n");
+
+
+    ///////////////////////////////////////////// Parti Double
+
+    //Creer une matrice d'entier 3x3 de 0
+    CMDouble* MatriceDoubleTest = new CMDouble(3, 3);
+
+    MatriceDoubleTest->MDOModifierElement(2, 2, 1);
+
+    printf("Matrice 3x3 de 0 : (A)\n");
+    MatriceDoubleTest->MDOAfficherMatrice();
+    printf("\n");
+
+
+    double pdListeTest[6] = { 1.1, 1.2, 1.3, 1.4, 1.5, 1.6 };
+    //Creer une matrice d'entier 3x2 a partir de la liste piListeTest
+    CMDouble* MatriceDoubleTest2 = new CMDouble(3, 2, pdListeTest);
+    MatriceDoubleTest2->MDOModifierElement(2, 1, 1);
+
+    printf("Matrice 3x2 creer a partir d'une liste : (B)\n");
+    MatriceDoubleTest2->MDOAfficherMatrice();
+    printf("\n");
+
+
+    //Transpose la matrice MatriceDoubleTest2
+    CMDouble* MatriceDoubleTest2Transposee = MatriceDoubleTest2->MDOTranspose();
+
+    printf("Transposee de la matrice Matrice 3x2 creer a partir d'une liste : (C)\n");
+    MatriceDoubleTest2Transposee->MDOAfficherMatrice();
+    printf("\n");
+
+
+    //Multiplie la Matrice MatriceDoubleTest2 par 5
+    CMDouble* MatriceDoubleTest2Multiplie = MatriceDoubleTest2->MDOMultiplierConstante(5);
+
+    printf("(B)*5 : (D)\n");
+    MatriceDoubleTest2Multiplie->MDOAfficherMatrice();
+    printf("\n");
+
+    //Divise la Matrice MatriceDoubleTest2 par 5
+    CMDouble* MatriceDoubleTest2Divise = MatriceDoubleTest2->MDODiviserConstante(5);
+
+    printf("(B)/5 : (E)\n");
+    MatriceDoubleTest2Divise->MDOAfficherMatrice();
+    printf("\n");
+
+
+    //Additionne les matrices MatriceDoubleTest2 et MatriceDoubleTest2Multiplie
+    CMDouble* MatriceDoubleTestAjoutMatrice = MatriceDoubleTest2->MDOAdditionnerMatrice(MatriceDoubleTest2Multiplie);
+
+    printf("(B) + (D) : (F)\n");
+    MatriceDoubleTestAjoutMatrice->MDOAfficherMatrice();
+    printf("\n");
+
+
+    //Soustrait la matrice MatriceDoubleTest2Multiplie à la MatriceDoubleTest2
+    CMDouble* MatriceDoubleTestSoustMatrice = MatriceDoubleTest2->MDOSoustraireMatrice(MatriceDoubleTest2Multiplie);
+
+    printf("(B) - (D) : (G)\n");
+    MatriceDoubleTestSoustMatrice->MDOAfficherMatrice();
+    printf("\n");
+
+
+    //Multiplie les matrices MatriceDoubleTest2 et MatriceDoubleTest2Transposee
+    CMDouble* MatriceDoubleTestMutiplieMatrice = MatriceDoubleTest2->MDOMultiplierMatrice(MatriceDoubleTest2Transposee);
+
+    printf("(B) * (C) : (H)\n");
+    MatriceDoubleTestMutiplieMatrice->MDOAfficherMatrice();
     printf("\n");
 
 }

@@ -23,7 +23,7 @@ class CMatriceBase {
 		void MABModifierNbColonnes(unsigned int uiParamNbColonnes);
 		
 		char* MABLireTypeMatrice();
-		int MABLireNbLignes();
-		int MABLireNbColonnes();
+		unsigned int MABLireNbLignes();
+		unsigned int MABLireNbColonnes();
 
 };

@@ -16,7 +16,7 @@ CMDouble::CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes)
 	}
 }
 
-CMDouble::CMDouble(unsigned int iParamNbLignes, unsigned int iParamNbColonnes, double* iParamValeurs) : CMatriceBase(iParamNbLignes, iParamNbColonnes, "double") {
+CMDouble::CMDouble(unsigned int iParamNbLignes, unsigned int iParamNbColonnes, double* iParamValeurs) : CMatriceBase(iParamNbLignes, iParamNbColonnes) {
 	unsigned int uiNbValeurs = iParamNbLignes * iParamNbColonnes;
 	//Faire un test pour savoir si la taille correspond au nombre de valeurs transmises
 
@@ -101,7 +101,7 @@ CMDouble* CMDouble::MDOMultiplierConstante(double iParamValeur)
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
 		for (unsigned int j = 0; j < NbColonnes; j++) {
-			NouvelleMatrice->MDOModifierElement(i, j, MDOLireElement(i, j) * iParamValeur);
+			NouvelleMatrice->MDOModifierElement(i, j, (double)MDOLireElement(i, j) * iParamValeur);
 		}
 	}
 
@@ -120,7 +120,7 @@ CMDouble* CMDouble::MDODiviserConstante(double iParamValeur)
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
 		for (unsigned int j = 0; j < NbColonnes; j++) {
-			NouvelleMatrice->MDOModifierElement(i, j, (MDOLireElement(i, j) / iParamValeur));
+			NouvelleMatrice->MDOModifierElement(i, j, (double)MDOLireElement(i, j) / iParamValeur);
 		}
 	}
 
@@ -140,11 +140,11 @@ CMDouble* CMDouble::MDOAdditionnerMatrice(CMDouble* MDOParam)
 
 	if (Mat1NbLignes != Mat2NbLignes) {
 		//Erreur
-		return nullptr;
+		throw "Pas le même nombre de lignes";
 	}
 	if (Mat1NbColonnes != Mat2NbColonnes) {
 		//Erreur
-		return nullptr;
+		throw "Pas le même nombre de colonnes";
 	}
 
 	CMDouble* NouvelleMatrice = new CMDouble(Mat1NbLignes, Mat1NbColonnes);
@@ -169,11 +169,11 @@ CMDouble* CMDouble::MDOSoustraireMatrice(CMDouble* MINTParam)
 
 	if (Mat1NbLignes != Mat2NbLignes) {
 		//Erreur
-		return nullptr;
+		throw "Pas le même nombre de lignes";
 	}
 	if (Mat1NbColonnes != Mat2NbColonnes) {
 		//Erreur
-		return nullptr;
+		throw "Pas le même nombre de colonnes";
 	}
 
 	CMDouble* NouvelleMatrice = new CMDouble(Mat1NbLignes, Mat1NbColonnes);

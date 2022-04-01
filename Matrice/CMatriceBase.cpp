@@ -55,7 +55,7 @@ char* CMatriceBase::MABLireTypeMatrice()
 	return pcTypeMatrice;
 }
 
-int CMatriceBase::MABLireNbLignes()
+unsigned int CMatriceBase::MABLireNbLignes()
 {
 	return uiMABNbLignes;
 }
