@@ -10,36 +10,35 @@ CMatriceBase::CMatriceBase(CMatriceBase& MATParam)
 {
 	uiMABNbLignes = MATParam.uiMABNbLignes;
 	uiMABNbColonnes = MATParam.uiMABNbColonnes;
+
 }
 
-CMatriceBase::CMatriceBase(unsigned int iParamNbLignes, unsigned int iParamNbColonnes)
+CMatriceBase::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes)
 {
-	uiMABNbLignes = iParamNbLignes;
-	uiMABNbColonnes = iParamNbColonnes;
+	uiMABNbLignes = uiParamNbLignes;
+	uiMABNbColonnes = uiParamNbColonnes;
 }
 
 CMatriceBase::~CMatriceBase()
 {
 }
 
-
-
-void CMatriceBase::MABModifierNbLignes(unsigned int iParamNbLignes)
+void CMatriceBase::MABModifierNbLignes(unsigned int uiParamNbLignes)
 {
-	uiMABNbLignes = iParamNbLignes;
+	uiMABNbLignes = uiParamNbLignes;
 }
 
-void CMatriceBase::MABModifierNbColonnes(unsigned int iParamNbColonnes)
+void CMatriceBase::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 {
-	uiMABNbColonnes = iParamNbColonnes;
+	uiMABNbColonnes = uiParamNbColonnes;
 }
 
-unsigned int CMatriceBase::MABLireNbLignes()
+int CMatriceBase::MABLireNbLignes()
 {
 	return uiMABNbLignes;
 }
 
-unsigned int CMatriceBase::MABLireNbColonnes()
+int CMatriceBase::MABLireNbColonnes()
 {
 	return uiMABNbColonnes;
 }

@@ -2,24 +2,75 @@
 //
 
 #include <iostream>
+#include "CMATInt.h"
 
 
 int main()
 {
+    //Creer une matrice d'entier 3x3 de 0
+    CMATInt* MatriceIntTest = new CMATInt(3, 3);
+
+    MatriceIntTest->MINTModifierElement(2, 2, 1);
+
+    printf("Matrice 3x3 de 0 : (A)\n");
+    MatriceIntTest->MINTAfficherMatrice();
+    printf("\n");
+
     
+    int piListeTest[6] = {1,2,3,4,5,6};
+    //Creer une matrice d'entier 3x2 a partir de la liste piListeTest
+    CMATInt* MatriceIntTest2 = new CMATInt(3, 2, piListeTest);
+    MatriceIntTest2->MINTModifierElement(2, 1, 1);
+
+    printf("Matrice 3x2 creer a partir d'une liste : (B)\n");
+    MatriceIntTest2->MINTAfficherMatrice();
+    printf("\n");
 
 
+    //Transpose la matrice MatriceIntTest2
+    CMATInt* MatriceIntTest2Transposee = MatriceIntTest2->MINTTranspose();
 
-    //std::cout << "Hello World!\n";
+    printf("Transposee de la matrice Matrice 3x2 creer a partir d'une liste : (C)\n");
+    MatriceIntTest2Transposee->MINTAfficherMatrice();
+    printf("\n");
+
+
+    //Multiplie la Matrice MatriceIntTest2 par 5
+    CMATInt* MatriceIntTest2Multiplie = MatriceIntTest2->MINTMultiplierConstante(5);
+
+    printf("(B)*5 : (D)\n");
+    MatriceIntTest2Multiplie->MINTAfficherMatrice();
+    printf("\n");
+
+    //Divise la Matrice MatriceIntTest2 par 5
+    CMATInt* MatriceIntTest2Divise = MatriceIntTest2->MINTDiviserConstante(5);
+
+    printf("(B)/5 : (E)\n");
+    MatriceIntTest2Divise->MINTAfficherMatrice();
+    printf("\n");
+
+
+    //Additionne les matrices MatriceIntTest2 et MatriceIntTest2Multiplie
+    CMATInt* MatriceIntTestAjoutMatrice = MatriceIntTest2->MINTAdditionnerMatrice(MatriceIntTest2Multiplie);
+
+    printf("(B) + (D) : (F)\n");
+    MatriceIntTestAjoutMatrice->MINTAfficherMatrice();
+    printf("\n");
+
+
+    //Soustrait la matrice MatriceIntTest2Multiplie à la MatriceIntTest2
+    CMATInt* MatriceIntTestSoustMatrice = MatriceIntTest2->MINTSoustraireMatrice(MatriceIntTest2Multiplie);
+
+    printf("(B) - (D) : (G)\n");
+    MatriceIntTestSoustMatrice->MINTAfficherMatrice();
+    printf("\n");
+
+
+    //Multiplie les matrices MatriceIntTest2 et MatriceIntTest2Transposee
+    CMATInt* MatriceIntTestMutiplieMatrice = MatriceIntTest2->MINTMultiplierMatrice(MatriceIntTest2Transposee);
+
+    printf("(B) * (C) : (H)\n");
+    MatriceIntTestMutiplieMatrice->MINTAfficherMatrice();
+    printf("\n");
+
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
