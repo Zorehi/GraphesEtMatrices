@@ -23,6 +23,7 @@ CMatriceBase::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbC
 
 CMatriceBase::~CMatriceBase()
 {
+
 }
 
 void CMatriceBase::MABModifierTypeMatrice(const char* pcParamTypeMatrice)
@@ -34,6 +35,7 @@ void CMatriceBase::MABModifierTypeMatrice(const char* pcParamTypeMatrice)
 	pcTypeMatrice = (char*)malloc(sizeof(char) * strlen(pcParamTypeMatrice)+1);
 	if (!pcTypeMatrice) {
 		//erreur memoire
+		throw "Pas assez d'espacce mémoire";
 	}
 	else {
 		strcpy_s(pcTypeMatrice, strlen(pcParamTypeMatrice)+1, pcParamTypeMatrice);

@@ -1,13 +1,20 @@
 #include "CMDouble.h"
 
 CMDouble::CMDouble() : CMatriceBase() {
+	MABModifierTypeMatrice("double");
+
 	pdMDOValeurs = NULL;
 }
 
 CMDouble::CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
+	MABModifierTypeMatrice("double");
+
 	//Creer et alloue la matrice en memoire
 	pdMDOValeurs = (double*)malloc(((size_t)uiParamNbLignes * (size_t)uiParamNbColonnes) * sizeof(int));
+	if (pdMDOValeurs == NULL) {
+		throw "Pas assez d'espace mémoire";
+	}
 
 	// Mets 0 pour chaque element de la matrice
 	unsigned int IndiceMax = uiParamNbLignes * uiParamNbColonnes;
@@ -16,7 +23,10 @@ CMDouble::CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes)
 	}
 }
 
-CMDouble::CMDouble(unsigned int iParamNbLignes, unsigned int iParamNbColonnes, double* iParamValeurs) : CMatriceBase(iParamNbLignes, iParamNbColonnes) {
+CMDouble::CMDouble(unsigned int iParamNbLignes, unsigned int iParamNbColonnes, double* iParamValeurs) : CMatriceBase(iParamNbLignes, iParamNbColonnes)
+{
+	MABModifierTypeMatrice("double");
+
 	unsigned int uiNbValeurs = iParamNbLignes * iParamNbColonnes;
 	//Faire un test pour savoir si la taille correspond au nombre de valeurs transmises
 
@@ -32,6 +42,8 @@ CMDouble::CMDouble(unsigned int iParamNbLignes, unsigned int iParamNbColonnes, d
 }
 
 CMDouble::CMDouble(CMDouble& MDOParam) : CMatriceBase(MDOParam) {
+	MABModifierTypeMatrice("double");
+
 	unsigned int uiNbValeurs = MDOParam.MABLireNbColonnes() * MDOParam.MABLireNbLignes();
 
 	pdMDOValeurs = (double*)malloc(sizeof(double) * uiNbValeurs);
@@ -50,7 +62,9 @@ CMDouble::CMDouble(CMDouble& MDOParam) : CMatriceBase(MDOParam) {
 }
 
 CMDouble::~CMDouble() {
-	free(pdMDOValeurs);
+	if (pdMDOValeurs) {
+		free(pdMDOValeurs);
+	}
 }
 
 double CMDouble::MDOLireElement(unsigned int iParamLigne, unsigned int iParamColonne) {
