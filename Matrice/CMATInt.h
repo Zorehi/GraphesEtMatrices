@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include <stdlib.h>
 #include <stdio.h>
 #include "CMatrice.h"
