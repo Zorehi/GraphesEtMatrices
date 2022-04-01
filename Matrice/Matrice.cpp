@@ -2,13 +2,13 @@
 //
 
 #include <iostream>
-#include "CMATInt.h"
+#include "CMInt.h"
 
 
 int main()
 {
     //Creer une matrice d'entier 3x3 de 0
-    CMATInt* MatriceIntTest = new CMATInt(3, 3);
+    CMInt* MatriceIntTest = new CMInt(3, 3);
 
     MatriceIntTest->MINTModifierElement(2, 2, 1);
 
@@ -19,7 +19,7 @@ int main()
     
     int piListeTest[6] = {1,2,3,4,5,6};
     //Creer une matrice d'entier 3x2 a partir de la liste piListeTest
-    CMATInt* MatriceIntTest2 = new CMATInt(3, 2, piListeTest);
+    CMInt* MatriceIntTest2 = new CMInt(3, 2, piListeTest);
     MatriceIntTest2->MINTModifierElement(2, 1, 1);
 
     printf("Matrice 3x2 creer a partir d'une liste : (B)\n");
@@ -28,7 +28,7 @@ int main()
 
 
     //Transpose la matrice MatriceIntTest2
-    CMATInt* MatriceIntTest2Transposee = MatriceIntTest2->MINTTranspose();
+    CMInt* MatriceIntTest2Transposee = MatriceIntTest2->MINTTranspose();
 
     printf("Transposee de la matrice Matrice 3x2 creer a partir d'une liste : (C)\n");
     MatriceIntTest2Transposee->MINTAfficherMatrice();
@@ -36,14 +36,14 @@ int main()
 
 
     //Multiplie la Matrice MatriceIntTest2 par 5
-    CMATInt* MatriceIntTest2Multiplie = MatriceIntTest2->MINTMultiplierConstante(5);
+    CMInt* MatriceIntTest2Multiplie = MatriceIntTest2->MINTMultiplierConstante(5);
 
     printf("(B)*5 : (D)\n");
     MatriceIntTest2Multiplie->MINTAfficherMatrice();
     printf("\n");
 
     //Divise la Matrice MatriceIntTest2 par 5
-    CMATInt* MatriceIntTest2Divise = MatriceIntTest2->MINTDiviserConstante(5);
+    CMInt* MatriceIntTest2Divise = MatriceIntTest2->MINTDiviserConstante(5);
 
     printf("(B)/5 : (E)\n");
     MatriceIntTest2Divise->MINTAfficherMatrice();
@@ -51,7 +51,7 @@ int main()
 
 
     //Additionne les matrices MatriceIntTest2 et MatriceIntTest2Multiplie
-    CMATInt* MatriceIntTestAjoutMatrice = MatriceIntTest2->MINTAdditionnerMatrice(MatriceIntTest2Multiplie);
+    CMInt* MatriceIntTestAjoutMatrice = MatriceIntTest2->MINTAdditionnerMatrice(MatriceIntTest2Multiplie);
 
     printf("(B) + (D) : (F)\n");
     MatriceIntTestAjoutMatrice->MINTAfficherMatrice();
@@ -59,7 +59,7 @@ int main()
 
 
     //Soustrait la matrice MatriceIntTest2Multiplie à la MatriceIntTest2
-    CMATInt* MatriceIntTestSoustMatrice = MatriceIntTest2->MINTSoustraireMatrice(MatriceIntTest2Multiplie);
+    CMInt* MatriceIntTestSoustMatrice = MatriceIntTest2->MINTSoustraireMatrice(MatriceIntTest2Multiplie);
 
     printf("(B) - (D) : (G)\n");
     MatriceIntTestSoustMatrice->MINTAfficherMatrice();
@@ -67,7 +67,7 @@ int main()
 
 
     //Multiplie les matrices MatriceIntTest2 et MatriceIntTest2Transposee
-    CMATInt* MatriceIntTestMutiplieMatrice = MatriceIntTest2->MINTMultiplierMatrice(MatriceIntTest2Transposee);
+    CMInt* MatriceIntTestMutiplieMatrice = MatriceIntTest2->MINTMultiplierMatrice(MatriceIntTest2Transposee);
 
     printf("(B) * (C) : (H)\n");
     MatriceIntTestMutiplieMatrice->MINTAfficherMatrice();

@@ -1,16 +1,17 @@
-#include "CMATInt.h"
+#include "CMInt.h"
 #include <math.h>
 
 
 
-CMATInt::CMATInt() : CMatriceBase()
+CMInt::CMInt() : CMatriceBase()
 {
 	MABModifierTypeMatrice("int");
 	piMINTValeurs = NULL;
 	
 }
 
-CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
+
+CMInt::CMInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
 	MABModifierTypeMatrice("int");
 
@@ -29,7 +30,7 @@ CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) :
 	}
 }
 
-CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, int* piParamListe) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
+CMInt::CMInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, int* piParamListe) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
 	MABModifierTypeMatrice("int");
 
@@ -50,7 +51,7 @@ CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, i
 	}
 }
 
-CMATInt::CMATInt(CMATInt& MINTParam)
+CMInt::CMInt(CMInt& MINTParam)
 {
 	MABModifierTypeMatrice("int");
 
@@ -63,7 +64,7 @@ CMATInt::CMATInt(CMATInt& MINTParam)
 	piMINTValeurs = (int*)malloc(sizeof(int) * ((size_t)MINTParam.MABLireNbLignes() * (size_t)MINTParam.MABLireNbColonnes()));
 }
 
-CMATInt::~CMATInt()
+CMInt::~CMInt()
 {
 	if (MABLireTypeMatrice()) {
 		free(MABLireTypeMatrice());
@@ -74,7 +75,7 @@ CMATInt::~CMATInt()
 	}
 }
 
-int CMATInt::MINTLireElement(unsigned int uiParamLigne, unsigned int uiParamColonne)
+int CMInt::MINTLireElement(unsigned int uiParamLigne, unsigned int uiParamColonne)
 {
 	if (piMINTValeurs) {
 		return piMINTValeurs[uiParamLigne * MABLireNbColonnes() + uiParamColonne];
@@ -84,7 +85,7 @@ int CMATInt::MINTLireElement(unsigned int uiParamLigne, unsigned int uiParamColo
 	}
 }
 
-void CMATInt::MINTModifierElement(unsigned int uiParamLigne, unsigned int uiParamColonne, int iParamValeur)
+void CMInt::MINTModifierElement(unsigned int uiParamLigne, unsigned int uiParamColonne, int iParamValeur)
 {
 	if (piMINTValeurs) {
 		piMINTValeurs[uiParamLigne * MABLireNbColonnes() + uiParamColonne] = iParamValeur;
@@ -94,7 +95,7 @@ void CMATInt::MINTModifierElement(unsigned int uiParamLigne, unsigned int uiPara
 	}
 }
 
-void CMATInt::MINTAfficherMatrice()
+void CMInt::MINTAfficherMatrice()
 {
 	unsigned int nbLignes = MABLireNbLignes();
 	unsigned int nbColonnes = MABLireNbColonnes();
@@ -108,12 +109,12 @@ void CMATInt::MINTAfficherMatrice()
 
 }
 
-CMATInt* CMATInt::MINTTranspose()
+CMInt* CMInt::MINTTranspose()
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
 
-	CMATInt* MatriceTransposee = new CMATInt(NbColonnes, NbLignes);
+	CMInt* MatriceTransposee = new CMInt(NbColonnes, NbLignes);
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
 		for (unsigned int j = 0; j < NbColonnes; j++) {
@@ -124,12 +125,12 @@ CMATInt* CMATInt::MINTTranspose()
 	return MatriceTransposee;
 }
 
-CMATInt* CMATInt::MINTMultiplierConstante(int iParamValeur)
+CMInt* CMInt::MINTMultiplierConstante(int iParamValeur)
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
 
-	CMATInt* NouvelleMatrice = new CMATInt(NbLignes, NbColonnes);
+	CMInt* NouvelleMatrice = new CMInt(NbLignes, NbColonnes);
 
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
@@ -143,12 +144,12 @@ CMATInt* CMATInt::MINTMultiplierConstante(int iParamValeur)
 	return NouvelleMatrice;
 }
 
-CMATInt* CMATInt::MINTDiviserConstante(int iParamValeur)
+CMInt* CMInt::MINTDiviserConstante(int iParamValeur)
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
 
-	CMATInt* NouvelleMatrice = new CMATInt(NbLignes, NbColonnes);
+	CMInt* NouvelleMatrice = new CMInt(NbLignes, NbColonnes);
 
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
@@ -162,7 +163,7 @@ CMATInt* CMATInt::MINTDiviserConstante(int iParamValeur)
 	return NouvelleMatrice;
 }
 
-CMATInt* CMATInt::MINTAdditionnerMatrice(CMATInt* MINTParam)
+CMInt* CMInt::MINTAdditionnerMatrice(CMInt* MINTParam)
 {
 	unsigned int Mat1NbLignes = MABLireNbLignes();
 	unsigned int Mat1NbColonnes = MABLireNbColonnes();
@@ -180,7 +181,7 @@ CMATInt* CMATInt::MINTAdditionnerMatrice(CMATInt* MINTParam)
 		return nullptr;
 	}
 
-	CMATInt* NouvelleMatrice = new CMATInt(Mat1NbLignes, Mat1NbColonnes);
+	CMInt* NouvelleMatrice = new CMInt(Mat1NbLignes, Mat1NbColonnes);
 
 	for (unsigned int i = 0; i < Mat1NbLignes; i++) {
 		for (unsigned int j = 0; j < Mat1NbColonnes; j++) {
@@ -191,7 +192,7 @@ CMATInt* CMATInt::MINTAdditionnerMatrice(CMATInt* MINTParam)
 	return NouvelleMatrice;
 }
 
-CMATInt* CMATInt::MINTSoustraireMatrice(CMATInt* MINTParam)
+CMInt* CMInt::MINTSoustraireMatrice(CMInt* MINTParam)
 {
 	unsigned int Mat1NbLignes = MABLireNbLignes();
 	unsigned int Mat1NbColonnes = MABLireNbColonnes();
@@ -209,7 +210,7 @@ CMATInt* CMATInt::MINTSoustraireMatrice(CMATInt* MINTParam)
 		return nullptr;
 	}
 
-	CMATInt* NouvelleMatrice = new CMATInt(Mat1NbLignes, Mat1NbColonnes);
+	CMInt* NouvelleMatrice = new CMInt(Mat1NbLignes, Mat1NbColonnes);
 
 	for (unsigned int i = 0; i < Mat1NbLignes; i++) {
 		for (unsigned int j = 0; j < Mat1NbColonnes; j++) {
@@ -220,7 +221,7 @@ CMATInt* CMATInt::MINTSoustraireMatrice(CMATInt* MINTParam)
 	return NouvelleMatrice;
 }
 
-CMATInt* CMATInt::MINTMultiplierMatrice(CMATInt* MINTParam)
+CMInt* CMInt::MINTMultiplierMatrice(CMInt* MINTParam)
 {
 	unsigned int Mat1NbLignes = MABLireNbLignes();
 	unsigned int Mat1NbColonnes = MABLireNbColonnes();
@@ -234,7 +235,7 @@ CMATInt* CMATInt::MINTMultiplierMatrice(CMATInt* MINTParam)
 		return nullptr;
 	}
 
-	CMATInt* NouvelleMatrice = new CMATInt(Mat1NbLignes, Mat2NbColonnes);
+	CMInt* NouvelleMatrice = new CMInt(Mat1NbLignes, Mat2NbColonnes);
 
 	for (unsigned int i = 0; i < Mat1NbLignes; i++) {
 		for (unsigned int j = 0; j < Mat2NbColonnes; j++) {
