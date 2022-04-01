@@ -23,6 +23,9 @@ CMatriceBase::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbC
 
 CMatriceBase::~CMatriceBase()
 {
+	if (pcTypeMatrice) {
+		free(pcTypeMatrice);
+	}
 }
 
 void CMatriceBase::MABModifierTypeMatrice(const char* pcParamTypeMatrice)

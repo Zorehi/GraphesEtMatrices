@@ -64,10 +64,6 @@ CMInt::CMInt(CMInt& MINTParam)
 
 CMInt::~CMInt()
 {
-	if (MABLireTypeMatrice()) {
-		free(MABLireTypeMatrice());
-	}
-
 	if (piMINTValeurs) {
 		free(piMINTValeurs);
 	}
