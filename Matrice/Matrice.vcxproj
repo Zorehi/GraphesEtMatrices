@@ -140,12 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CMATInt.cpp" />
-    <ClCompile Include="CMatrice.cpp" />
+    <ClCompile Include="CMatriceBase.cpp" />
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMATInt.h" />
-    <ClInclude Include="CMatrice.h" />
+    <ClInclude Include="CMatriceBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

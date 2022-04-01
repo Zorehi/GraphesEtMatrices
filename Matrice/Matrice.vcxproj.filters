@@ -18,7 +18,7 @@
     <ClCompile Include="Matrice.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CMatrice.cpp">
+    <ClCompile Include="CMatriceBase.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CMATInt.cpp">
@@ -26,7 +26,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMatrice.h">
+    <ClInclude Include="CMatriceBase.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CMATInt.h">

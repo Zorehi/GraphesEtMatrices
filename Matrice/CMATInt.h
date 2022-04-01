@@ -1,27 +1,31 @@
 #pragma once
 
-#pragma once
-
 #include <stdlib.h>
 #include <stdio.h>
-#include "CMatrice.h"
+#include "CMatriceBase.h"
 
-class CMATInt : private CMatrice{
+class CMATInt : private CMatriceBase{
 	private:
-		int** CMINTppiValeurs;
+		int* piMINTValeurs;
 
 
 	public:
 		CMATInt();
-		CMATInt(int iParamNbLignes, int iParamNbColonnes);
+		CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
+		CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, int* piParamListe);
 		CMATInt(CMATInt& MINTParam);
 		~CMATInt();
 
-		int CMINTGetElement(int iParamLigne, int iParamColonne);
-		void CMINTModifierElement(int iParamLigne, int iParamColonne, int iParamValeur);
-		void CMINTAfficherMatrice();
 
+		int MINTLireElement(unsigned int uiParamLigne, unsigned int uiParamColonne);
+		void MINTModifierElement(unsigned int uiParamLigne, unsigned int uiParamColonne, int iParamValeur);
+		void MINTAfficherMatrice();
 
-	
-
+		CMATInt* MINTTranspose();
+		CMATInt* MINTMultiplierConstante(int iParamValeur);
+		CMATInt* MINTDiviserConstante(int iParamValeur);
+		CMATInt* MINTAdditionnerMatrice(CMATInt* MINTParam);
+		CMATInt* MINTSoustraireMatrice(CMATInt* MINTParam);
+		CMATInt* MINTMultiplierMatrice(CMATInt* MINTParam);
+		
 };
