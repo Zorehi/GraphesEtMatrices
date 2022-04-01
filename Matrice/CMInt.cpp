@@ -1,8 +1,6 @@
 #include "CMInt.h"
 #include <math.h>
 
-
-
 CMInt::CMInt() : CMatriceBase()
 {
 	MABModifierTypeMatrice("int");
@@ -125,7 +123,7 @@ CMInt* CMInt::MINTTranspose()
 	return MatriceTransposee;
 }
 
-CMInt* CMInt::MINTMultiplierConstante(int iParamValeur)
+CMInt* CMInt::MINTMultiplierConstante(float fParamValeur)
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
@@ -135,7 +133,7 @@ CMInt* CMInt::MINTMultiplierConstante(int iParamValeur)
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
 		for (unsigned int j = 0; j < NbColonnes; j++) {
-			NouvelleMatrice->MINTModifierElement(i, j, MINTLireElement(i, j)*iParamValeur);
+			NouvelleMatrice->MINTModifierElement(i, j, floor(MINTLireElement(i, j)*fParamValeur));
 		}
 	}
 
@@ -144,7 +142,7 @@ CMInt* CMInt::MINTMultiplierConstante(int iParamValeur)
 	return NouvelleMatrice;
 }
 
-CMInt* CMInt::MINTDiviserConstante(int iParamValeur)
+CMInt* CMInt::MINTDiviserConstante(float fParamValeur)
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
@@ -154,7 +152,7 @@ CMInt* CMInt::MINTDiviserConstante(int iParamValeur)
 
 	for (unsigned int i = 0; i < NbLignes; i++) {
 		for (unsigned int j = 0; j < NbColonnes; j++) {
-			NouvelleMatrice->MINTModifierElement(i, j, floor(MINTLireElement(i, j) / iParamValeur));
+			NouvelleMatrice->MINTModifierElement(i, j, floor(MINTLireElement(i, j) / fParamValeur));
 		}
 	}
 
