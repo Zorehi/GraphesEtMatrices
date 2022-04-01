@@ -21,7 +21,7 @@
     <ClCompile Include="CMatriceBase.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CMATInt.cpp">
+    <ClCompile Include="CMInt.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CMDouble.cpp">
@@ -32,7 +32,7 @@
     <ClInclude Include="CMatriceBase.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="CMATInt.h">
+    <ClInclude Include="CMInt.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CMDouble.h">

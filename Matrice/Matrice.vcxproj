@@ -140,13 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CMDouble.cpp" />
-    <ClCompile Include="CMATInt.cpp" />
+    <ClCompile Include="CMInt.cpp" />
     <ClCompile Include="CMatriceBase.cpp" />
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMDouble.h" />
-    <ClInclude Include="CMATInt.h" />
+    <ClInclude Include="CMInt.h" />
     <ClInclude Include="CMatriceBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

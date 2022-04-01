@@ -6,6 +6,7 @@
 
 class CMatriceBase {
 	private :
+		char* pcTypeMatrice;
 		unsigned int uiMABNbLignes;
 		unsigned int uiMABNbColonnes;
 
@@ -17,9 +18,12 @@ class CMatriceBase {
 		~CMatriceBase();
 
 		
+		void MABModifierTypeMatrice(const char* pcParamTypeMatrice);
 		void MABModifierNbLignes(unsigned int uiParamNbLignes);
 		void MABModifierNbColonnes(unsigned int uiParamNbColonnes);
-		unsigned int MABLireNbLignes();
-		unsigned int MABLireNbColonnes();
+		
+		char* MABLireTypeMatrice();
+		int MABLireNbLignes();
+		int MABLireNbColonnes();
 
 };
