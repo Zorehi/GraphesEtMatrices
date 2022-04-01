@@ -7,7 +7,7 @@ CMDouble::CMDouble() : CMatriceBase() {
 CMDouble::CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
 	//Creer et alloue la matrice en memoire
-	pdMDOValeurs = (double*)malloc(((size_t)uiParamNbLignes * (size_t)uiParamNbColonnes) * sizeof(int));
+	pdMDOValeurs = (double*)malloc(((size_t)uiParamNbLignes * (size_t)uiParamNbColonnes) * sizeof(double));
 
 	// Mets 0 pour chaque element de la matrice
 	unsigned int IndiceMax = uiParamNbLignes * uiParamNbColonnes;
@@ -205,7 +205,7 @@ CMDouble* CMDouble::MDOMultiplierMatrice(CMDouble* MDOParam)
 
 	for (unsigned int i = 0; i < Mat1NbLignes; i++) {
 		for (unsigned int j = 0; j < Mat2NbColonnes; j++) {
-			int iValeurElement = 0;
+			double iValeurElement = 0;
 			for (unsigned int n = 0; n < Mat1NbColonnes; n++) {
 				iValeurElement += MDOLireElement(i, n) * MDOParam->MDOLireElement(n, j);
 			}
