@@ -2,9 +2,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 class CMatriceBase {
 	private :
+		char* pcTypeMatrice;
 		unsigned int uiMABNbLignes;
 		unsigned int uiMABNbColonnes;
 
@@ -16,8 +18,11 @@ class CMatriceBase {
 		~CMatriceBase();
 
 		
+		void MABModifierTypeMatrice(const char* pcParamTypeMatrice);
 		void MABModifierNbLignes(unsigned int uiParamNbLignes);
 		void MABModifierNbColonnes(unsigned int uiParamNbColonnes);
+		
+		char* MABLireTypeMatrice();
 		int MABLireNbLignes();
 		int MABLireNbColonnes();
 

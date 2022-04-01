@@ -5,12 +5,15 @@
 
 CMATInt::CMATInt() : CMatriceBase()
 {
+	MABModifierTypeMatrice("int");
 	piMINTValeurs = NULL;
 	
 }
 
 CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
+	MABModifierTypeMatrice("int");
+
 	//Si un matrice existe déjà -> liberer la memoire
 	if (piMINTValeurs) {
 		free(piMINTValeurs);
@@ -28,6 +31,8 @@ CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) :
 
 CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, int* piParamListe) : CMatriceBase(uiParamNbLignes, uiParamNbColonnes)
 {
+	MABModifierTypeMatrice("int");
+
 	//Si un matrice existe déjà -> liberer la memoire
 	if (piMINTValeurs) {
 		free(piMINTValeurs);
@@ -47,6 +52,8 @@ CMATInt::CMATInt(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, i
 
 CMATInt::CMATInt(CMATInt& MINTParam)
 {
+	MABModifierTypeMatrice("int");
+
 	if (piMINTValeurs) {
 		free(piMINTValeurs);
 	}
@@ -58,6 +65,10 @@ CMATInt::CMATInt(CMATInt& MINTParam)
 
 CMATInt::~CMATInt()
 {
+	if (MABLireTypeMatrice()) {
+		free(MABLireTypeMatrice());
+	}
+
 	if (piMINTValeurs) {
 		free(piMINTValeurs);
 	}
