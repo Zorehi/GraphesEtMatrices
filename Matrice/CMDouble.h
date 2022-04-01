@@ -10,6 +10,7 @@ private:
 
 public:
 	CMDouble();
+	CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 	CMDouble(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, double *dParamValeurs);
 	CMDouble(CMDouble& MDOParam);
 	~CMDouble();
@@ -17,6 +18,12 @@ public:
 	double MDOLireElement(unsigned int iParamLigne, unsigned int iParamColonne);
 	void MDOModifierElement(unsigned int iParamLigne, unsigned int iParamColonne, double iParamValeur);
 	void MDOAfficherMatrice();
+	CMDouble* MDOTranspose();
+	CMDouble* MDOMultiplierConstante(double iParamValeur);
+	CMDouble* MDODiviserConstante(double iParamValeur);
+	CMDouble* MDOAdditionnerMatrice(CMDouble* MDOParam);
+	CMDouble* MDOSoustraireMatrice(CMDouble* MINTParam);
+	CMDouble* MDOMultiplierMatrice(CMDouble* MINTParam);
 
 };
 

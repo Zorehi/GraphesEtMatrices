@@ -33,12 +33,12 @@ void CMatriceBase::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 	uiMABNbColonnes = uiParamNbColonnes;
 }
 
-int CMatriceBase::MABLireNbLignes()
+unsigned int CMatriceBase::MABLireNbLignes()
 {
 	return uiMABNbLignes;
 }
 
-int CMatriceBase::MABLireNbColonnes()
+unsigned int CMatriceBase::MABLireNbColonnes()
 {
 	return uiMABNbColonnes;
 }
