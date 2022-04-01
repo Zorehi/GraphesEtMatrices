@@ -22,8 +22,8 @@ class CMInt : private CMatriceBase{
 		void MINTAfficherMatrice();
 
 		CMInt* MINTTranspose();
-		CMInt* MINTMultiplierConstante(int iParamValeur);
-		CMInt* MINTDiviserConstante(int iParamValeur);
+		CMInt* MINTMultiplierConstante(float fParamValeur);
+		CMInt* MINTDiviserConstante(float fParamValeur);
 		CMInt* MINTAdditionnerMatrice(CMInt* MINTParam);
 		CMInt* MINTSoustraireMatrice(CMInt* MINTParam);
 		CMInt* MINTMultiplierMatrice(CMInt* MINTParam);
