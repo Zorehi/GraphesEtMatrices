@@ -143,4 +143,6 @@ int main()
     MatriceDoubleTestMutiplieMatrice->MDOAfficherMatrice();
     printf("\n");
 
+    system("pause");
+
 }
