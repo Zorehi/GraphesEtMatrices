@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CListe.cpp" />
+    <ClCompile Include="CMatrice.cpp" />
     <ClCompile Include="CMDouble.cpp" />
     <ClCompile Include="CMInt.cpp" />
     <ClCompile Include="CMatriceBase.cpp" />
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CListe.h" />
+    <ClInclude Include="CMatrice.h" />
     <ClInclude Include="CMDouble.h" />
     <ClInclude Include="CMInt.h" />
     <ClInclude Include="CMatriceBase.h" />
