@@ -1,20 +1,25 @@
 
 #include "CMatrice.h"
 
-CMatrice::CMatrice()
+template <typename ELEMENT>
+CMatrice<ELEMENT>::CMatrice()
 {
 }
 
-CMatrice::CMatrice(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, char* pcParamTypeMatrice)
+template <typename ELEMENT>
+CMatrice<ELEMENT>::CMatrice(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes, char* pcParamTypeMatrice)
 {
 	
 
 }
 
-CMatrice::CMatrice(CMatrice& MATParam)
+template <typename ELEMENT>
+CMatrice<ELEMENT>::CMatrice(CMatrice& MATParam)
 {
+
 }
 
-CMatrice::~CMatrice()
+template <typename ELEMENT>
+CMatrice<ELEMENT>::~CMatrice()
 {
 }

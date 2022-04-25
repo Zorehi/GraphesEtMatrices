@@ -2,11 +2,23 @@
 //
 
 #include <iostream>
-#include "CMInt.h"
-#include "CMDouble.h"
+//#include "CMInt.h"
+//#include "CMDouble.h"
+#include "CMatriceBase.h"
 
 
-int main()
+int main() {
+    CMatriceBase<int> Matrice(3, 3);
+
+    Matrice[1][1] = 1;
+    Matrice[2][2] = 56135;
+    printf("%d\n", Matrice[1][1]);
+    printf("%d\n", Matrice[2][2]);
+}
+
+
+/*
+int test()
 {
     //Creer une matrice d'entier 3x3 de 0
     CMInt* MatriceIntTest = new CMInt(3, 3);
@@ -145,4 +157,8 @@ int main()
 
     system("pause");
 
+    return 0;
+
 }
+
+*/

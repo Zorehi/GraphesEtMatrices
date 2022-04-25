@@ -2,11 +2,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "CListe.h"
 
+template <typename ELEMENT>
 class CMatrice {
 	
 	private :	
-		//(void*)pMATMatrice;
+		unsigned int uiMABNbLignes;
+		unsigned int uiMABNbColonnes;
+		CListe<ELEMENT>* pLISMATListe;
 
 	public :
 		CMatrice();
