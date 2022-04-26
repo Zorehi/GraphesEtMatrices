@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CException.cpp" />
     <ClCompile Include="CMatrice.cpp" />
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CException.h" />
     <ClInclude Include="CListe.h" />
     <ClInclude Include="CMatrice.h" />
     <ClInclude Include="CMatriceBase.h" />
