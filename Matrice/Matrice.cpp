@@ -14,6 +14,8 @@ int main() {
     Matrice[2][2] = 56135;
     printf("%d\n", Matrice[1][1]);
     printf("%d\n", Matrice[2][2]);
+
+    Matrice.MABAfficherMatrice();
 }
 
 
