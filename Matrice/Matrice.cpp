@@ -4,16 +4,14 @@
 #include <iostream>
 //#include "CMInt.h"
 //#include "CMDouble.h"
-#include "CMatriceBase.h"
+#include "CMatrice.h"
 
 
 int main() {
-    CMatriceBase<int> Matrice(3, 3);
+    CMatrice<int> Matrice(3, 3);
 
     Matrice[1][1] = 1;
     Matrice[2][2] = 56135;
-    printf("%d\n", Matrice[1][1]);
-    printf("%d\n", Matrice[2][2]);
 
     Matrice.MABAfficherMatrice();
 }

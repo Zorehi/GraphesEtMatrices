@@ -62,7 +62,7 @@ CMatrice<ELEMENT>::CMatrice(unsigned int uiParamNbLignes, unsigned int uiParamNb
 }
 
 template <typename ELEMENT>
-CMatrice<ELEMENT>::~CMatriceBase()
+CMatrice<ELEMENT>::~CMatrice()
 {
 	if (pcTypeMatrice) {
 		free(pcTypeMatrice);
@@ -122,10 +122,10 @@ void CMatrice<ELEMENT>::MABAfficherMatrice() {
 		for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
 			for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
 				if (uicolonne == uiMABNbColonnes - 1) {
-					cout << pLISMATListe[uiligne * uiMABNbColonnes + uicolonne] <<"\n";
+					cout << (*pLISMATListe)[uiligne * uiMABNbColonnes + uicolonne] <<"\n";
 				}
 				else {
-					cout << pLISMATListe[uiligne * uiMABNbColonnes + uicolonne] << "\t";
+					cout << (*pLISMATListe)[uiligne * uiMABNbColonnes + uicolonne] << "\t";
 				}
 			}
 		}
