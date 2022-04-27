@@ -19,7 +19,6 @@ public:
 	~CListe();
 
 	const unsigned int LISLireTaille();
-	ELEMENT* LISLireIndex(unsigned int uiIndex);
 	ELEMENT& operator[](unsigned int uiIndex);
 };
 
@@ -77,13 +76,5 @@ ELEMENT& CListe<ELEMENT>::operator[](unsigned int uiIndex) {
 		throw "Index trop grand";
 	}
 	return peLISTableau[uiIndex];
-}
-
-template <typename ELEMENT>
-ELEMENT* CListe<ELEMENT>::LISLireIndex(unsigned int uiIndex) {
-	if (uiIndex > uiLISTaille) {
-		throw "Index trop grand";
-	}
-	return &(peLISTableau[uiIndex]);
 }
 
