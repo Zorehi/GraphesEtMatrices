@@ -5,6 +5,9 @@
 #include <string.h>
 #include "CListe.h"
 #include "CProxy_row.h"
+#include "iostream"
+#include "fstream"
+using namespace std;
 
 template <typename ELEMENT>
 class CMatriceBase {
@@ -34,6 +37,8 @@ class CMatriceBase {
 		MATPROProxy operator[](unsigned int uiLignes) {
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
+		void MABAfficherMatrice();
+		void operator<<();
 };
 
 
@@ -112,6 +117,22 @@ unsigned int CMatriceBase<ELEMENT>::MABLireNbColonnes()
 	return uiMABNbColonnes;
 }
 
+template <typename ELEMENT>
+void CMatriceBase<ELEMENT>::MABAfficherMatrice() {
+	if ((uiMABNbLignes != 0) && (uiMABNbColonnes != 0)) {
+		for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
+			for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
+				if (uicolonne == uiMABNbColonnes - 1) {
+					cout << pLISMATListe[uiligne * uiMABNbColonnes + uicolonne] <<"\n";
+				}
+				else {
+					cout << pLISMATListe[uiligne * uiMABNbColonnes + uicolonne] << "\t";
+				}
+			}
+		}
+	}
+	//ICI AJOUTER EXCEPTION OU ERREUR DANS LE ELSE
+}
 
 //template <typename ELEMENT>
 //ELEMENT& CMatriceBase<ELEMENT>::operator[](unsigned int uiLignes) {

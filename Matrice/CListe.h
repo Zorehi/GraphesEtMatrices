@@ -40,8 +40,8 @@ CListe<ELEMENT>::CListe(unsigned int uiTaille)
 	if (!peLISTableau) {
 		throw "Allocation mémoire impossible";
 	}
-	for (int i = 0; i < uiLISTaille; i++) {
-		peLISTableau[i] = ELEMENT();
+	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
+		peLISTableau[uiBoucle] = ELEMENT();
 	}
 }
 
@@ -53,8 +53,8 @@ CListe<ELEMENT>::CListe(CListe& LISParam)
 	if (!peLISTableau) {
 		throw "Allocation mémoire impossible";
 	}
-	for (int i = 0; i < uiLISTaille; i++) {
-		peLISTableau[i] = LISParam[i];
+	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
+		peLISTableau[uiBoucle] = LISParam[uiBoucle];
 	}
 }
 

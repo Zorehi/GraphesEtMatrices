@@ -140,15 +140,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CException.cpp" />
-    <ClCompile Include="CMatrice.cpp" />
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CException.h" />
     <ClInclude Include="CListe.h" />
-    <ClInclude Include="CMatrice.h" />
+    <ClInclude Include="CMatricePlus.h" />
     <ClInclude Include="CMatriceBase.h" />
     <ClInclude Include="CProxy_row.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Matrice.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
