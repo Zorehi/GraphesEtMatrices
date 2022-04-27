@@ -6,8 +6,9 @@
 #include "CMatrice.h"
 
 template <typename ELEMENT>
-class CMatricePlus : public CMatriceBase {
+class CMatricePlus : public CMatrice<ELEMENT> {
 	public :
+		CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 		CMatricePlus operator*(double ELM2param);
 		CMatricePlus operator*(CMatricePlus& MAP2);
 		CMatricePlus operator/(double ELM2param);
@@ -17,6 +18,12 @@ class CMatricePlus : public CMatriceBase {
 		CMatricePlus MAPParser(char* pcFile);
 
 };
+
+template <typename ELEMENT>
+CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatrice<ELEMENT>(uiParamNbLignes, uiParamNbColonnes)
+{
+
+}
 
 template <typename ELEMENT>
 CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double ELM2param) {
@@ -48,7 +55,7 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
 
-	CMatrice<ELEMENT> MatriceTransposee = new CMatrice<ELEMENT>(NbColonnes, NbLignes);
+	CMatricePlus<ELEMENT> MatriceTransposee(NbColonnes, NbLignes);
 
 	for (unsigned int uiBoucleL = 0; uiBoucleL < NbLignes; uiBoucleL++) {
 		for (unsigned int uiBoucleC = 0; uiBoucleC < NbColonnes; uiBoucleC++) {

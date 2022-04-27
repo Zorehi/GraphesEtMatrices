@@ -4,16 +4,25 @@
 #include <iostream>
 //#include "CMInt.h"
 //#include "CMDouble.h"
-#include "CMatrice.h"
+#include "CMatricePlus.h"
+
 
 
 int main() {
-    CMatrice<int> Matrice(3, 3);
+    CMatricePlus<int> Matrice(3, 3);
 
-    Matrice[1][1] = 1;
-    Matrice[2][2] = 56135;
-
+    Matrice[0][0] = 1;
+    Matrice[0][1] = 2;
+    Matrice[0][2] = 3;
+    Matrice[1][0] = 4;
+    Matrice[1][1] = 5;
+    Matrice[1][2] = 6;
+    Matrice[2][0] = 7;
+    Matrice[2][1] = 8;
+    Matrice[2][2] = 9;
     Matrice.MABAfficherMatrice();
+    Matrice.MAPTranspose().MABAfficherMatrice();
+
 }
 
 
