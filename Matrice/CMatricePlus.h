@@ -52,8 +52,8 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MA
 template <typename ELEMENT>
 CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
 
-	unsigned int NbLignes = MABLireNbLignes();
-	unsigned int NbColonnes = MABLireNbColonnes();
+	unsigned int NbLignes = this->MABLireNbLignes();
+	unsigned int NbColonnes = this->MABLireNbColonnes();
 
 	CMatricePlus<ELEMENT> MatriceTransposee(NbColonnes, NbLignes);
 
@@ -61,7 +61,7 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
 		for (unsigned int uiBoucleC = 0; uiBoucleC < NbColonnes; uiBoucleC++) {
 
 			//MatriceTransposee[uiBoucleC][uiBoucleL] = (*pLISMATListe)[uiBoucleL * NbColonnes + uiBoucleC];
-			MatriceTransposee[uiBoucleC][uiBoucleL] = MABLireElement(uiBoucleL, uiBoucleC);
+			MatriceTransposee[uiBoucleC][uiBoucleL] = this->MABLireElement(uiBoucleL, uiBoucleC);
 		}
 	}
 

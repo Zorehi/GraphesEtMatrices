@@ -2,8 +2,6 @@
 //
 
 #include <iostream>
-//#include "CMInt.h"
-//#include "CMDouble.h"
 #include "CMatricePlus.h"
 
 
@@ -22,7 +20,8 @@ int main() {
     Matrice[2][1] = 8;
     Matrice[2][2] = 9;
     Matrice.MABAfficherMatrice();
-    //Matrice.MAPTranspose().MABAfficherMatrice();
+    cout << "\n";
+    Matrice.MAPTranspose().MABAfficherMatrice();
 
 }
 

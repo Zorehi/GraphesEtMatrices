@@ -7,6 +7,8 @@
 #include "CProxy_row.h"
 #include "iostream"
 
+using namespace std;
+
 template <typename ELEMENT>
 class CMatrice {
 	using MATPROProxy = CProxy_row<CListe<ELEMENT>>;
@@ -121,7 +123,7 @@ ELEMENT CMatrice<ELEMENT>::MABLireElement(unsigned int uiLignes, unsigned int ui
 	if (uiLignes > uiMABNbLignes || uiColonnes > uiMABNbColonnes) {
 		throw "coucou";
 	}
-	return (*pLISMATListe[uiLignes * uiMABNbColonnes + uiColonnes]);
+	return (*pLISMATListe)[uiLignes * uiMABNbColonnes + uiColonnes];
 }
 
 template <typename ELEMENT>
@@ -137,6 +139,7 @@ void CMatrice<ELEMENT>::MABAfficherMatrice() {
 				}
 			}
 		}
+		MABLireElement(1, 1);
 	}
 	//ICI AJOUTER EXCEPTION OU ERREUR DANS LE ELSE OUI
 }
