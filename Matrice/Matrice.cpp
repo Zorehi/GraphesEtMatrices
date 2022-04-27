@@ -9,6 +9,7 @@
 
 
 int main() {
+
     CMatricePlus<int> Matrice(3, 3);
 
     Matrice[0][0] = 1;
@@ -21,7 +22,7 @@ int main() {
     Matrice[2][1] = 8;
     Matrice[2][2] = 9;
     Matrice.MABAfficherMatrice();
-    Matrice.MAPTranspose().MABAfficherMatrice();
+    //Matrice.MAPTranspose().MABAfficherMatrice();
 
 }
 

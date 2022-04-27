@@ -6,8 +6,6 @@
 #include "CListe.h"
 #include "CProxy_row.h"
 #include "iostream"
-#include "fstream"
-using namespace std;
 
 template <typename ELEMENT>
 class CMatrice {
@@ -37,6 +35,7 @@ class CMatrice {
 		MATPROProxy operator[](unsigned int uiLignes) {
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
+		ELEMENT MABLireElement(unsigned int uiLignes, unsigned int uiColonnes);
 		void MABAfficherMatrice();
 };
 
@@ -117,15 +116,24 @@ unsigned int CMatrice<ELEMENT>::MABLireNbColonnes()
 }
 
 template <typename ELEMENT>
+ELEMENT CMatrice<ELEMENT>::MABLireElement(unsigned int uiLignes, unsigned int uiColonnes)
+{
+	if (uiLignes > uiMABNbLignes || uiColonnes > uiMABNbColonnes) {
+		throw "coucou";
+	}
+	return (*pLISMATListe[uiLignes * uiMABNbColonnes + uiColonnes]);
+}
+
+template <typename ELEMENT>
 void CMatrice<ELEMENT>::MABAfficherMatrice() {
 	if ((uiMABNbLignes != 0) && (uiMABNbColonnes != 0)) {
 		for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
 			for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
 				if (uicolonne == uiMABNbColonnes - 1) {
-					cout << (*pLISMATListe)[uiligne * uiMABNbColonnes + uicolonne] <<"\n";
+					cout << MABLireElement(uiligne, uicolonne) <<"\n";
 				}
 				else {
-					cout << (*pLISMATListe)[uiligne * uiMABNbColonnes + uicolonne] << "\t";
+					cout << MABLireElement(uiligne, uicolonne) << "\t";
 				}
 			}
 		}
