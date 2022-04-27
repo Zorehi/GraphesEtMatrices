@@ -147,9 +147,6 @@
     <ClInclude Include="CMatrice.h" />
     <ClInclude Include="CProxy_row.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Matrice.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
