@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "CListe.h"
-#include "CMatriceBase.h"
+#include "CMatrice.h"
 
 template <typename ELEMENT>
 class CMatricePlus : public CMatriceBase {
