@@ -2,74 +2,68 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "CMatrice.h"
+#include "CMatriceBase.h"
 
 template <typename ELEMENT>
-class CMatricePlus : public CMatrice<ELEMENT> {
+class CMatricePlus : public CMatriceBase<ELEMENT> {
 	public :
+		/**
+		 * @brief Constructeur de confort : Creer une matrice avec les dimensions donnees
+		 * 
+		 * @param uiParamNbLignes Nombre de lignes souhaitees
+		 * @param uiParamNbColonnes Nombre de colonnes souhaitees
+		 */
 		CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
-		CMatricePlus<ELEMENT> operator*(double ELM2param);
-		CMatricePlus<ELEMENT> operator*(CMatricePlus<ELEMENT>& MAP2);
-		CMatricePlus<ELEMENT> operator/(double ELM2param);
-		CMatricePlus<ELEMENT> operator+(CMatricePlus<ELEMENT>& MAP2);
-		CMatricePlus<ELEMENT> operator-(CMatricePlus<ELEMENT>& MAP2);
+
+
+
+		/**
+		 * @brief Surcharge de l'operateur *, pour la multiplication entre la matrice et un nombre
+		 * 
+		 * @param dFacteur Facteur de la multiplication
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de la multiplication
+		 */
+		CMatricePlus<ELEMENT> operator*(double dFacteur);
+
+		/**
+		 * @brief Surcharge de l'operateur *, pour la multiplication entre deux matrices
+		 * 
+		 * @param MAPProduit Matrice a multiplier avec la matrice appelante
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de la multiplication
+		 */
+		CMatricePlus<ELEMENT> operator*(CMatricePlus<ELEMENT>& MAPProduit);
+
+		/**
+		 * @brief Surcharge de l'operateur /, pour la division de la matrice par un nombre
+		 * 
+		 * @param dDiviseur Diviseur
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de la division
+		 */
+		CMatricePlus<ELEMENT> operator/(double dDiviseur);
+
+		/**
+		 * @brief Surcharge de l'operateur +, pour l'addition de deux matrices
+		 * 
+		 * @param MAPParam Matrice a additionner avec la matrice appelante
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de l'addition
+		 */
+		CMatricePlus<ELEMENT> operator+(CMatricePlus<ELEMENT>& MAPParam);
+
+		/**
+		 * @brief Surcharge de l'operateur -, pour la soustraction de deux matrices
+		 * 
+		 * @param MAPParam Matrice a soustraire a la matrice appelante
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de la soustraction
+		 */
+		CMatricePlus<ELEMENT> operator-(CMatricePlus<ELEMENT>& MAPParam);
+
+		/**
+		 * @brief Effectue la transposee de la matrice
+		 * 
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de la transposee
+		 */
 		CMatricePlus<ELEMENT> MAPTranspose();
 		CMatricePlus<ELEMENT> MAPParser(char* pcFile);
-
 };
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatrice<ELEMENT>(uiParamNbLignes, uiParamNbColonnes)
-{
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double ELM2param) {
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MAP2) {
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double ELM2param) {
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MAP2) {
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MAP2) {
-
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
-
-	unsigned int NbLignes = this->MABLireNbLignes();
-	unsigned int NbColonnes = this->MABLireNbColonnes();
-
-	CMatricePlus<ELEMENT> MatriceTransposee(NbColonnes, NbLignes);
-
-	for (unsigned int uiBoucleL = 0; uiBoucleL < NbLignes; uiBoucleL++) {
-		for (unsigned int uiBoucleC = 0; uiBoucleC < NbColonnes; uiBoucleC++) {
-
-			//MatriceTransposee[uiBoucleC][uiBoucleL] = (*pLISMATListe)[uiBoucleL * NbColonnes + uiBoucleC];
-			//MatriceTransposee[uiBoucleC][uiBoucleL] = this->MABLireElement(uiBoucleL, uiBoucleC);
-			MatriceTransposee[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
-		}
-	}
-
-	return MatriceTransposee;
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPParser(char* pcFile) {
-
-}
+#include "CMatricePlus.cpp"

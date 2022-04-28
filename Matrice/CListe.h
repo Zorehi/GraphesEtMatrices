@@ -5,76 +5,62 @@
 #include <stdlib.h>
 
 template <typename ELEMENT>
-class CListe
-{
+class CListe {
 
 private:
 	ELEMENT *peLISTableau;
 	unsigned int uiLISTaille;
 
 public:
+	/**
+	 * @brief Constructeur par defaut : Creer un objet Liste de type <MType>
+	 * 
+	 */
 	CListe();
+
+	/**
+	 * @brief Constructeur de confort : Creer une liste avec les dimensions donnees
+	 * 
+	 * @param uiTaille Taille de la liste souhaite
+	 */
 	CListe(unsigned int uiTaille);
+
+	/**
+	 * @brief Constructeur de recopie : Creer un duplicata d'une Liste deja cree
+	 * 
+	 * @param LISParam Liste a dupliquer
+	 */
 	CListe(CListe &LISParam);
+
+	/**
+	 * @brief Destructeur : libere la memoire alloue pour l'objet Liste
+	 * 
+	 */
 	~CListe();
 
-	const unsigned int LISLireTaille();
+
+
+	/**
+	 * @brief Getter pour la taille de la liste
+	 * 
+	 * @return unsigned int, la taille de la liste actuelle
+	 */
+	unsigned int LISLireTaille();
+
+	/**
+	 * @brief Setter pour la taille de la liste
+	 * 
+	 * @param uiTaille Nouvelle taile souhaite de la liste 
+	 */
+	void LISModifierTaille(unsigned int uiTaille);
+
+	/**
+	 * @brief Surcharge de l'operateur d'indice du tableau
+	 * 
+	 * @param uiIndex Indice du l'element souhaite dans la liste
+	 * @return ELEMENT& Reference de l'element souhaite
+	 */
 	ELEMENT& operator[](unsigned int uiIndex);
 };
 
-
-
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe()
-{
-	peLISTableau = NULL;
-	uiLISTaille = 0;
-}
-
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe(unsigned int uiTaille)
-{
-	uiLISTaille = uiTaille;
-	peLISTableau = (ELEMENT*)malloc(uiLISTaille * sizeof(ELEMENT));
-	if (!peLISTableau) {
-		throw "Allocation mémoire impossible";
-	}
-	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = ELEMENT();
-	}
-}
-
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe(CListe& LISParam)
-{
-	uiLISTaille = LISParam.LISLireTaille();
-	peLISTableau = (ELEMENT*)malloc(uiLISTaille * sizeof(ELEMENT));
-	if (!peLISTableau) {
-		throw "Allocation mémoire impossible";
-	}
-	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = LISParam[uiBoucle];
-	}
-}
-
-template <typename ELEMENT>
-CListe<ELEMENT>::~CListe()
-{
-	if (peLISTableau) {
-		free(peLISTableau);
-	}
-}
-
-template <typename ELEMENT>
-const unsigned int CListe<ELEMENT>::LISLireTaille() {
-	return uiLISTaille;
-}
-
-template <typename ELEMENT>
-ELEMENT& CListe<ELEMENT>::operator[](unsigned int uiIndex) {
-	if (uiIndex > uiLISTaille) {
-		throw "Index trop grand";
-	}
-	return peLISTableau[uiIndex];
-}
-
+#include "CListe.cpp"
