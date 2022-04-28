@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 #include "CListe.h"
 #include "CProxy_row.h"
-#include "iostream"
 
 using namespace std;
 
@@ -132,10 +132,11 @@ void CMatrice<ELEMENT>::MABAfficherMatrice() {
 		for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
 			for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
 				if (uicolonne == uiMABNbColonnes - 1) {
-					cout << MABLireElement(uiligne, uicolonne) <<"\n";
+					cout << (*this)[uiligne][uicolonne] <<"\n";
 				}
 				else {
-					cout << MABLireElement(uiligne, uicolonne) << "\t";
+					//cout << MABLireElement(uiligne, uicolonne) << "\t";
+					cout << (*this)[uiligne][uicolonne] << "\t";
 				}
 			}
 		}

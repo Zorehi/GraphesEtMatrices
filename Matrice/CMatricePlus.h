@@ -61,7 +61,8 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
 		for (unsigned int uiBoucleC = 0; uiBoucleC < NbColonnes; uiBoucleC++) {
 
 			//MatriceTransposee[uiBoucleC][uiBoucleL] = (*pLISMATListe)[uiBoucleL * NbColonnes + uiBoucleC];
-			MatriceTransposee[uiBoucleC][uiBoucleL] = this->MABLireElement(uiBoucleL, uiBoucleC);
+			//MatriceTransposee[uiBoucleC][uiBoucleL] = this->MABLireElement(uiBoucleL, uiBoucleC);
+			MatriceTransposee[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
 		}
 	}
 
