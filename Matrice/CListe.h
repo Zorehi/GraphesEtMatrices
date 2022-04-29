@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include "CException.h"
 
+#define Alloc_Mem_Impossible 110
+#define Error_Realloc 120
+#define Index_Out_Of_Range 130
+
 template <class MType>
 class CListe {
 

@@ -6,6 +6,10 @@
 #include <iostream>
 #include "CListe.h"
 #include "CProxy_row.h"
+#include "CException.h"
+
+
+#define Matrice_Vide 100
 
 using namespace std;
 

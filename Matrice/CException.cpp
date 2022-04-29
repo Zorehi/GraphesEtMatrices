@@ -1,6 +1,4 @@
 #include "CException.h"
-#include "stdlib.h"
-#include "stdio.h"
 
 CException::CException()
 {
@@ -8,6 +6,11 @@ CException::CException()
 	pcEXCMsg = NULL;
 }
 
+CException::CException(int iNewVal, const char* pcNewMsg)
+{
+	iEXCVal = iNewVal;
+	pcEXCMsg = (char*)pcNewMsg;
+}
 
 CException::~CException()
 {

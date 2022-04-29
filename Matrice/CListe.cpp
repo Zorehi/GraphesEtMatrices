@@ -1,9 +1,5 @@
 ﻿#include "CListe.h"
-#include "CException.h"
 
-#define Alloc_Mem_Impossible 110
-#define Error_Realloc 120
-#define Index_Out_Of_Range 130
 
 template <class MType>
 CListe<MType>::CListe()
@@ -76,10 +72,6 @@ MType& CListe<MType>::operator[](unsigned int uiIndex) {
 		EXCObjet.EXCModifierVal(Index_Out_Of_Range);
 		EXCObjet.EXCModifierMsg("Exception : Index non compris dans la liste");
 		throw(EXCObjet);
-
-	}
-	if (peLISTableau == NULL) {
-		throw CException();
 	}
 	return peLISTableau[uiIndex];
 }

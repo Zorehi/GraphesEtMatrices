@@ -9,6 +9,7 @@ private:
 	char* pcEXCMsg;
 public:
 	CException();
+	CException(int iNewVal, const char* pcNewMsg);
 	~CException();
 
 	int EXCLireVal();

@@ -1,9 +1,4 @@
 #include "CMatriceBase.h"
-#include "CException.h"
-/*
-* 
-*/
-#define Matrice_Vide 100
 
 template <class MType>
 CMatriceBase<MType>::CMatriceBase()
@@ -25,75 +20,39 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
 {
+	delete pLISMATListe;
 }
 
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbLignes(unsigned int uiParamNbLignes)
 {
-	CListe<MType>* LISNewListe = new CListe<MType>(uiParamNbLignes * uiMABNbColonnes);
-	if (uiParamNbLignes > uiMABNbLignes) {
-		for (unsigned int uiBoucleLigne = uiMABNbLignes; uiBoucleLigne < uiParamNbLignes; uiBoucleLigne++)
-		{
+	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiParamNbLignes, uiMABNbColonnes);
+	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiParamNbLignes; uiBoucleLigne++)
+	{
+		if (uiBoucleLigne < uiMABNbLignes) {
 			for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
 			{
-				(*LISNewListe)[uiBoucleLigne * uiMABNbColonnes + uiBoucleColonne] = MType();
+				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
 			}
 		}
 	}
-	else {
-		uiMABNbLignes = uiParamNbLignes;
-	}
-
-	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
-	{
-		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
-		{
-			(*LISNewListe)[uiBoucleLigne * uiMABNbColonnes + uiBoucleColonne] = (*pLISMATListe)[uiBoucleLigne * uiMABNbColonnes + uiBoucleColonne];
-		}
-	}
-	uiMABNbLignes = uiParamNbLignes;
-	delete pLISMATListe;
-	pLISMATListe = LISNewListe;
+	*this = *MABMatrice;
 }
 
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 {
-	/*
-	CListe<MType>* LISNewListe = new CListe<MType>(uiMABNbLignes * uiParamNbColonnes);
-	if (uiParamNbColonnes > uiMABNbColonnes) {
-		for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
+	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiMABNbLignes, uiParamNbColonnes);
+	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
+	{
+		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiParamNbColonnes; uiBoucleColonne++)
 		{
-			for (unsigned int uiBoucleColonne = uiMABNbColonnes; uiBoucleColonne < uiParamNbColonnes; uiBoucleColonne++)
-			{
-				(*LISNewListe)[uiBoucleLigne * uiParamNbColonnes + uiBoucleColonne] = MType();
+			if (uiBoucleColonne < uiMABNbColonnes) {
+				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
 			}
 		}
 	}
-	else {
-		uiMABNbColonnes = uiParamNbColonnes;
-	}
-
-	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
-	{
-		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
-		{
-			(*LISNewListe)[uiBoucleLigne * uiParamNbColonnes + uiBoucleColonne] = (*pLISMATListe)[uiBoucleLigne * uiMABNbColonnes + uiBoucleColonne];
-		}
-	}
-	uiMABNbColonnes = uiParamNbColonnes;
-	delete pLISMATListe;
-	pLISMATListe = LISNewListe;
-	*/
-	CMatriceBase<MType> MABMatrice(uiMABNbLignes, uiParamNbColonnes);
-	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
-	{
-		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
-		{
-			MABMatrice[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
-		}
-	}
-	*this = MABMatrice;
+	*this = *MABMatrice;
 }
 
 template <class MType>
