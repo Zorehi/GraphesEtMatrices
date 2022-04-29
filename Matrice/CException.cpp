@@ -25,8 +25,7 @@ int CException::EXCLireVal()
 
 const char* CException::EXCLireMsg()
 {
-	return 	pcEXCMsg = NULL;
-	;
+	return pcEXCMsg;
 }
 
 
@@ -39,8 +38,8 @@ void CException::EXCModifierVal(int iNewVal)
 void CException::EXCModifierMsg(char* pcNewMsg)
 {
 	if (pcNewMsg != NULL) {
-		free(pcEXCMsg = NULL);
+		free(pcEXCMsg);
 	}
-	pcEXCMsg = pcNewMsg;
+	pcEXCMsg = (char*) pcNewMsg;
 
 }

@@ -1,8 +1,9 @@
 #include "CMatriceBase.h"
+#include "CException.h"
 /*
 * 
 */
-
+#define Matrice_Vide 100
 
 template <class MType>
 CMatriceBase<MType>::CMatriceBase()
@@ -119,18 +120,20 @@ CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
 
 template <class MType>
 void CMatriceBase<MType>::MABAfficherMatrice() {
-	if ((uiMABNbLignes != 0) && (uiMABNbColonnes != 0)) {
-		for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
-			for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
-				if (uicolonne == uiMABNbColonnes - 1) {
-					cout << (*this)[uiligne][uicolonne] << "\n";
-				}
-				else {
-					//cout << MABLireElement(uiligne, uicolonne) << "\t";
-					cout << (*this)[uiligne][uicolonne] << "\t";
-				}
+	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
+		CException EXCObjet;
+		EXCObjet.EXCModifierval(Matrice_Vide);
+		EXCObjet.EXCModifiermsg("Exception : la matrice est vide");
+		throw(EXCObjet);
+	}
+	for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
+		for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
+			if (uicolonne == uiMABNbColonnes - 1) {
+				cout << (*this)[uiligne][uicolonne] << "\n";
+			}
+			else {
+				cout << (*this)[uiligne][uicolonne] << "\t";
 			}
 		}
 	}
-	//ICI AJOUTER EXCEPTION OU ERREUR DANS LE ELSE OUI
 }

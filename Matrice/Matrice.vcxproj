@@ -149,6 +149,9 @@
     <ClCompile Include="CMatricePlus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CParseur.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Matrice.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +159,11 @@
     <ClInclude Include="CListe.h" />
     <ClInclude Include="CMatricePlus.h" />
     <ClInclude Include="CMatriceBase.h" />
+    <ClInclude Include="CParseur.h" />
     <ClInclude Include="CProxy_row.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
