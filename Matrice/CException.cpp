@@ -4,42 +4,42 @@
 
 CException::CException()
 {
-	iEXCval = 0;
-	pcEXCmsg = NULL;
+	iEXCVal = 0;
+	pcEXCMsg = NULL;
 }
 
 
 CException::~CException()
 {
-	if (pcEXCmsg != NULL) {
-		free(pcEXCmsg);
+	if (pcEXCMsg != NULL) {
+		free(pcEXCMsg);
 	}
 }
 
 
-int CException::EXClireval()
+int CException::EXCLireval()
 {
-	return iEXCval;
+	return iEXCVal;
 }
 
 
-const char* CException::EXCliremsg()
+const char* CException::EXCLiremsg()
 {
-	return pcEXCmsg;
+	return pcEXCMsg;
 }
 
 
-void CException::EXCmodifierval(int newval)
+void CException::EXCModifierval(int iNewVal)
 {
-	iEXCval = newval;
+	iEXCVal = iNewVal;
 }
 
 
-void CException::EXCmodifiermsg(char* newmsg)
+void CException::EXCModifiermsg(const char* pcNewMsg)
 {
-	if (newmsg != NULL) {
-		free(pcEXCmsg);
+	if (pcNewMsg != NULL) {
+		free(pcEXCMsg);
 	}
-	pcEXCmsg = newmsg;
+	pcEXCMsg = (char*) pcNewMsg;
 
 }
