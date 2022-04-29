@@ -39,7 +39,7 @@ class CMatriceBase {
 		CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 
 		/**
-		 * @brief Destructeur : libere la memoire alloue pour l'objet MatriceBase
+		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
 		 * 
 		 */
 		~CMatriceBase();
@@ -86,7 +86,12 @@ class CMatriceBase {
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
 
-		
+		/**
+		 * @brief Surcharge de l'operateur d'affectation, recopie la matrice MABParam dans la matrice appelante
+		 * 
+		 * @param MABParam Matrice a recopier
+		 * @return CMatriceBase<MType>& Reference de la matrice recopiee
+		 */
 		CMatriceBase<MType>& operator=(CMatriceBase& MABParam);
 
 		/**

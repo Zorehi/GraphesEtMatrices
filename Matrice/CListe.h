@@ -38,7 +38,7 @@ public:
 	CListe(CListe &LISParam);
 
 	/**
-	 * @brief Destructeur : libere la memoire alloue pour l'objet Liste
+	 * @brief Destructeur : Libere la memoire alloue pour l'objet Liste
 	 * 
 	 */
 	~CListe();
@@ -67,6 +67,12 @@ public:
 	 */
 	MType& operator[](unsigned int uiIndex);
 
+	/**
+	 * @brief Surcharge de l'operateur d'affectation, recopie LISParam dans la liste appelante
+	 * 
+	 * @param LISParam Liste a recopier
+	 * @return CListe<MType>& Reference de la liste recopiee
+	 */
 	CListe<MType>& operator=(CListe<MType>& LISParam);
 };
 
