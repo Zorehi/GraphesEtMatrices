@@ -1,31 +1,31 @@
 ﻿#include "CListe.h"
 
 
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe()
+template <class MType>
+CListe<MType>::CListe()
 {
 	peLISTableau = NULL;
 	uiLISTaille = 0;
 }
 
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe(unsigned int uiTaille)
+template <class MType>
+CListe<MType>::CListe(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
-	peLISTableau = (ELEMENT*)malloc(uiLISTaille * sizeof(ELEMENT));
+	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
-		throw "Allocation m�moire impossible";
+		throw "Allocation memoire impossible";
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = ELEMENT();
+		peLISTableau[uiBoucle] = (MType) MType();
 	}
 }
 
-template <typename ELEMENT>
-CListe<ELEMENT>::CListe(CListe& LISParam)
+template <class MType>
+CListe<MType>::CListe(CListe& LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
-	peLISTableau = (ELEMENT*)malloc(uiLISTaille * sizeof(ELEMENT));
+	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
 		throw "Allocation m�moire impossible";
 	}
@@ -34,32 +34,49 @@ CListe<ELEMENT>::CListe(CListe& LISParam)
 	}
 }
 
-template <typename ELEMENT>
-CListe<ELEMENT>::~CListe()
+template <class MType>
+CListe<MType>::~CListe()
 {
 	if (peLISTableau) {
 		free(peLISTableau);
 	}
 }
 
-template <typename ELEMENT>
-unsigned int CListe<ELEMENT>::LISLireTaille() {
+template <class MType>
+unsigned int CListe<MType>::LISLireTaille() {
 	return uiLISTaille;
 }
 
-template <typename ELEMENT>
-void CListe<ELEMENT>::LISModifierTaille(unsigned int uiTaille) {
+template <class MType>
+void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
 	uiLISTaille = uiTaille;
-	peLISTableau = realloc(peLISTableau, uiLISTaille * sizeof(ELEMENT));
+	peLISTableau = realloc(peLISTableau, uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
 		throw "Impossible d'agrandire";
 	}
 }
 
-template <typename ELEMENT>
-ELEMENT& CListe<ELEMENT>::operator[](unsigned int uiIndex) {
+template <class MType>
+MType& CListe<MType>::operator[](unsigned int uiIndex) {
 	if (uiIndex > uiLISTaille) {
 		throw "Index trop grand";
 	}
+	if (peLISTableau == NULL) {
+		throw CException();
+	}
 	return peLISTableau[uiIndex];
+}
+
+template <class MType>
+CListe<MType>& CListe<MType>::operator=(CListe<MType>& LISParam) {
+	uiLISTaille = LISParam.LISLireTaille();
+	free(peLISTableau);
+	peLISTableau = (MType *) malloc(uiLISTaille * sizeof(MType));
+
+	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++)
+	{
+		peLISTableau[uiBoucle] = LISParam[uiBoucle];
+	}
+
+	return *this;
 }

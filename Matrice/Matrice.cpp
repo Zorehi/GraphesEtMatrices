@@ -22,6 +22,22 @@ int main() {
     cout << "\n";
     Matrice.MAPTranspose().MABAfficherMatrice();
 
+    cout << "\n";
+    Matrice.MABModifierNbLignes(4);
+    Matrice.MABAfficherMatrice();
+
+    cout << "\n";
+    Matrice.MABModifierNbLignes(2);
+    Matrice.MABAfficherMatrice();
+
+    cout << "\n";
+    Matrice.MABModifierNbColonnes(4);
+    Matrice.MABAfficherMatrice();
+
+    cout << "\n";
+    Matrice.MABModifierNbColonnes(2);
+    Matrice.MABAfficherMatrice();
+
 }
 
 

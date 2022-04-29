@@ -21,10 +21,10 @@
     <ClCompile Include="CException.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CMatriceBase.cpp">
+    <ClCompile Include="CListe.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CListe.cpp">
+    <ClCompile Include="CMatriceBase.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CMatricePlus.cpp">

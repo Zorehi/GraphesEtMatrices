@@ -82,6 +82,9 @@ class CMatriceBase {
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
 
+		
+		CMatriceBase<MType>& operator=(CMatriceBase& MABParam);
+
 		/**
 		 * @brief Affiche la matrice dans le shell
 		 * 
