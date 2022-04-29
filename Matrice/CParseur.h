@@ -16,5 +16,3 @@ class CParseur
 		CMatricePlus<ELEMENT> PARLirefichier();
 
 };
-
-#include "CParseur.cpp"

@@ -122,8 +122,8 @@ template <class MType>
 void CMatriceBase<MType>::MABAfficherMatrice() {
 	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
 		CException EXCObjet;
-		EXCObjet.EXCModifierval(Matrice_Vide);
-		EXCObjet.EXCModifiermsg("Exception : la matrice est vide");
+		EXCObjet.EXCModifierVal(Matrice_Vide);
+		EXCObjet.EXCModifierMsg("Exception : la matrice est vide");
 		throw(EXCObjet);
 	}
 	for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {

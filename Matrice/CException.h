@@ -14,6 +14,6 @@ public:
 	int EXCLireVal();
 	const char* EXCLireMsg();
 	void EXCModifierVal(int iNewVal);
-	void EXCModifierMsg(char* pcNewMsg);
+	void EXCModifierMsg(const char* pcNewMsg);
 };
 

@@ -35,7 +35,7 @@ void CException::EXCModifierVal(int iNewVal)
 }
 
 
-void CException::EXCModifierMsg(char* pcNewMsg)
+void CException::EXCModifierMsg(const char* pcNewMsg)
 {
 	if (pcNewMsg != NULL) {
 		free(pcEXCMsg);
