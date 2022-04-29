@@ -42,12 +42,28 @@ class CMatricePlus : public CMatriceBase<ELEMENT> {
 		CMatricePlus<ELEMENT> operator/(double dDiviseur);
 
 		/**
+		 * @brief Surcharge de l'operateur +, pour l'addition d'une constante a une matrice
+		 *
+		 * @param dValeurAddition Valeur(double) a ajouter a chaque membre de la matrice appelante
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de l'addition
+		 */
+		CMatricePlus<ELEMENT> operator+(double dValeurAddition);
+
+		/**
 		 * @brief Surcharge de l'operateur +, pour l'addition de deux matrices
 		 * 
 		 * @param MAPParam Matrice a additionner avec la matrice appelante
 		 * @return CMatricePlus<ELEMENT> Matrice resultat de l'addition
 		 */
 		CMatricePlus<ELEMENT> operator+(CMatricePlus<ELEMENT>& MAPParam);
+
+		/**
+		 * @brief Surcharge de l'operateur -, pour la soustraction d'une constante a une matrice
+		 *
+		 * @param dValeurSoustraction Valeur(double) a soustraire a chaque membre de la matrice appelante
+		 * @return CMatricePlus<ELEMENT> Matrice resultat de l'addition
+		 */
+		CMatricePlus<ELEMENT> operator-(double dValeurSoustraction);
 
 		/**
 		 * @brief Surcharge de l'operateur -, pour la soustraction de deux matrices

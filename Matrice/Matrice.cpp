@@ -7,7 +7,7 @@
 
 int main() {
 
-    CMatricePlus<int> Matrice(3, 3);
+    CMatricePlus<double> Matrice(3, 3);
 
     Matrice[0][0] = 1;
     Matrice[0][1] = 2;
@@ -18,9 +18,65 @@ int main() {
     Matrice[2][0] = 7;
     Matrice[2][1] = 8;
     Matrice[2][2] = 9;
+    
+    printf("\nMatA = \n");
     Matrice.MABAfficherMatrice();
-    cout << "\n";
-    Matrice.MAPTranspose().MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestMulCons = Matrice * 5;
+    printf("\nMatB = MatA * 5.0\n");
+    MatTestMulCons.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestDivCons = Matrice / 5;
+    printf("\nMatC = MatA / 5.0\n");
+    MatTestDivCons.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestAPlusB = Matrice + MatTestMulCons;
+    printf("\nMatD = MatA / MatB\n");
+    MatTestAPlusB.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestAMultB = Matrice * MatTestMulCons;
+    printf("\nMatE = MatA / MatB\n");
+    MatTestAMultB.MABAfficherMatrice();
+
+    CMatricePlus<double> MatATransposee = Matrice.MAPTranspose();
+    printf("\nMatF = transpose(MatA)\n");    
+    MatATransposee.MABAfficherMatrice();
+
+
+    CMatricePlus<int> Matrice2(3, 3);
+
+    Matrice[0][0] = 1;
+    Matrice[0][1] = 2;
+    Matrice[0][2] = 3;
+    Matrice[1][0] = 4;
+    Matrice[1][1] = 5;
+    Matrice[1][2] = 6;
+    Matrice[2][0] = 7;
+    Matrice[2][1] = 8;
+    Matrice[2][2] = 9;
+
+    printf("\nMatA = \n");
+    Matrice.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestMulCons = Matrice2 * 5;
+    printf("\nMatB = MatA * 5.0\n");
+    MatTestMulCons.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestDivCons = Matrice2 / 5;
+    printf("\nMatC = MatA / 5.0\n");
+    MatTestDivCons.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestAPlusB = Matrice2 + MatTestMulCons;
+    printf("\nMatD = MatA / MatB\n");
+    MatTestAPlusB.MABAfficherMatrice();
+
+    CMatricePlus<double> MatTestAMultB = Matrice * MatTestMulCons;
+    printf("\nMatE = MatA / MatB\n");
+    MatTestAMultB.MABAfficherMatrice();
+
+    CMatricePlus<double> MatATransposee = Matrice.MAPTranspose();
+    printf("\nMatF = transpose(MatA)\n");
+    MatATransposee.MABAfficherMatrice();
 
 }
 

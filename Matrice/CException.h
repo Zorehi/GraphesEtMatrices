@@ -5,15 +5,15 @@
 class CException
 {
 private:
-	int iEXCval;
-	char* pcEXCmsg;
+	int iEXCVal;
+	char* pcEXCMsg;
 public:
 	CException();
 	~CException();
 
-	int EXClireval();
-	const char* EXCliremsg();
-	void EXCmodifierval(int newval);
-	void EXCmodifiermsg(char* newmsg);
+	int EXCLireVal();
+	const char* EXCLireMsg();
+	void EXCModifierVal(int iNewVal);
+	void EXCModifierMsg(char* pcNewMsg);
 };
 
