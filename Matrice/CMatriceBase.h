@@ -6,6 +6,10 @@
 #include <iostream>
 #include "CListe.h"
 #include "CProxy_row.h"
+#include "CException.h"
+
+
+#define Matrice_Vide 100
 
 using namespace std;
 
@@ -81,6 +85,9 @@ class CMatriceBase {
 		MATPROProxy operator[](unsigned int uiLignes) {
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
+
+		
+		CMatriceBase<MType>& operator=(CMatriceBase& MABParam);
 
 		/**
 		 * @brief Affiche la matrice dans le shell

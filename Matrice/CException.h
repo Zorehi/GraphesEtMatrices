@@ -9,11 +9,12 @@ private:
 	char* pcEXCMsg;
 public:
 	CException();
+	CException(int iNewVal, const char* pcNewMsg);
 	~CException();
 
-	int EXCLireval();
-	const char* EXCLiremsg();
-	void EXCModifierval(int iNewVal);
-	void EXCModifiermsg(const char* pcNewMsg);
+	int EXCLireVal();
+	const char* EXCLireMsg();
+	void EXCModifierVal(int iNewVal);
+	void EXCModifierMsg(const char* pcNewMsg);
 };
 

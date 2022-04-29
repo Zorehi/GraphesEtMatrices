@@ -1,6 +1,4 @@
 #include "CException.h"
-#include "stdlib.h"
-#include "stdio.h"
 
 CException::CException()
 {
@@ -8,6 +6,11 @@ CException::CException()
 	pcEXCMsg = NULL;
 }
 
+CException::CException(int iNewVal, const char* pcNewMsg)
+{
+	iEXCVal = iNewVal;
+	pcEXCMsg = (char*)pcNewMsg;
+}
 
 CException::~CException()
 {
@@ -17,25 +20,25 @@ CException::~CException()
 }
 
 
-int CException::EXCLireval()
+int CException::EXCLireVal()
 {
 	return iEXCVal;
 }
 
 
-const char* CException::EXCLiremsg()
+const char* CException::EXCLireMsg()
 {
 	return pcEXCMsg;
 }
 
 
-void CException::EXCModifierval(int iNewVal)
+void CException::EXCModifierVal(int iNewVal)
 {
 	iEXCVal = iNewVal;
 }
 
 
-void CException::EXCModifiermsg(const char* pcNewMsg)
+void CException::EXCModifierMsg(const char* pcNewMsg)
 {
 	if (pcNewMsg != NULL) {
 		free(pcEXCMsg);
