@@ -2,54 +2,228 @@
 
 
 template <typename ELEMENT>
-CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<ELEMENT>(uiParamNbLignes, uiParamNbColonnes)
+CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<ELEMENT>(uiParamNbLignes, uiParamNbColonnes) {
+}
+
+template <typename ELEMENT>
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
+	
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
+
+	//Recuperation du nombres de lignes et de colonnes dans la matrice
+	unsigned int uiNbLignes = this->MABLireNbLignes();
+	unsigned int uiNbColonnes = this->MABLireNbColonnes();
+
+	//Creation d'une matrice<double> etant le resultat de la multiplication de chaque membre par dFacteur
+	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] * dFacteur;
+		}
+	}
+	return MAPMatriceRetour;
+}
+
+template <typename ELEMENT>
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MAPProduit) {
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
+
+	//Recuperation des nombres de lignes et de colonnes des deux matrices
+	unsigned int uiMAP1NbLignes = this->MABLireNbLignes();
+	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
+
+	unsigned int uiMAP2NbLignes = MAPProduit.MABLireNbLignes();
+	unsigned int uiMAP2NbColonnes = MAPProduit.MABLireNbColonnes();
+
+	//Si le nombre de colonnes de la premiere matrice est different du nombre de ligne de la deuxieme matrice -> erreur
+	if (uiMAP1NbColonnes != uiMAP2NbLignes) {
+		//Erreur
+		throw "Les matrices ne sont pas compatible";
+	}
+
+	//Creation d'une matrice<double> etant le resultat de la multiplication de la matrice par la matrice MAPProduit
+	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP2NbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP2NbColonnes; ujBoucle++) {
+			double iValeurElement = 0;
+			for (unsigned int unBoucle = 0; unBoucle < uiMAP1NbColonnes; unBoucle++) {
+				iValeurElement += (*this)[uiBoucle][unBoucle] * MAPProduit[unBoucle][ujBoucle];
+			}
+
+			MAPMatriceRetour[uiBoucle][ujBoucle] = iValeurElement;
+		}
+	}
+
+	return MAPMatriceRetour;
+}
+
+template <typename ELEMENT>
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
+
+	//Recuperation du nombres de lignes et de colonnes dans la matrice
+	unsigned int uiNbLignes = this->MABLireNbLignes();
+	unsigned int uiNbColonnes = this->MABLireNbColonnes();
+
+	//Creation d'une matrice<double> etant le resultat de la division de chaque membre par dDiviseur
+	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] / dDiviseur;
+		}
+	}
+
+	return MAPMatriceRetour;
+}
+
+template<typename ELEMENT>
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
 {
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
 
+	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
+	unsigned int uiMAP1NbLignes = this->MABLireNbLignes();
+	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
+
+	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition de dValeurAddition a chaque membre de la matrice
+	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurAddition;
+		}
+	}
+
+	return MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double ELM2param) {
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MAPParam) {
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
 
+	//Recuperation des nombres de lignes et de colonnes des deux matrices
+	unsigned int uiMAP1NbLignes = this->MABLireNbLignes();
+	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
+
+	unsigned int uiMAP2NbLignes = MAPParam.MABLireNbLignes();
+	unsigned int uiMAP2NbColonnes = MAPParam.MABLireNbColonnes();
+
+
+	//Compare si bien le meme nombre de lignes et de colonnes
+	if (uiMAP1NbLignes != uiMAP2NbLignes) {
+		//Erreur
+		throw "Pas le même nombre de lignes";
+	}
+	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
+		//Erreur
+		throw "Pas le même nombre de colonnes";
+	}
+
+	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition membre a membre des deux matrices
+	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + MAPParam[uiBoucle][ujBoucle];
+		}
+	}
+
+	return MAPMatriceRetour;
+}
+
+template<typename ELEMENT>
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustraction)
+{
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
+
+	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
+	unsigned int uiMAP1NbLignes = this->MABLireNbLignes();
+	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
+
+	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction de dValeurSoustraction a chaque membre de la matrice
+	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
+		}
+	}
+
+	return MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MAP2) {
+CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MAPParam) {
+	//Si on ne peut pas faire de multiplication sur ce type de matrice
+	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+	}
 
-}
+	//Recuperation des nombres de lignes et de colonnes des deux matrices
+	unsigned int uiMAP1NbLignes = this->MABLireNbLignes();
+	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double ELM2param) {
+	unsigned int uiMAP2NbLignes = MAPParam.MABLireNbLignes();
+	unsigned int uiMAP2NbColonnes = MAPParam.MABLireNbColonnes();
 
-}
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MAP2) {
+	if (uiMAP1NbLignes != uiMAP2NbLignes) {
+		//Erreur
+		throw "Pas le même nombre de lignes";
+	}
+	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
+		//Erreur
+		throw "Pas le même nombre de colonnes";
+	}
 
-}
+	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction membre a membre des deux matrices
+	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
+			MAPMatriceRetour[uiBoucle][ujBoucle] = (*this)[uiBoucle][ujBoucle] - MAPParam[uiBoucle][ujBoucle];
+		}
+	}
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MAP2) {
-
+	return MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
 CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
+	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
+	unsigned int uiNbLignes = this->MABLireNbLignes();
+	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
-	unsigned int NbLignes = this->MABLireNbLignes();
-	unsigned int NbColonnes = this->MABLireNbColonnes();
-
-	CMatricePlus<ELEMENT>* MatriceTransposee = new CMatricePlus<ELEMENT>(NbColonnes, NbLignes);
-
-	for (unsigned int uiBoucleL = 0; uiBoucleL < NbLignes; uiBoucleL++) {
-		for (unsigned int uiBoucleC = 0; uiBoucleC < NbColonnes; uiBoucleC++) {
-
-			//MatriceTransposee[uiBoucleC][uiBoucleL] = (*pLISMATListe)[uiBoucleL * NbColonnes + uiBoucleC];
-			//MatriceTransposee[uiBoucleC][uiBoucleL] = this->MABLireElement(uiBoucleL, uiBoucleC);
-			(*MatriceTransposee)[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
+	//Creation d'une nouvelle matrice<double> etant le resultat de la transposee de la matrice appelante
+	CMatricePlus<ELEMENT> MAPMatriceRetour(uiNbColonnes, uiNbLignes);
+	for (unsigned int uiBoucleL = 0; uiBoucleL < uiNbLignes; uiBoucleL++) {
+		for (unsigned int uiBoucleC = 0; uiBoucleC < uiNbColonnes; uiBoucleC++) {
+			MAPMatriceRetour[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
 		}
 	}
 
-	return *MatriceTransposee;
+	return MAPMatriceRetour;
 }
 
 template <typename ELEMENT>

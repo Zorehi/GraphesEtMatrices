@@ -121,7 +121,7 @@ CMDouble* CMDouble::MDOMultiplierConstante(double iParamValeur)
 	return NouvelleMatrice;
 }
 
-CMDouble* CMDouble::MDODiviserConstante(double iParamValeur)
+CMDouble* CMDouble::MDODiviserConstante(double dDiviseur)
 {
 	unsigned int NbLignes = MABLireNbLignes();
 	unsigned int NbColonnes = MABLireNbColonnes();
