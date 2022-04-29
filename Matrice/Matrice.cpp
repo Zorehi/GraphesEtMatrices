@@ -43,6 +43,7 @@ int main() {
     MatATransposee.MABAfficherMatrice();
 
 
+    /*
     CMatricePlus<int> Matrice2(3, 3);
 
     Matrice[0][0] = 1;
@@ -77,7 +78,7 @@ int main() {
     CMatricePlus<double> MatATransposee = Matrice.MAPTranspose();
     printf("\nMatF = transpose(MatA)\n");
     MatATransposee.MABAfficherMatrice();
-
+    */
 }
 
 
