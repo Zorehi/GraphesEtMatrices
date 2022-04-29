@@ -79,7 +79,6 @@ class CMatricePlus : public CMatriceBase<ELEMENT> {
 		 * @return CMatricePlus<ELEMENT> Matrice resultat de la transposee
 		 */
 		CMatricePlus<ELEMENT> MAPTranspose();
-		CMatricePlus<ELEMENT> MAPParser(char* pcFile);
 };
 
 #include "CMatricePlus.cpp"

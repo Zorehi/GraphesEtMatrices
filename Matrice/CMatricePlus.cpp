@@ -19,13 +19,13 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une matrice<double> etant le resultat de la multiplication de chaque membre par dFacteur
-	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] * dFacteur;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] * dFacteur;
 		}
 	}
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
@@ -50,7 +50,7 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une matrice<double> etant le resultat de la multiplication de la matrice par la matrice MAPProduit
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP2NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP2NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP2NbColonnes; ujBoucle++) {
 			double iValeurElement = 0;
@@ -58,11 +58,11 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MA
 				iValeurElement += (*this)[uiBoucle][unBoucle] * MAPProduit[unBoucle][ujBoucle];
 			}
 
-			MAPMatriceRetour[uiBoucle][ujBoucle] = iValeurElement;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = iValeurElement;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
@@ -78,14 +78,14 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une matrice<double> etant le resultat de la division de chaque membre par dDiviseur
-	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] / dDiviseur;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] / dDiviseur;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template<typename ELEMENT>
@@ -102,14 +102,14 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
 	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition de dValeurAddition a chaque membre de la matrice
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurAddition;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurAddition;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
@@ -139,14 +139,14 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition membre a membre des deux matrices
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + MAPParam[uiBoucle][ujBoucle];
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + MAPParam[uiBoucle][ujBoucle];
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template<typename ELEMENT>
@@ -163,14 +163,14 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustractio
 	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction de dValeurSoustraction a chaque membre de la matrice
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
@@ -199,14 +199,14 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction membre a membre des deux matrices
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (*this)[uiBoucle][ujBoucle] - MAPParam[uiBoucle][ujBoucle];
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (*this)[uiBoucle][ujBoucle] - MAPParam[uiBoucle][ujBoucle];
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
 template <typename ELEMENT>
@@ -216,17 +216,12 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la transposee de la matrice appelante
-	CMatricePlus<ELEMENT> MAPMatriceRetour(uiNbColonnes, uiNbLignes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbColonnes, uiNbLignes);
 	for (unsigned int uiBoucleL = 0; uiBoucleL < uiNbLignes; uiBoucleL++) {
 		for (unsigned int uiBoucleC = 0; uiBoucleC < uiNbColonnes; uiBoucleC++) {
-			MAPMatriceRetour[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
+			(*MAPMatriceRetour)[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
 		}
 	}
 
-	return MAPMatriceRetour;
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPParser(char* pcFile) {
-
+	return *MAPMatriceRetour;
 }

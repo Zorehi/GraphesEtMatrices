@@ -25,6 +25,7 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
 {
+	delete pLISMATListe;
 }
 
 template <class MType>
