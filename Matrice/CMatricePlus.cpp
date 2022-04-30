@@ -2,19 +2,25 @@
 #define Type_non_Valide 140
 #define Matrices_Incompatibles 150
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<ELEMENT>(uiParamNbLignes, uiParamNbColonnes) {
+template <class MType>
+CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes) {
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur) {
 	
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet;
 		EXCObjet.EXCModifierval(Type_non_Valide);
 		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -22,23 +28,34 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une matrice<double> etant le resultat de la multiplication de chaque membre par dFacteur
-	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] * dFacteur;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] * dFacteur;
 		}
 	}
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MAPProduit) {
+template <class MType>
+CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit) {
+	return MAPProduit * dFacteur;
+}
+
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet1;
 		EXCObjet1.EXCModifierval(Type_non_Valide);
 		EXCObjet1.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet1);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -57,7 +74,7 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une matrice<double> etant le resultat de la multiplication de la matrice par la matrice MAPProduit
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP2NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP2NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP2NbColonnes; ujBoucle++) {
 			double iValeurElement = 0;
@@ -65,21 +82,27 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MA
 				iValeurElement += (*this)[uiBoucle][unBoucle] * MAPProduit[unBoucle][ujBoucle];
 			}
 
-			MAPMatriceRetour[uiBoucle][ujBoucle] = iValeurElement;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = iValeurElement;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet;
 		EXCObjet.EXCModifierval(Type_non_Valide);
 		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -87,25 +110,31 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une matrice<double> etant le resultat de la division de chaque membre par dDiviseur
-	CMatricePlus<double> MAPMatriceRetour(uiNbLignes, uiNbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] / dDiviseur;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] / dDiviseur;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template<typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
+template<class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet;
 		EXCObjet.EXCModifierval(Type_non_Valide);
 		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -113,24 +142,30 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
 	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition de dValeurAddition a chaque membre de la matrice
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurAddition;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurAddition;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MAPParam) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet;
 		EXCObjet.EXCModifierval(Type_non_Valide);
 		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -156,25 +191,31 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition membre a membre des deux matrices
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + MAPParam[uiBoucle][ujBoucle];
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + MAPParam[uiBoucle][ujBoucle];
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template<typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustraction)
+template<class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet;
 		EXCObjet.EXCModifierval(Type_non_Valide);
 		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -182,24 +223,30 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustractio
 	unsigned int uiMAP1NbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction de dValeurSoustraction a chaque membre de la matrice
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MAPParam) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
+<<<<<<< HEAD
 	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
 		CException EXCObjet1;
 		EXCObjet1.EXCModifierval(Type_non_Valide);
 		EXCObjet1.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
 		throw(EXCObjet1);
+=======
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
+		throw "pas le droit de faire cette operation sur ce type de matrice";
+		//erreur
+>>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -224,34 +271,29 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MA
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction membre a membre des deux matrices
-	CMatricePlus<double> MAPMatriceRetour(uiMAP1NbLignes, uiMAP1NbColonnes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiMAP1NbLignes, uiMAP1NbColonnes);
 	for (unsigned int uiBoucle = 0; uiBoucle < uiMAP1NbLignes; uiBoucle++) {
 		for (unsigned int ujBoucle = 0; ujBoucle < uiMAP1NbColonnes; ujBoucle++) {
-			MAPMatriceRetour[uiBoucle][ujBoucle] = (*this)[uiBoucle][ujBoucle] - MAPParam[uiBoucle][ujBoucle];
+			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (*this)[uiBoucle][ujBoucle] - MAPParam[uiBoucle][ujBoucle];
 		}
 	}
 
-	return MAPMatriceRetour;
+	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose() {
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
 	unsigned int uiNbLignes = this->MABLireNbLignes();
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la transposee de la matrice appelante
-	CMatricePlus<ELEMENT> MAPMatriceRetour(uiNbColonnes, uiNbLignes);
+	CMatricePlus<double>* MAPMatriceRetour = new CMatricePlus<double>(uiNbColonnes, uiNbLignes);
 	for (unsigned int uiBoucleL = 0; uiBoucleL < uiNbLignes; uiBoucleL++) {
 		for (unsigned int uiBoucleC = 0; uiBoucleC < uiNbColonnes; uiBoucleC++) {
-			MAPMatriceRetour[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
+			(*MAPMatriceRetour)[uiBoucleC][uiBoucleL] = (*this)[uiBoucleL][uiBoucleC];
 		}
 	}
 
-	return MAPMatriceRetour;
-}
-
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPParser(char* pcFile) {
-
+	return *MAPMatriceRetour;
 }

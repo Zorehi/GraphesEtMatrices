@@ -8,8 +8,8 @@ CParseur::CParseur(char* pcCheminFichier)
 {
 }
 
-template<typename ELEMENT>
-inline CMatricePlus<ELEMENT> CParseur::PARLirefichier()
+template<class MType>
+inline CMatricePlus<MType> CParseur::PARLirefichier()
 {
-	return CMatricePlus<ELEMENT>();
+	return CMatricePlus<MType>();
 }

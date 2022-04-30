@@ -1,9 +1,4 @@
 #include "CMatriceBase.h"
-#include "CException.h"
-/*
-* 
-*/
-#define Matrice_Vide 100
 
 template <class MType>
 CMatriceBase<MType>::CMatriceBase()
@@ -25,19 +20,39 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
 {
+	delete pLISMATListe;
 }
 
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbLignes(unsigned int uiParamNbLignes)
 {
-	uiMABNbLignes = uiParamNbLignes;
-
+	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiParamNbLignes, uiMABNbColonnes);
+	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiParamNbLignes; uiBoucleLigne++)
+	{
+		if (uiBoucleLigne < uiMABNbLignes) {
+			for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
+			{
+				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
+			}
+		}
+	}
+	*this = *MABMatrice;
 }
 
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 {
-	uiMABNbColonnes = uiParamNbColonnes;
+	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiMABNbLignes, uiParamNbColonnes);
+	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
+	{
+		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiParamNbColonnes; uiBoucleColonne++)
+		{
+			if (uiBoucleColonne < uiMABNbColonnes) {
+				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
+			}
+		}
+	}
+	*this = *MABMatrice;
 }
 
 template <class MType>
@@ -53,11 +68,21 @@ unsigned int CMatriceBase<MType>::MABLireNbColonnes()
 }
 
 template <class MType>
+CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
+{
+	uiMABNbColonnes = MABParam.MABLireNbColonnes();
+	uiMABNbLignes = MABParam.MABLireNbLignes();
+	delete pLISMATListe;
+	pLISMATListe = new CListe<MType>(*MABParam.pLISMATListe);
+	return *this;
+}
+
+template <class MType>
 void CMatriceBase<MType>::MABAfficherMatrice() {
 	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
 		CException EXCObjet;
-		EXCObjet.EXCModifierval(Matrice_Vide);
-		EXCObjet.EXCModifiermsg("Exception : la matrice est vide");
+		EXCObjet.EXCModifierVal(Matrice_Vide);
+		EXCObjet.EXCModifierMsg("Exception : la matrice est vide");
 		throw(EXCObjet);
 	}
 	for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {

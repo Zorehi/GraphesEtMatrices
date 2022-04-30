@@ -6,6 +6,10 @@
 #include <iostream>
 #include "CListe.h"
 #include "CProxy_row.h"
+#include "CException.h"
+
+
+#define Matrice_Vide 100
 
 using namespace std;
 
@@ -35,7 +39,7 @@ class CMatriceBase {
 		CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 
 		/**
-		 * @brief Destructeur : libere la memoire alloue pour l'objet MatriceBase
+		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
 		 * 
 		 */
 		~CMatriceBase();
@@ -79,8 +83,19 @@ class CMatriceBase {
 		 * @return l'objet MATPROProxy 
 		 */
 		MATPROProxy operator[](unsigned int uiLignes) {
+			if (uiLignes > uiMABNbLignes) {
+				return CException(2, "Exception : Index ligne non compris dans la matrice")
+			}
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
+
+		/**
+		 * @brief Surcharge de l'operateur d'affectation, recopie la matrice MABParam dans la matrice appelante
+		 * 
+		 * @param MABParam Matrice a recopier
+		 * @return CMatriceBase<MType>& Reference de la matrice recopiee
+		 */
+		CMatriceBase<MType>& operator=(CMatriceBase& MABParam);
 
 		/**
 		 * @brief Affiche la matrice dans le shell

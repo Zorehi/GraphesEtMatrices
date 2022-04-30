@@ -3,12 +3,17 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "CException.h"
 
-template <typename ELEMENT>
+#define Alloc_Mem_Impossible 110
+#define Error_Realloc 120
+#define Index_Out_Of_Range 130
+
+template <class MType>
 class CListe {
 
 private:
-	ELEMENT *peLISTableau;
+	MType *peLISTableau;
 	unsigned int uiLISTaille;
 
 public:
@@ -33,7 +38,7 @@ public:
 	CListe(CListe &LISParam);
 
 	/**
-	 * @brief Destructeur : libere la memoire alloue pour l'objet Liste
+	 * @brief Destructeur : Libere la memoire alloue pour l'objet Liste
 	 * 
 	 */
 	~CListe();
@@ -58,9 +63,17 @@ public:
 	 * @brief Surcharge de l'operateur d'indice du tableau
 	 * 
 	 * @param uiIndex Indice du l'element souhaite dans la liste
-	 * @return ELEMENT& Reference de l'element souhaite
+	 * @return MType& Reference de l'element souhaite
 	 */
-	ELEMENT& operator[](unsigned int uiIndex);
+	MType& operator[](unsigned int uiIndex);
+
+	/**
+	 * @brief Surcharge de l'operateur d'affectation, recopie LISParam dans la liste appelante
+	 * 
+	 * @param LISParam Liste a recopier
+	 * @return CListe<MType>& Reference de la liste recopiee
+	 */
+	CListe<MType>& operator=(CListe<MType>& LISParam);
 };
 
 #include "CListe.cpp"
