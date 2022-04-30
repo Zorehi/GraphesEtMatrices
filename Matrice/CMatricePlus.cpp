@@ -1,26 +1,18 @@
 #include "CMatricePlus.h"
-#define Type_non_Valide 140
-#define Matrices_Incompatibles 150
+
 
 template <class MType>
-CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes) {
+CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes):CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes) {
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur) {
-	
+CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur){
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierval(Type_non_Valide);
-		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -45,17 +37,11 @@ CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit) 
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet1;
-		EXCObjet1.EXCModifierval(Type_non_Valide);
-		EXCObjet1.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet1);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -68,8 +54,8 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProdu
 	//Si le nombre de colonnes de la premiere matrice est different du nombre de ligne de la deuxieme matrice -> erreur
 	if (uiMAP1NbColonnes != uiMAP2NbLignes) {
 		CException EXCObjet2;
-		EXCObjet2.EXCModifierval(Matrices_Incompatibles);
-		EXCObjet2.EXCModifiermsg("Exception : Les matrices ne sont pas compatibles entre elles");
+		EXCObjet2.EXCModifierVal(Matrices_Incompatibles);
+		EXCObjet2.EXCModifierMsg("Exception : Les matrices ne sont pas compatibles entre elles");
 		throw(EXCObjet2);
 	}
 
@@ -92,17 +78,11 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProdu
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierval(Type_non_Valide);
-		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -124,17 +104,11 @@ template<class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierval(Type_non_Valide);
-		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -155,17 +129,11 @@ CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierval(Type_non_Valide);
-		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -178,16 +146,16 @@ CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam
 
 	//Compare si bien le meme nombre de lignes et de colonnes
 	if (uiMAP1NbLignes != uiMAP2NbLignes) {
-		CException EXCObjet1;
-		EXCObjet1.EXCModifierval(Matrices_Incompatibles);
-		EXCObjet1.EXCModifiermsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de ligne différent)");
-		throw(EXCObjet1);
+		CException EXCObjet2;
+		EXCObjet2.EXCModifierVal(Matrices_Incompatibles);
+		EXCObjet2.EXCModifierMsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de ligne différent)");
+		throw(EXCObjet2);
 	}
 	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
-		CException EXCObjet2;
-		EXCObjet2.EXCModifierval(Matrices_Incompatibles);
-		EXCObjet2.EXCModifiermsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
-		throw(EXCObjet2);
+		CException EXCObjet3;
+		EXCObjet3.EXCModifierVal(Matrices_Incompatibles);
+		EXCObjet3.EXCModifierMsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
+		throw(EXCObjet3);
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition membre a membre des deux matrices
@@ -205,17 +173,11 @@ template<class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierval(Type_non_Valide);
-		EXCObjet.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -229,24 +191,17 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
 		}
 	}
-
 	return *MAPMatriceRetour;
 }
 
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-<<<<<<< HEAD
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
-		CException EXCObjet1;
-		EXCObjet1.EXCModifierval(Type_non_Valide);
-		EXCObjet1.EXCModifiermsg("Exception : Impossible de faire cette operation sur ce type de matrice");
-		throw(EXCObjet1);
-=======
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
->>>>>>> 33847b76fa779c6d05909e643651805694ddaacd
+		CException EXCObjet1;
+		EXCObjet1.EXCModifierVal(Type_non_Valide);
+		EXCObjet1.EXCModifierMsg("Exception : Impossible de faire cette operation sur ce type de matrice");
+		throw(EXCObjet1);
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -259,14 +214,14 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam
 
 	if (uiMAP1NbLignes != uiMAP2NbLignes) {
 		CException EXCObjet2;
-		EXCObjet2.EXCModifierval(Matrices_Incompatibles);
-		EXCObjet2.EXCModifiermsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de lignes différent)");
+		EXCObjet2.EXCModifierVal(Matrices_Incompatibles);
+		EXCObjet2.EXCModifierMsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de lignes différent)");
 		throw(EXCObjet2);
 	}
 	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
 		CException EXCObjet3;
-		EXCObjet3.EXCModifierval(Matrices_Incompatibles);
-		EXCObjet3.EXCModifiermsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
+		EXCObjet3.EXCModifierVal(Matrices_Incompatibles);
+		EXCObjet3.EXCModifierMsg("Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
 		throw(EXCObjet3);
 	}
 
