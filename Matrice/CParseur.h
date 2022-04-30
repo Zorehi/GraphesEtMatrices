@@ -12,7 +12,7 @@ class CParseur
 		CParseur();
 		CParseur(char* pcCheminFichier);
 
-		template <typename ELEMENT>
-		CMatricePlus<ELEMENT> PARLirefichier();
+		template <class MType>
+		CMatricePlus<MType> PARLirefichier();
 
 };

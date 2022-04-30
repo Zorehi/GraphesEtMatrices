@@ -22,7 +22,7 @@ int main() {
     printf("\nMatA = \n");
     Matrice.MABAfficherMatrice();
 
-    CMatricePlus<double> MatTestMulCons = Matrice * 5;
+    CMatricePlus<double> MatTestMulCons = 5 * Matrice;
     printf("\nMatB = MatA * 5.0\n");
     MatTestMulCons.MABAfficherMatrice();
 

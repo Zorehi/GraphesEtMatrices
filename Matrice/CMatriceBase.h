@@ -83,6 +83,9 @@ class CMatriceBase {
 		 * @return l'objet MATPROProxy 
 		 */
 		MATPROProxy operator[](unsigned int uiLignes) {
+			if (uiLignes > uiMABNbLignes) {
+				return CException(2, "Exception : Index ligne non compris dans la matrice")
+			}
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
 

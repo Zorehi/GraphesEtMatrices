@@ -1,15 +1,15 @@
 #include "CMatricePlus.h"
 
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<ELEMENT>(uiParamNbLignes, uiParamNbColonnes) {
+template <class MType>
+CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes) {
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur) {
 	
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -28,10 +28,15 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(double dFacteur) {
 	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MAPProduit) {
+template <class MType>
+CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit) {
+	return MAPProduit * dFacteur;
+}
+
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -65,10 +70,10 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator*(CMatricePlus<ELEMENT>& MA
 	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -88,11 +93,11 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator/(double dDiviseur) {
 	return *MAPMatriceRetour;
 }
 
-template<typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
+template<class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -112,10 +117,10 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(double dValeurAddition)
 	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MAPParam) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -149,11 +154,11 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator+(CMatricePlus<ELEMENT>& MA
 	return *MAPMatriceRetour;
 }
 
-template<typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustraction)
+template<class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -173,10 +178,10 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(double dValeurSoustractio
 	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MAPParam) {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam) {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
-	if (typeid(ELEMENT).name() != typeid(double).name() && typeid(ELEMENT).name() != typeid(int).name() && typeid(ELEMENT).name() != typeid(float).name()) {
+	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
 		//erreur
 	}
@@ -209,8 +214,8 @@ CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::operator-(CMatricePlus<ELEMENT>& MA
 	return *MAPMatriceRetour;
 }
 
-template <typename ELEMENT>
-CMatricePlus<ELEMENT> CMatricePlus<ELEMENT>::MAPTranspose() {
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose() {
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
 	unsigned int uiNbLignes = this->MABLireNbLignes();
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();

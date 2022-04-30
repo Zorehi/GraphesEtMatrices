@@ -1,6 +1,5 @@
 ﻿#include "CListe.h"
 
-
 template <class MType>
 CListe<MType>::CListe()
 {
