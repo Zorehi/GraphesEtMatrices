@@ -71,15 +71,15 @@ int main(int iArgc, char * ppcArgv[])
 		if (iArgc > 2) {
 			// Addition de toutes les matrices
 			cout << "Résultat de l'addition de toutes les matrices :\n";
-			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+			CMatricePlus<double> MAPResultatAddition(LISListeMatrices[0]);
 
 			try
 			{
 				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
 				{
-					MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+					MAPResultatAddition = MAPResultatAddition + LISListeMatrices[iBoucleI];
 				}
-				MAPResultat.MABAfficherMatrice();
+				MAPResultatAddition.MABAfficherMatrice();
 			}
 			catch (CException EXCException)
 			{
@@ -89,19 +89,19 @@ int main(int iArgc, char * ppcArgv[])
 
 			// Operation (M1-M2+M3-M4+...)
 			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
-			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+			CMatricePlus<double> MAPResultatOperation(LISListeMatrices[0]);
 			try
 			{
 				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
 				{
 					if (iBoucleI % 2 == 0) {
-						MAPResultat = MAPResultat - LISListeMatrices[iBoucleI];
+						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
 					}
 					else {
-						MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+						MAPResultatOperation = MAPResultatOperation + LISListeMatrices[iBoucleI];
 					}
 				}
-				MAPResultat.MABAfficherMatrice();
+				MAPResultatOperation.MABAfficherMatrice();
 			}
 			catch (CException EXCException)
 			{
@@ -111,14 +111,14 @@ int main(int iArgc, char * ppcArgv[])
 
 			// Multiplication des matrices entre elles
 			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
-			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+			CMatricePlus<double> MAPResultatProduit(LISListeMatrices[0]);
 			try
 			{
 				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
 				{
-					MAPResultat = MAPResultat * LISListeMatrices[iBoucleI];
+					MAPResultatProduit = MAPResultatProduit * LISListeMatrices[iBoucleI];
 				}
-				MAPResultat.MABAfficherMatrice();
+				MAPResultatProduit.MABAfficherMatrice();
 			}
 			catch (CException EXCException)
 			{
