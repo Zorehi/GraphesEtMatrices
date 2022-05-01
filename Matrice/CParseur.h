@@ -6,8 +6,8 @@
 class CParseur
 {
 	private:
-		char* pcFichier;
-		FILE* pfFichier;
+		char* pcPARFichier;
+		FILE* pFILPARFichier;
 
 	public:
 		CParseur();

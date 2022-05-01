@@ -4,97 +4,99 @@
 
 CParseur::CParseur()
 {
-	pcFichier = NULL;
-	pfFichier = NULL;
+	pcPARFichier = NULL;
+	pFILPARFichier = NULL;
 }
 
 
 CParseur::CParseur(const char* pcCheminFichier)
 {
-	pcFichier = (char*)pcCheminFichier;
-	pfFichier = NULL;
+	pcPARFichier = (char*)pcCheminFichier;
+	pFILPARFichier = NULL;
 }
 
 char* CParseur::PARLireChemin()
 {
-	return pcFichier;
+	return pcPARFichier;
 }
 
 const char* CParseur::PARLireLigne()
 {
 	//Si pas de fichier -> Erreur
-	if (pfFichier == NULL) {
+	if (pFILPARFichier == NULL) {
 		throw "pas de fichier à ce chemin";
 	}
 
-	char* chaine = (char*)malloc(sizeof(char) * 64);
-	if (chaine == NULL) {
+	char* pcChaine = (char*)malloc(sizeof(char) * 64);
+	if (pcChaine == NULL) {
 		throw "erreur d'allocation";
 	}
 
-	fgets(chaine, 64, pfFichier);
+	fgets(pcChaine, 64, pFILPARFichier);
 
-	return chaine;
+	return pcChaine;
 }
 
 
 void CParseur::PARLirefichier()
 {
 	//Ouverture du fichier
-	errno_t err = fopen_s(&pfFichier, pcFichier, "r");
+	errno_t err = fopen_s(&pFILPARFichier, pcPARFichier, "r");
 
 	//Si erreur pendant l'ouvreture du fichier
 	if (err != 0) {
-		throw "pas de fichier à ce chemin";
+		throw "Erreur lors de l'ouverture du fichier";
 	}
 
-	const char* chiffres = "-1234567890";
-	const char* espace = " ";
-	const char* separators = "\0\n";
-	size_t longueur;
-	size_t longueur2;
+	const char* pcChiffres = "-1234567890";
+	const char* pcEspace = " ";
+	const char* pcSeparateurs = "\0\n";
+
+	//Je considere size_t comme un unsigned int pour le nommage de la variable, à voir avec le prof
+	size_t uiLongueur;
+	size_t uiLongueur2;
 
 	//Lecture et interpretation de la premiere ligne (type de la matrice)
-	const char* ligneMatrice = PARLireLigne();
+	const char* pcLigneMatrice = PARLireLigne();
 	
-	longueur = strcspn(ligneMatrice, "=");
-	longueur2 = strcspn(ligneMatrice + longueur, separators);
-	char typeMatrice[20];
-	strncpy_s(typeMatrice, ligneMatrice + longueur + 1, 20);
-	cout << "Type = " << typeMatrice;
+	uiLongueur = strcspn(pcLigneMatrice, "=");
+	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur, pcSeparateurs);
+	char pcTypeMatrice[20];
+	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur + 1, 20);
+	cout << "Type = " << pcTypeMatrice;
 
 	//Lecture et interpretation de la seconde ligne (nombre de lignes)
 	
-	const char* ligneLigne = PARLireLigne();
-	longueur = strcspn(ligneLigne, chiffres);
-	unsigned int uiNbLignes = atoi(ligneLigne + longueur);
+	const char* pcLigneLigne = PARLireLigne();
+	uiLongueur = strcspn(pcLigneLigne, pcChiffres);
+	unsigned int uiNbLignes = atoi(pcLigneLigne + uiLongueur);
 	cout << "nbLignes = " << uiNbLignes << "\n";
 
 	//Lecture et interpretation de la troisieme ligne (nombre de colonnes)
-	const char* ligneColonne = PARLireLigne();
-	longueur = strcspn(ligneColonne, chiffres);
-	unsigned int uiNbColonnes = atoi(ligneColonne + longueur);
+	const char* pcLigneColonne = PARLireLigne();
+	uiLongueur = strcspn(pcLigneColonne, pcChiffres);
+	unsigned int uiNbColonnes = atoi(pcLigneColonne + uiLongueur);
 	cout << "nbColonnes = " << uiNbColonnes << "\n";
 
-	//Cration de la matrice
-	CMatricePlus<int> maMatrice(uiNbLignes, uiNbColonnes);
+	//Creation de la matrice
+	CMatricePlus<int> MAPMatrice(uiNbLignes, uiNbColonnes);
 
 	//Saute la ligne "Matrice=[
 	PARLireLigne();
 
 	//Lecture et interpretation des nblignes prochaines lignes (elements de la matrice)
-	for (int i = 0; i < uiNbLignes; i++) {
-		const char* ligne = PARLireLigne();
-		longueur = 0;
-		for (int j = 0; j < uiNbColonnes; j++) {
-			longueur += strcspn(ligne + longueur, chiffres);
-			int iElement = atoi(ligne + longueur);
-			maMatrice[i][j] = iElement;
-			longueur += strcspn(ligne + longueur, espace);
+	for (int iBoucleI = 0; iBoucleI < uiNbLignes; iBoucleI++) {
+		const char* pcLigne = PARLireLigne();
+		uiLongueur = 0;
+		for (int iBoucleJ = 0; iBoucleJ < uiNbColonnes; iBoucleJ++) {
+			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);
+			int iElement = atoi(pcLigne + uiLongueur);
+			MAPMatrice[iBoucleI][iBoucleJ] = iElement;
+			uiLongueur += strcspn(pcLigne + uiLongueur, pcEspace);
 		}
 	}
 	
-	maMatrice.MABAfficherMatrice();
+	MAPMatrice.MABAfficherMatrice();
 	
 }
 
