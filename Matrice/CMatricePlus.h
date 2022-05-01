@@ -22,6 +22,13 @@ public:
 	CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 
 	/**
+	 * @brief Constructeur de recopie : Creer un duplicata d'une Matrice deja cree
+	 *
+	 * @param MAPParam Matrice a dupliquer
+	 */
+	//CMatricePlus(CMatricePlus<MType>& MAPParam);
+
+	/**
 	 * @brief Surcharge de l'operateur *, pour la multiplication entre la matrice et un nombre
 	 *
 	 * @param dFacteur Facteur de la multiplication
@@ -77,12 +84,6 @@ public:
 	 */
 	CMatricePlus<MType> operator-(CMatricePlus<MType>& MAPParam);
 
-	/**
-	 * @brief Surcharge de l'operateur d'affectation, recopie la matrice MAPParam dans la matrice appelante
-	 *
-	 * @param MAPParam Matrice a recopier
-	 * @return CMatricePlus<MType>& Reference de la matrice recopiee
-	 */
 	CMatricePlus<MType>& operator=(CMatricePlus<MType>& MAPParam);
 
 	/**

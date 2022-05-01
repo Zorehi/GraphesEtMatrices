@@ -5,13 +5,13 @@
 #include "CParseur.h"
 #include "CMatriceBase.h"
 
+using namespace std;
 
 
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc > 1) {
 		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
-		CMatricePlus<double> MAPResultat;
 		int iBoucleI;
 		double dC;
 
@@ -33,12 +33,45 @@ int main(int iArgc, char * ppcArgv[])
 		cin >> dC;
 		cout << "\n";
 
-		// Multiplication des matrices par un constante
-		cout << "Résultat des multiplication des matrice par " << dC << " :" << "\n";
+		// Multiplication des matrices par une constante
+		cout << "Résultat de la multiplication des matrices par " << dC << " :\n";
 		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
 		{
-			MAPResultat = LISListeMatrices[iBoucleI] * dC;
-			MAPResultat.MABAfficherMatrice();
+			try
+			{
+				(LISListeMatrices[iBoucleI] * dC).MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
+
+		// Division des matrices par une constante
+		cout << "Résultat de la division des matrices par " << dC << " :\n";
+		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
+		{
+			try
+			{
+				(LISListeMatrices[iBoucleI] / dC).MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
+
+		// Addition de toutes les matrices
+		cout << "Résultat de l'addition de toutes les matrices :\n";
+		if (iArgc > 2) {
+			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+
+			for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+			{
+				MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+			}
 		}
 
 	}

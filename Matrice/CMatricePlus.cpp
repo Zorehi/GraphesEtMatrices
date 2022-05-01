@@ -9,7 +9,12 @@ template <class MType>
 CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes)
 {
 }
-
+/*
+template <class MType>
+CMatricePlus<MType>::CMatricePlus(CMatricePlus<MType>& MAPParam) : CMatriceBase<MType>(MAPParam)
+{
+}
+*/
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
 {
@@ -228,18 +233,17 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam
 template <class MType>
 CMatricePlus<MType>& CMatricePlus<MType>::operator=(CMatricePlus<MType>& MAPParam)
 {
-	unsigned int uiNbColonnes = MAPParam.MABLireNbLignes();
-	unsigned int uiNbLignes = MAPParam.MABLireNbColonnes();
+	unsigned int uiNbLignes = MAPParam.MABLireNbLignes();
+	unsigned int uiNbColonnes = MAPParam.MABLireNbColonnes();
 	this->MABModifierNbColonnes(uiNbColonnes);
 	this->MABModifierNbLignes(uiNbLignes);
-	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
-		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
-			(*this)[uiBoucleI][uiBoucleJ] = MAPParam[uiBoucleI][uiBoucleJ];
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbLignes; uiBoucle++) {
+		for (unsigned int ujBoucle = 0; ujBoucle < uiNbColonnes; ujBoucle++) {
+			(*this)[uiBoucle][ujBoucle] = MAPParam[uiBoucle][ujBoucle];
 		}
 	}
-	return *this;
-}
 
+}
 
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()

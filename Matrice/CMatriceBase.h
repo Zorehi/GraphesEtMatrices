@@ -39,6 +39,13 @@ class CMatriceBase {
 		CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 
 		/**
+		 * @brief Constructeur de recopie : Creer un duplicata d'une Matrice deja cree
+		 *
+		 * @param MABParam Matrice a dupliquer
+		 */
+		CMatriceBase(CMatriceBase<MType>& MABParam);
+
+		/**
 		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
 		 * 
 		 */

@@ -18,6 +18,15 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 }
 
 template <class MType>
+CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam)
+{
+	uiMABNbLignes = MABParam.MABLireNbLignes();
+	uiMABNbColonnes = MABParam.MABLireNbColonnes();
+	delete pLISMATListe;
+	pLISMATListe = new CListe<MType>(MABParam.pLISMATListe);
+}
+
+template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
 {
 	delete pLISMATListe;
