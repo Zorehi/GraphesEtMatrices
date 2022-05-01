@@ -19,7 +19,7 @@ CListe<MType>::CListe(unsigned int uiTaille)
 		throw(EXCObjet);
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = (MType) MType();
+		peLISTableau[uiBoucle] = MType();
 	}
 }
 

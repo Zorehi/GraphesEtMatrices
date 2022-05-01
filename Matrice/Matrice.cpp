@@ -11,7 +11,10 @@ using namespace std;
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc > 1) {
-		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
+		// Quand j'utilise notre liste ça ne marche pas je comprend pas  ¯\_(ツ)_/¯ 
+		//CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
+		CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
+		CMatricePlus<double> MAPResultat;
 		int iBoucleI;
 		double dC;
 
@@ -39,7 +42,8 @@ int main(int iArgc, char * ppcArgv[])
 		{
 			try
 			{
-				(LISListeMatrices[iBoucleI] * dC).MABAfficherMatrice();
+				MAPResultat = LISListeMatrices[iBoucleI] * dC;
+				MAPResultat.MABAfficherMatrice();
 			}
 			catch (CException EXCException)
 			{
@@ -54,7 +58,8 @@ int main(int iArgc, char * ppcArgv[])
 		{
 			try
 			{
-				(LISListeMatrices[iBoucleI] / dC).MABAfficherMatrice();
+				MAPResultat = LISListeMatrices[iBoucleI] / dC;
+				MAPResultat.MABAfficherMatrice();
 			}
 			catch (CException EXCException)
 			{
@@ -62,18 +67,69 @@ int main(int iArgc, char * ppcArgv[])
 				cout << EXCException.EXCLireMsg() << "\n";
 			}
 		}
-
-		// Addition de toutes les matrices
-		cout << "Résultat de l'addition de toutes les matrices :\n";
+		
 		if (iArgc > 2) {
+			// Addition de toutes les matrices
+			cout << "Résultat de l'addition de toutes les matrices :\n";
 			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
 
-			for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+			try
 			{
-				MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+				}
+				MAPResultat.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+
+			// Operation (M1-M2+M3-M4+...)
+			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
+			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+			try
+			{
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					if (iBoucleI % 2 == 0) {
+						MAPResultat = MAPResultat - LISListeMatrices[iBoucleI];
+					}
+					else {
+						MAPResultat = MAPResultat + LISListeMatrices[iBoucleI];
+					}
+				}
+				MAPResultat.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+
+			// Multiplication des matrices entre elles
+			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
+			CMatricePlus<double> MAPResultat(LISListeMatrices[0]);
+			try
+			{
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					MAPResultat = MAPResultat * LISListeMatrices[iBoucleI];
+				}
+				MAPResultat.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
 			}
 		}
-
+		else {
+			cout << "Pour réaliser les opération telles que : \n\tLa somme de toutes les matrices\n\tLa multplication de toutes les matrices entre elles\n";
+			cout << "Ils faut donner plus de 1 fichier lors du lancement du programme !";
+		}
 	}
 	else {
 		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";

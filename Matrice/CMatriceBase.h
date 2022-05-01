@@ -91,7 +91,7 @@ class CMatriceBase {
 		 */
 		MATPROProxy operator[](unsigned int uiLignes) {
 			if (uiLignes > uiMABNbLignes) {
-				return CException(2, "Exception : Index ligne non compris dans la matrice");
+				throw CException(2, "Exception : Index ligne non compris dans la matrice");
 			}
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
@@ -102,7 +102,7 @@ class CMatriceBase {
 		 * @param MABParam Matrice a recopier
 		 * @return CMatriceBase<MType>& Reference de la matrice recopiee
 		 */
-		CMatriceBase<MType>& operator=(CMatriceBase<MType>& MABParam);
+		CMatriceBase<MType> operator=(CMatriceBase<MType>& MABParam);
 
 		/**
 		 * @brief Affiche la matrice dans le shell
