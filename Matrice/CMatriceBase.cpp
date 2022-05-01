@@ -80,10 +80,7 @@ CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
 template <class MType>
 void CMatriceBase<MType>::MABAfficherMatrice() {
 	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Matrice_Vide);
-		EXCObjet.EXCModifierMsg("Exception : la matrice est vide");
-		throw(EXCObjet);
+		throw CException(100, "Exception : la matrice est vide");
 	}
 	for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
 		for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
