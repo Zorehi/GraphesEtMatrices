@@ -68,7 +68,7 @@ unsigned int CMatriceBase<MType>::MABLireNbColonnes()
 }
 
 template <class MType>
-CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
+CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase<MType>& MABParam)
 {
 	uiMABNbColonnes = MABParam.MABLireNbColonnes();
 	uiMABNbLignes = MABParam.MABLireNbLignes();

@@ -1,12 +1,18 @@
 #include "CMatricePlus.h"
 
-
 template <class MType>
-CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes) {
+CMatricePlus<MType>::CMatricePlus() : CMatriceBase<MType>()
+{
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur) {
+CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes) : CMatriceBase<MType>(uiParamNbLignes, uiParamNbColonnes)
+{
+}
+
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
+{
 	
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
@@ -29,12 +35,14 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur) {
 }
 
 template <class MType>
-CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit) {
+CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit)
+{
 	return MAPProduit * dFacteur;
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit) {
+CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit)
+{
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
@@ -71,7 +79,8 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProdu
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur) {
+CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur)
+{
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
@@ -118,7 +127,8 @@ CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam) {
+CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam)
+{
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
@@ -179,7 +189,8 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam) {
+CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam)
+{
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
 		throw "pas le droit de faire cette operation sur ce type de matrice";
@@ -215,7 +226,24 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose() {
+CMatricePlus<MType>& CMatricePlus<MType>::operator=(CMatricePlus<MType>& MAPParam)
+{
+	unsigned int uiNbColonnes = MAPParam.MABLireNbLignes();
+	unsigned int uiNbLignes = MAPParam.MABLireNbColonnes();
+	this->MABModifierNbColonnes(uiNbColonnes);
+	this->MABModifierNbLignes(uiNbLignes);
+	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
+		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
+			(*this)[uiBoucleI][uiBoucleJ] = MAPParam[uiBoucleI][uiBoucleJ];
+		}
+	}
+	return *this;
+}
+
+
+template <class MType>
+CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
+{
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
 	unsigned int uiNbLignes = this->MABLireNbLignes();
 	unsigned int uiNbColonnes = this->MABLireNbColonnes();

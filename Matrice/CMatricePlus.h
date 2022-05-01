@@ -8,14 +8,18 @@ template <class MType>
 class CMatricePlus : public CMatriceBase<MType> {
 public:
 	/**
+	 * @brief Constructeur par defaut : Creer un objet MatricePlus de type <MType>
+	 *
+	 */
+	CMatricePlus();
+
+	/**
 	 * @brief Constructeur de confort : Creer une matrice avec les dimensions donnees
 	 *
 	 * @param uiParamNbLignes Nombre de lignes souhaitees
 	 * @param uiParamNbColonnes Nombre de colonnes souhaitees
 	 */
 	CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
-
-
 
 	/**
 	 * @brief Surcharge de l'operateur *, pour la multiplication entre la matrice et un nombre
@@ -72,6 +76,14 @@ public:
 	 * @return CMatricePlus<MType> Matrice resultat de la soustraction
 	 */
 	CMatricePlus<MType> operator-(CMatricePlus<MType>& MAPParam);
+
+	/**
+	 * @brief Surcharge de l'operateur d'affectation, recopie la matrice MAPParam dans la matrice appelante
+	 *
+	 * @param MAPParam Matrice a recopier
+	 * @return CMatricePlus<MType>& Reference de la matrice recopiee
+	 */
+	CMatricePlus<MType>& operator=(CMatricePlus<MType>& MAPParam);
 
 	/**
 	 * @brief Effectue la transposee de la matrice
