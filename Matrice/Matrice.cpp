@@ -47,7 +47,8 @@ int main() {
 
     //Test du parseur
     CParseur* parseur = new CParseur("test_parseur1.txt");
-    parseur->PARLirefichier();
+    CMatricePlus<double> matriceFichier = parseur->PARLirefichier();
+    matriceFichier.MABAfficherMatrice();
 
     /*
     CMatricePlus<int> Matrice2(3, 3);

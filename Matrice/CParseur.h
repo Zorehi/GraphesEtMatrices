@@ -15,13 +15,8 @@ class CParseur
 
 		char* PARLireChemin();
 		const char* PARLireLigne();
+		
+		CMatricePlus<double>& PARLirefichier();
 
-		void PARLirefichier();
-
-		/*
-		template <class MType>
-		CMatricePlus<MType> PARLirefichier();
-
-		*/
 
 };
