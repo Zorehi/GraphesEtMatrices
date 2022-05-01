@@ -7,12 +7,21 @@ class CParseur
 {
 	private:
 		char* pcFichier;
+		FILE* pfFichier;
 
 	public:
 		CParseur();
-		CParseur(char* pcCheminFichier);
+		CParseur(const char* pcCheminFichier);
 
+		char* PARLireChemin();
+		const char* PARLireLigne();
+
+		void PARLirefichier();
+
+		/*
 		template <class MType>
 		CMatricePlus<MType> PARLirefichier();
+
+		*/
 
 };

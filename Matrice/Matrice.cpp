@@ -2,6 +2,7 @@
 //
 
 #include "CMatricePlus.h"
+#include "CParseur.h"
 
 
 
@@ -42,6 +43,11 @@ int main() {
     printf("\nMatF = transpose(MatA)\n");    
     MatATransposee.MABAfficherMatrice();
 
+
+
+    //Test du parseur
+    CParseur* parseur = new CParseur("test_parseur1.txt");
+    parseur->PARLirefichier();
 
     /*
     CMatricePlus<int> Matrice2(3, 3);
