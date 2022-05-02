@@ -4,7 +4,7 @@
 const char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
-	if (pFILPARFichier == NULL) {
+	if (pFILFichier == NULL) {
 		throw CException(160, "Exception : Absence de fichier à ce chemin");
 	}
 
