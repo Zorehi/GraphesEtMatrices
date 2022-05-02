@@ -13,10 +13,7 @@ CListe<MType>::CListe(unsigned int uiTaille)
 	uiLISTaille = uiTaille;
 	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Alloc_Mem_Impossible);
-		EXCObjet.EXCModifierMsg("Exception : Allocation mémoire impossible");
-		throw(EXCObjet);
+		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
 		peLISTableau[uiBoucle] = MType();
@@ -29,10 +26,7 @@ CListe<MType>::CListe(CListe& LISParam)
 	uiLISTaille = LISParam.LISLireTaille();
 	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Alloc_Mem_Impossible);
-		EXCObjet.EXCModifierMsg("Exception : Allocation mémoire impossible");
-		throw(EXCObjet);
+		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
 		peLISTableau[uiBoucle] = LISParam[uiBoucle];
@@ -57,20 +51,14 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
 	uiLISTaille = uiTaille;
 	peLISTableau = realloc(peLISTableau, uiLISTaille * sizeof(MType));
 	if (!peLISTableau) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Error_Realloc);
-		EXCObjet.EXCModifierMsg("Exception : Erreur lors de la modification de la taille");
-		throw(EXCObjet);
+		throw CException(120, "Exception : Erreur lors de la modification de la taille");
 	}
 }
 
 template <class MType>
 MType& CListe<MType>::operator[](unsigned int uiIndex) {
 	if (uiIndex > uiLISTaille) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Index_Out_Of_Range);
-		EXCObjet.EXCModifierMsg("Exception : Index non compris dans la liste");
-		throw(EXCObjet);
+		throw CException(130, "Exception : Index non compris dans la liste");
 	}
 	return peLISTableau[uiIndex];
 }

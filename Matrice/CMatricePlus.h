@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include "CMatriceBase.h"
 
+#define Type_non_Valide 140
+#define Matrices_Incompatibles 150
+
 template <class MType>
 class CMatricePlus : public CMatriceBase<MType> {
 public:

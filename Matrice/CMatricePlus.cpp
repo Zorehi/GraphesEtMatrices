@@ -16,8 +16,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator*(double dFacteur)
 	
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -45,8 +44,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProd
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -58,8 +56,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProd
 
 	//Si le nombre de colonnes de la premiere matrice est different du nombre de ligne de la deuxieme matrice -> erreur
 	if (uiMAP1NbColonnes != uiMAP2NbLignes) {
-		//Erreur
-		throw "Les matrices ne sont pas compatible";
+		throw CException(150, "Exception : Les matrices ne sont pas compatibles entre elles");
 	}
 
 	//Creation d'une matrice<double> etant le resultat de la multiplication de la matrice par la matrice MAPProduit
@@ -83,8 +80,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator/(double dDiviseur)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation du nombres de lignes et de colonnes dans la matrice
@@ -107,8 +103,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator+(double dValeurAddition)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -131,8 +126,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPPara
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -145,12 +139,10 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPPara
 
 	//Compare si bien le meme nombre de lignes et de colonnes
 	if (uiMAP1NbLignes != uiMAP2NbLignes) {
-		//Erreur
-		throw "Pas le même nombre de lignes";
+		throw CException(150, "Exception : Les matrices ne sont pas compatibles entre elles (nombre de ligne différent)");
 	}
 	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
-		//Erreur
-		throw "Pas le même nombre de colonnes";
+		throw CException(150, "Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de l'addition membre a membre des deux matrices
@@ -169,8 +161,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator-(double dValeurSoustraction)
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
@@ -184,7 +175,6 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator-(double dValeurSoustraction)
 			(*MAPMatriceRetour)[uiBoucle][ujBoucle] = (double)(*this)[uiBoucle][ujBoucle] + dValeurSoustraction;
 		}
 	}
-
 	return *MAPMatriceRetour;
 }
 
@@ -193,8 +183,7 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPPara
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType).name() != typeid(double).name() && typeid(MType).name() != typeid(int).name() && typeid(MType).name() != typeid(float).name()) {
-		throw "pas le droit de faire cette operation sur ce type de matrice";
-		//erreur
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
 	}
 
 	//Recuperation des nombres de lignes et de colonnes des deux matrices
@@ -206,12 +195,10 @@ CMatricePlus<MType>& CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPPara
 
 
 	if (uiMAP1NbLignes != uiMAP2NbLignes) {
-		//Erreur
-		throw "Pas le même nombre de lignes";
+		throw CException(150, "Exception : Les matrices ne sont pas compatibles entre elles (nombre de ligne différent)");
 	}
 	if (uiMAP1NbColonnes != uiMAP2NbColonnes) {
-		//Erreur
-		throw "Pas le même nombre de colonnes";
+		throw CException(150, "Exception : Les matrices ne sont pas compatibles entre elles (nombre de colonnes différent)");
 	}
 
 	//Creation d'une nouvelle matrice<double> etant le resultat de la soustraction membre a membre des deux matrices

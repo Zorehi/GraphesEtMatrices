@@ -10,6 +10,7 @@
 
 
 #define Matrice_Vide 100
+#define Index_non_compris 105
 
 using namespace std;
 
@@ -91,7 +92,7 @@ class CMatriceBase {
 		 */
 		MATPROProxy operator[](unsigned int uiLignes) {
 			if (uiLignes > uiMABNbLignes) {
-				throw CException(2, "Exception : Index ligne non compris dans la matrice");
+				throw CException(105, "Exception : Index ligne non compris dans la matrice");
 			}
 			return MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
 		}
