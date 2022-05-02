@@ -1,5 +1,6 @@
 #include "CException.h"
 
+
 CException::CException()
 {
 	iEXCVal = 0;
@@ -9,7 +10,11 @@ CException::CException()
 CException::CException(int iNewVal, const char* pcNewMsg)
 {
 	iEXCVal = iNewVal;
-	pcEXCMsg = (char*)pcNewMsg;
+	pcEXCMsg = (char*)malloc((strlen(pcNewMsg) + 1) * sizeof(char));
+	if (pcEXCMsg == NULL) {
+		throw "Erreur d'allocation";
+	}
+	strcpy_s(pcEXCMsg, strlen(pcNewMsg) + 1, pcNewMsg);
 }
 
 CException::~CException()

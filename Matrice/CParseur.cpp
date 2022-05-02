@@ -1,5 +1,6 @@
 #include "CParseur.h"
 #include "CMatricePlus.h"
+#include "CException.h"
 #include <stdio.h>
 
 CParseur::CParseur()
@@ -17,7 +18,7 @@ CParseur::CParseur(const char* pcCheminFichier)
 
 char* CParseur::PARLireChemin()
 {
-	return pcPARFichier;
+	return pcPARFichier;	
 }
 
 const char* CParseur::PARLireLigne()
@@ -45,7 +46,7 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 
 	//Si erreur pendant l'ouvreture du fichier
 	if (err != 0) {
-		throw "Erreur lors de l'ouverture du fichier";
+		throw CException(1, "Erreur lors de l'ouverture du fichier");
 	}
 
 	const char* pcChiffres = "-1234567890";
@@ -63,25 +64,25 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur + 1, pcSeparateurs) - 1;
 	char pcTypeMatrice[20];
 	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur + 1, uiLongueur2);
+	pcTypeMatrice[uiLongueur2] = '\0';
 
 	//Erreur si le type de la matrice du fichier n'est pas double
 	if (strcmp(pcTypeMatrice, "double") != 0) {
-		throw "le type de la matrice rentrée dans le fichier n'est pas (double)";
-		exit;
+		throw CException(0, "Mauvais type de matrice renseigne dans le fichier");
 	}
 	cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
 
 	//Lecture et interpretation de la seconde ligne (nombre de lignes)
-	
+
 	const char* pcLigneLigne = PARLireLigne();
 	uiLongueur = strcspn(pcLigneLigne, pcChiffres);
-	unsigned int uiNbLignes = atof(pcLigneLigne + uiLongueur);
+	unsigned int uiNbLignes = atoi(pcLigneLigne + uiLongueur);
 	cout << "nbLignes = " << uiNbLignes << "\n"; //(debug) Affiche le nombre de ligne de la matrice
 
 	//Lecture et interpretation de la troisieme ligne (nombre de colonnes)
 	const char* pcLigneColonne = PARLireLigne();
 	uiLongueur = strcspn(pcLigneColonne, pcChiffres);
-	unsigned int uiNbColonnes = atof(pcLigneColonne + uiLongueur);
+	unsigned int uiNbColonnes = atoi(pcLigneColonne + uiLongueur);
 	cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
 
 	//Creation de la matrice
@@ -91,17 +92,17 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 	PARLireLigne();
 
 	//Lecture et interpretation des nblignes prochaines lignes (elements de la matrice)
-	for (int iBoucleI = 0; iBoucleI < uiNbLignes; iBoucleI++) {
+	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
 		const char* pcLigne = PARLireLigne();
 		uiLongueur = 0;
-		for (int iBoucleJ = 0; iBoucleJ < uiNbColonnes; iBoucleJ++) {
+		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);
 			double iElement = atof(pcLigne + uiLongueur);
-			(*MAPMatrice)[iBoucleI][iBoucleJ] = iElement;
+			(*MAPMatrice)[uiBoucleI][uiBoucleJ] = iElement;
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcEspace);
 		}
 	}
-	
+
 	return *MAPMatrice;
 }
 
