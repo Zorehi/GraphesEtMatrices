@@ -19,7 +19,7 @@ CException::CException(int iNewVal, const char* pcNewMsg)
 
 CException::~CException()
 {
-	if (pcEXCMsg != NULL) {
+	if (pcEXCMsg) {
 		free(pcEXCMsg);
 	}
 }
@@ -45,9 +45,18 @@ void CException::EXCModifierVal(int iNewVal)
 
 void CException::EXCModifierMsg(const char* pcNewMsg)
 {
-	if (pcNewMsg != NULL) {
+	if (pcEXCMsg) {
 		free(pcEXCMsg);
 	}
-	pcEXCMsg = (char*) pcNewMsg;
 
+	if (pcNewMsg) {
+		pcEXCMsg = (char*)malloc((strlen(pcNewMsg) + 1) * sizeof(char));
+		if (pcEXCMsg == NULL) {
+			throw "Erreur d'allocation";
+		}
+		strcpy_s(pcEXCMsg, strlen(pcNewMsg) + 1, pcNewMsg);
+	}
+	else {
+		pcEXCMsg = NULL;
+	}
 }
