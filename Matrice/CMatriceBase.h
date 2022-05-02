@@ -103,7 +103,7 @@ class CMatriceBase {
 		 * @param MABParam Matrice a recopier
 		 * @return CMatriceBase<MType>& Reference de la matrice recopiee
 		 */
-		CMatriceBase<MType> operator=(CMatriceBase<MType>& MABParam);
+		CMatriceBase<MType>& operator=(CMatriceBase<MType>& MABParam);
 
 		/**
 		 * @brief Affiche la matrice dans le shell

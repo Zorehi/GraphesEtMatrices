@@ -1,30 +1,10 @@
 #include "CParseur.h"
-#include "CMatricePlus.h"
-#include "CException.h"
-#include <stdio.h>
-
-CParseur::CParseur()
-{
-	pcPARFichier = NULL;
-	pFILPARFichier = NULL;
-}
 
 
-CParseur::CParseur(const char* pcCheminFichier)
-{
-	pcPARFichier = (char*)pcCheminFichier;
-	pFILPARFichier = NULL;
-}
-
-char* CParseur::PARLireChemin()
-{
-	return pcPARFichier;	
-}
-
-const char* CParseur::PARLireLigne()
+const char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
-	if (pFILPARFichier == NULL) {
+	if (pFILFichier == NULL) {
 		throw "pas de fichier à ce chemin";
 	}
 
@@ -33,16 +13,17 @@ const char* CParseur::PARLireLigne()
 		throw "erreur d'allocation";
 	}
 
-	fgets(pcChaine, 64, pFILPARFichier);
+	fgets(pcChaine, 64, pFILFichier);
 
 	return pcChaine;
 }
 
 
-CMatricePlus<double>& CParseur::PARLirefichier()
+CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
 {
 	//Ouverture du fichier
-	errno_t err = fopen_s(&pFILPARFichier, pcPARFichier, "r");
+	FILE* pFILFichier;
+	errno_t err = fopen_s(&pFILFichier, pcFichier, "r");
 
 	//Si erreur pendant l'ouvreture du fichier
 	if (err != 0) {
@@ -58,7 +39,7 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 	size_t uiLongueur2;
 
 	//Lecture et interpretation de la premiere ligne (type de la matrice)
-	const char* pcLigneMatrice = PARLireLigne();
+	const char* pcLigneMatrice = PARLireLigne(pFILFichier);
 	
 	uiLongueur = strcspn(pcLigneMatrice, "=");
 	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur + 1, pcSeparateurs) - 1;
@@ -74,13 +55,13 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 
 	//Lecture et interpretation de la seconde ligne (nombre de lignes)
 
-	const char* pcLigneLigne = PARLireLigne();
+	const char* pcLigneLigne = PARLireLigne(pFILFichier);
 	uiLongueur = strcspn(pcLigneLigne, pcChiffres);
 	unsigned int uiNbLignes = atoi(pcLigneLigne + uiLongueur);
 	cout << "nbLignes = " << uiNbLignes << "\n"; //(debug) Affiche le nombre de ligne de la matrice
 
 	//Lecture et interpretation de la troisieme ligne (nombre de colonnes)
-	const char* pcLigneColonne = PARLireLigne();
+	const char* pcLigneColonne = PARLireLigne(pFILFichier);
 	uiLongueur = strcspn(pcLigneColonne, pcChiffres);
 	unsigned int uiNbColonnes = atoi(pcLigneColonne + uiLongueur);
 	cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
@@ -89,11 +70,11 @@ CMatricePlus<double>& CParseur::PARLirefichier()
 	CMatricePlus<double>* MAPMatrice = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 
 	//Saute la ligne "Matrice=[
-	PARLireLigne();
+	PARLireLigne(pFILFichier);
 
 	//Lecture et interpretation des nblignes prochaines lignes (elements de la matrice)
 	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
-		const char* pcLigne = PARLireLigne();
+		const char* pcLigne = PARLireLigne(pFILFichier);
 		uiLongueur = 0;
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);

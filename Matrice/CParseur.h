@@ -2,21 +2,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "CMatricePlus.h"
+#include "CException.h"
 
 class CParseur
 {
-	private:
-		char* pcPARFichier;
-		FILE* pFILPARFichier;
-
 	public:
-		CParseur();
-		CParseur(const char* pcCheminFichier);
-
-		char* PARLireChemin();
-		const char* PARLireLigne();
+		static const char* PARLireLigne(FILE * pFILFichier);
 		
-		CMatricePlus<double>& PARLirefichier();
-
-
+		static CMatricePlus<double>& PARLirefichier(const char* pcNomFichier);
 };
