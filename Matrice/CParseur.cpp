@@ -4,13 +4,13 @@
 const char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
-	if (pFILFichier == NULL) {
-		throw "pas de fichier à ce chemin";
+	if (pFILPARFichier == NULL) {
+		throw CException(160, "Exception : Absence de fichier à ce chemin");
 	}
 
 	char* pcChaine = (char*)malloc(sizeof(char) * 64);
 	if (pcChaine == NULL) {
-		throw "erreur d'allocation";
+		throw CException(170, "Exception : Erreur d'allocation");
 	}
 
 	fgets(pcChaine, 64, pFILFichier);
@@ -27,7 +27,7 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
 
 	//Si erreur pendant l'ouvreture du fichier
 	if (err != 0) {
-		throw CException(1, "Erreur lors de l'ouverture du fichier");
+		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
 	const char* pcChiffres = "-1234567890";
@@ -49,7 +49,7 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
 
 	//Erreur si le type de la matrice du fichier n'est pas double
 	if (strcmp(pcTypeMatrice, "double") != 0) {
-		throw CException(0, "Mauvais type de matrice renseigne dans le fichier");
+		throw CException(190, "Exception : Mauvais type de matrice renseigne dans le fichier");
 	}
 	cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
 
