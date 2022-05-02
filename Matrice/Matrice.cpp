@@ -3,41 +3,111 @@
 
 #include "CMatricePlus.h"
 #include "CParseur.h"
+#include "CMatriceBase.h"
+
+using namespace std;
 
 
+int main(int iArgc, char * ppcArgv[])
+{
+	if (iArgc > 1) {
+		// Quand j'utilise notre liste ça ne marche pas je comprend pas  ¯\_(ツ)_/¯ 
+		//CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
+		CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
+		CMatricePlus<double> MAPResultat;
+		int iBoucleI;
+		double dC;
 
-int main() {
+		// Lecture de tous les fichiers et creation des matrices
+		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
+		{
+			try
+			{
+				//LISListeMatrices[iBoucleI] = CParseur::PARLirefichier(ppcArgv[iBoucleI + 1]);
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
 
-    CMatricePlus<double> Matrice(3, 3);
+		cout << "Veuillez saisir une valeur de C : ";
+		cin >> dC;
+		cout << "\n";
 
-    Matrice[0][0] = 1;
-    Matrice[0][1] = 2;
-    Matrice[0][2] = 3;
-    Matrice[1][0] = 4;
-    Matrice[1][1] = 5;
-    Matrice[1][2] = 6;
-    Matrice[2][0] = 7;
-    Matrice[2][1] = 8;
-    Matrice[2][2] = 9;
-    
-    printf("\nMatA = \n");
-    Matrice.MABAfficherMatrice();
+		// Multiplication des matrices par une constante
+		cout << "Résultat de la multiplication des matrices par " << dC << " :\n";
+		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
+		{
+			try
+			{
+				MAPResultat = LISListeMatrices[iBoucleI] * dC;
+				MAPResultat.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
 
-    CMatricePlus<double> MatTestMulCons = 5 * Matrice;
-    printf("\nMatB = MatA * 5.0\n");
-    MatTestMulCons.MABAfficherMatrice();
+		// Division des matrices par une constante
+		cout << "Résultat de la division des matrices par " << dC << " :\n";
+		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
+		{
+			try
+			{
+				MAPResultat = LISListeMatrices[iBoucleI] / dC;
+				MAPResultat.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
+		
+		if (iArgc > 2) {
+			// Addition de toutes les matrices
+			cout << "Résultat de l'addition de toutes les matrices :\n";
+			CMatricePlus<double> MAPResultatAddition(LISListeMatrices[0]);
 
-    CMatricePlus<double> MatTestDivCons = Matrice / 5;
-    printf("\nMatC = MatA / 5.0\n");
-    MatTestDivCons.MABAfficherMatrice();
+			try
+			{
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					MAPResultatAddition = MAPResultatAddition + LISListeMatrices[iBoucleI];
+				}
+				MAPResultatAddition.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
 
-    CMatricePlus<double> MatTestAPlusB = Matrice + MatTestMulCons;
-    printf("\nMatD = MatA / MatB\n");
-    MatTestAPlusB.MABAfficherMatrice();
-
-    CMatricePlus<double> MatTestAMultB = Matrice * MatTestMulCons;
-    printf("\nMatE = MatA / MatB\n");
-    MatTestAMultB.MABAfficherMatrice();
+			// Operation (M1-M2+M3-M4+...)
+			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
+			CMatricePlus<double> MAPResultatOperation(LISListeMatrices[0]);
+			try
+			{
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					if (iBoucleI % 2 == 0) {
+						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
+					}
+					else {
+						MAPResultatOperation = MAPResultatOperation + LISListeMatrices[iBoucleI];
+					}
+				}
+				MAPResultatOperation.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
 
     CMatricePlus<double> MatATransposee = Matrice.MAPTranspose();
     printf("\nMatF = transpose(MatA)\n");    
@@ -240,3 +310,30 @@ int test()
 }
 
 */
+			// Multiplication des matrices entre elles
+			cout << "Résultat de l'opération suivante (M1-M2+M3-M4+M5-M6+...) :\n";
+			CMatricePlus<double> MAPResultatProduit(LISListeMatrices[0]);
+			try
+			{
+				for (iBoucleI = 1; iBoucleI < iArgc - 1; iBoucleI++)
+				{
+					MAPResultatProduit = MAPResultatProduit * LISListeMatrices[iBoucleI];
+				}
+				MAPResultatProduit.MABAfficherMatrice();
+			}
+			catch (CException EXCException)
+			{
+				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n";
+			}
+		}
+		else {
+			cout << "Pour réaliser les opération telles que : \n\tLa somme de toutes les matrices\n\tLa multplication de toutes les matrices entre elles\n";
+			cout << "Ils faut donner plus de 1 fichier lors du lancement du programme !";
+		}
+	}
+	else {
+		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
+		return 0;
+	}
+}

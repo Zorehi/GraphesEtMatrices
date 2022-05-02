@@ -18,6 +18,15 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 }
 
 template <class MType>
+CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam)
+{
+	uiMABNbLignes = MABParam.MABLireNbLignes();
+	uiMABNbColonnes = MABParam.MABLireNbColonnes();
+	delete pLISMATListe;
+	pLISMATListe = new CListe<MType>(*(MABParam.pLISMATListe));
+}
+
+template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
 {
 	delete pLISMATListe;
@@ -68,7 +77,7 @@ unsigned int CMatriceBase<MType>::MABLireNbColonnes()
 }
 
 template <class MType>
-CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
+CMatriceBase<MType> CMatriceBase<MType>::operator=(CMatriceBase<MType>& MABParam)
 {
 	uiMABNbColonnes = MABParam.MABLireNbColonnes();
 	uiMABNbLignes = MABParam.MABLireNbLignes();
@@ -80,10 +89,7 @@ CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase& MABParam)
 template <class MType>
 void CMatriceBase<MType>::MABAfficherMatrice() {
 	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
-		CException EXCObjet;
-		EXCObjet.EXCModifierVal(Matrice_Vide);
-		EXCObjet.EXCModifierMsg("Exception : la matrice est vide");
-		throw(EXCObjet);
+		throw CException(100, "Exception : la matrice est vide");
 	}
 	for (unsigned int uiligne = 0; uiligne < uiMABNbLignes; uiligne++) {
 		for (unsigned int uicolonne = 0; uicolonne < uiMABNbColonnes; uicolonne++) {
