@@ -12,7 +12,6 @@ using namespace std;
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc > 1) {
-		// Quand j'utilise notre liste ça ne marche pas je comprend pas  ¯\_(ツ)_/¯ 
 		//CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
 		CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
 		CMatricePlus<double> MAPResultat;
@@ -145,6 +144,7 @@ int main(int iArgc, char * ppcArgv[])
 	}
 	else {
 		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
-		return 0;
 	}
+
+	return 0;
 }

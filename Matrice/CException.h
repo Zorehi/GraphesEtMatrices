@@ -1,4 +1,18 @@
+/**
+ * @file CException.h
+ * @author LJ BV JM
+ * @brief Contient la declaration de la classe CException
+ * CException permet de gerer les erreurs
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

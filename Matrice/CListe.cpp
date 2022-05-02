@@ -16,7 +16,8 @@ CListe<MType>::CListe(unsigned int uiTaille)
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = MType();
+		MType* pTYP = new MType();
+		peLISTableau[uiBoucle] = *pTYP;
 	}
 }
 

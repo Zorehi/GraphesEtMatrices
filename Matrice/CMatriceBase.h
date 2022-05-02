@@ -1,13 +1,26 @@
+/**
+ * @file CMatriceBase.h
+ * @author LJ BV JM
+ * @brief Contient la declaration de la classe CMatriceBase
+ * CMatriceBase permet de gerer une Matrice de n'importe quel MType
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+
 #include "CListe.h"
 #include "CProxy_row.h"
 #include "CException.h"
-
 
 #define Matrice_Vide 100
 #define Index_non_compris 105

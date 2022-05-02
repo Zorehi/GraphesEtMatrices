@@ -1,8 +1,22 @@
+/**
+ * @file CListe.h
+ * @author LJ BV JM
+ * @brief Contient la declaration de la classe CListe
+ * CListe permet de gerer une Liste de n'importe quel MType
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "CException.h"
 
 #define Alloc_Mem_Impossible 110
@@ -62,7 +76,7 @@ public:
 	/**
 	 * @brief Surcharge de l'operateur d'indice du tableau
 	 * 
-	 * @param uiIndex Indice du l'element souhaite dans la liste
+	 * @param uiIndex Indice de l'element souhaite dans la liste
 	 * @return MType& Reference de l'element souhaite
 	 */
 	MType& operator[](unsigned int uiIndex);
