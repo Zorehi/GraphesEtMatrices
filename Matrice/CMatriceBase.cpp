@@ -22,7 +22,6 @@ CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam)
 {
 	uiMABNbLignes = MABParam.MABLireNbLignes();
 	uiMABNbColonnes = MABParam.MABLireNbColonnes();
-	delete pLISMATListe;
 	pLISMATListe = new CListe<MType>(*(MABParam.pLISMATListe));
 }
 
@@ -65,19 +64,19 @@ void CMatriceBase<MType>::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 }
 
 template <class MType>
-unsigned int CMatriceBase<MType>::MABLireNbLignes()
+unsigned int CMatriceBase<MType>::MABLireNbLignes()const
 {
 	return uiMABNbLignes;
 }
 
 template <class MType>
-unsigned int CMatriceBase<MType>::MABLireNbColonnes()
+unsigned int CMatriceBase<MType>::MABLireNbColonnes()const
 {
 	return uiMABNbColonnes;
 }
 
 template <class MType>
-CMatriceBase<MType>& CMatriceBase<MType>::operator=(CMatriceBase<MType>& MABParam)
+CMatriceBase<MType>& CMatriceBase<MType>::operator=(const CMatriceBase<MType>& MABParam)
 {
 	uiMABNbColonnes = MABParam.MABLireNbColonnes();
 	uiMABNbLignes = MABParam.MABLireNbLignes();

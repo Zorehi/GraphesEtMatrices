@@ -12,8 +12,8 @@ using namespace std;
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc > 1) {
-		//CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
-		CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
+		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
+		//CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
 		CMatricePlus<double> MAPResultat;
 		int iBoucleI;
 		int iNbReelMatrice = 0;
@@ -104,10 +104,10 @@ int main(int iArgc, char * ppcArgv[])
 				for (iBoucleI = 1; iBoucleI < iNbReelMatrice; iBoucleI++)
 				{
 					if (iBoucleI % 2 == 0) {
-						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
+						MAPResultatOperation = MAPResultatOperation + LISListeMatrices[iBoucleI];
 					}
 					else {
-						MAPResultatOperation = MAPResultatOperation + LISListeMatrices[iBoucleI];
+						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
 					}
 				}
 				MAPResultatOperation.MABAfficherMatrice();
