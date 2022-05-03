@@ -31,7 +31,7 @@ char* CParseur::PARLireLigne(FILE* pFILFichier)
 }
 
 
-CMatricePlus<double> CParseur::PARLirefichier(const char * pcFichier)
+CMatricePlus<double> CParseur::PARLirefichier(const char * pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -117,6 +117,6 @@ CMatricePlus<double> CParseur::PARLirefichier(const char * pcFichier)
 
 	_fcloseall();
 
-	return *MAPMatrice;
+	return MAPMatrice;
 }
 
