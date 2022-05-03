@@ -6,14 +6,10 @@
 #include "CMatriceBase.h"
 #include "CException.h"
 
-using namespace std;
-
-
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc > 1) {
 		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
-		//CMatricePlus<double> * LISListeMatrices = new CMatricePlus<double>[iArgc - 1];
 		CMatricePlus<double> MAPResultat;
 		int iBoucleI;
 		int iNbReelMatrice = 0;

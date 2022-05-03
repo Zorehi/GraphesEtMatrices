@@ -21,10 +21,10 @@ CListe<MType>::CListe(unsigned int uiTaille)
 }
 
 template <class MType>
-CListe<MType>::CListe(CListe& LISParam)
+CListe<MType>::CListe(CListe &LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
-	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	peLISTableau = new MType[uiLISTaille];
 	if (!peLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
@@ -36,9 +36,6 @@ CListe<MType>::CListe(CListe& LISParam)
 template <class MType>
 CListe<MType>::~CListe()
 {
-	for (unsigned int uiBoucle = 0; uiBoucle > uiLISTaille; uiBoucle++) {
-		delete &peLISTableau[uiBoucle];
-	}
 	delete [] peLISTableau;
 }
 
