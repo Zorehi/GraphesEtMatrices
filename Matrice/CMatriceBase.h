@@ -86,14 +86,14 @@ class CMatriceBase {
 		 * 
 		 * @return unsigned int, le nombre de lignes de MatriceBase
 		 */
-		unsigned int MABLireNbLignes();
+		unsigned int MABLireNbLignes()const;
 
 		/**
 		 * @brief Getter pour le nombre de colonnes de MatriceBase
 		 * 
 		 * @return unsigned int, le nombre de colonnes de MatriceBase
 		 */
-		unsigned int MABLireNbColonnes();
+		unsigned int MABLireNbColonnes()const;
 
 		/**
 		 * @brief Surcharge de l'operateur d'indice du tableau, cette surcharge permet
@@ -116,7 +116,7 @@ class CMatriceBase {
 		 * @param MABParam Matrice a recopier
 		 * @return CMatriceBase<MType>& Reference de la matrice recopiee
 		 */
-		CMatriceBase<MType>& operator=(CMatriceBase<MType>& MABParam);
+		CMatriceBase<MType>& operator=(const CMatriceBase<MType>& MABParam);
 
 		/**
 		 * @brief Affiche la matrice dans le shell

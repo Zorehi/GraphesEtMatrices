@@ -3,7 +3,7 @@
 template <class MType>
 CListe<MType>::CListe()
 {
-	peLISTableau = NULL;
+	peLISTableau = new MType[uiLISTaille];
 	uiLISTaille = 0;
 }
 
@@ -11,21 +11,20 @@ template <class MType>
 CListe<MType>::CListe(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
-	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	peLISTableau = new MType[uiLISTaille];
 	if (!peLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		MType* pTYP = new MType();
-		peLISTableau[uiBoucle] = *pTYP;
+		peLISTableau[uiBoucle] = MType();
 	}
 }
 
 template <class MType>
-CListe<MType>::CListe(CListe& LISParam)
+CListe<MType>::CListe(CListe &LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
-	peLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	peLISTableau = new MType[uiLISTaille];
 	if (!peLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
@@ -37,9 +36,7 @@ CListe<MType>::CListe(CListe& LISParam)
 template <class MType>
 CListe<MType>::~CListe()
 {
-	if (peLISTableau) {
-		free(peLISTableau);
-	}
+	delete [] peLISTableau;
 }
 
 template <class MType>
@@ -65,10 +62,10 @@ MType& CListe<MType>::operator[](unsigned int uiIndex) {
 }
 
 template <class MType>
-CListe<MType>& CListe<MType>::operator=(CListe<MType>& LISParam) {
+CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam) {
 	uiLISTaille = LISParam.LISLireTaille();
 	free(peLISTableau);
-	peLISTableau = (MType *) malloc(uiLISTaille * sizeof(MType));
+	peLISTableau = new MType[uiLISTaille];
 
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++)
 	{

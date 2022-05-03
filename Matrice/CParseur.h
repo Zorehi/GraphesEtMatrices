@@ -42,5 +42,5 @@ class CParseur
 		 * @param pcNomFichier Nom du fichier 
 		 * @return CMatricePlus<double>& Matrice generee
 		 */
-		static CMatricePlus<double>& PARLirefichier(const char* pcNomFichier);
+		static CMatricePlus<double> PARLirefichier(const char* pcNomFichier);
 };

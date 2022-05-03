@@ -87,7 +87,7 @@ public:
 	 * @param LISParam Liste a recopier
 	 * @return CListe<MType>& Reference de la liste recopiee
 	 */
-	CListe<MType>& operator=(CListe<MType>& LISParam);
+	CListe<MType>& operator=(const CListe<MType>& LISParam);
 };
 
 #include "CListe.cpp"

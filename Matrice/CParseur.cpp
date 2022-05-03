@@ -31,7 +31,7 @@ char* CParseur::PARLireLigne(FILE* pFILFichier)
 }
 
 
-CMatricePlus<double>& CParseur::PARLirefichier(const char * pcNomFichier)
+CMatricePlus<double> CParseur::PARLirefichier(const char * pcFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -92,7 +92,7 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcNomFichier)
 	//cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
 
 	//Creation de la matrice
-	CMatricePlus<double>* MAPMatrice = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
+	CMatricePlus<double> MAPMatrice(uiNbLignes, uiNbColonnes);
 
 	//Saute la ligne "Matrice=[
 	char* pcChaine = PARLireLigne(pFILFichier);
@@ -107,7 +107,7 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcNomFichier)
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);
 			double iElement = atof(pcLigne + uiLongueur);
-			(*MAPMatrice)[uiBoucleI][uiBoucleJ] = iElement;
+			MAPMatrice[uiBoucleI][uiBoucleJ] = iElement;
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcEspace);
 		}
 		if (pcLigne) {
