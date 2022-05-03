@@ -34,7 +34,7 @@ class CParseur
 		 * @param pFILFichier Pointeur sur le fichier à lire
 		 * @return const char* Chaine lu dans le fichier
 		 */
-		static const char* PARLireLigne(FILE * pFILFichier);
+		static char* PARLireLigne(FILE * pFILFichier);
 		
 		/**
 		 * @brief Genere une matrice lu dans un fichier texte

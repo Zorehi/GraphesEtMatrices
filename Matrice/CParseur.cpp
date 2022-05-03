@@ -1,7 +1,7 @@
 #include "CParseur.h"
 
 
-const char* CParseur::PARLireLigne(FILE* pFILFichier)
+char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
 	if (pFILFichier == NULL) {
@@ -15,15 +15,27 @@ const char* CParseur::PARLireLigne(FILE* pFILFichier)
 
 	fgets(pcChaine, 64, pFILFichier);
 
+	if (strcmp(pcChaine, "\n\0") == 0) {
+		char* pcChaine2 = PARLireLigne(pFILFichier);
+		free(pcChaine);
+		errno_t err = strcpy_s(pcChaine, 64,  pcChaine2);
+		if (err != 0) {
+			throw CException(170, "Exception : Erreur lors d'une copie d'une chaine de caractere");
+		}
+		if (pcChaine2) {
+			free(pcChaine2);
+		}
+	}
+
 	return pcChaine;
 }
 
 
-CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
+CMatricePlus<double>& CParseur::PARLirefichier(const char * pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
-	errno_t err = fopen_s(&pFILFichier, pcFichier, "r");
+	errno_t err = fopen_s(&pFILFichier, pcNomFichier, "r");
 
 	//Si erreur pendant l'ouvreture du fichier
 	if (err != 0) {
@@ -32,49 +44,65 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
 
 	const char* pcChiffres = "-1234567890";
 	const char* pcEspace = " ";
-	const char* pcSeparateurs = "\0\n\r";
+	const char* pcSeparateurs = " \0\n\r";
 
 	//Je considere size_t comme un unsigned int pour le nommage de la variable, à voir avec le prof
 	size_t uiLongueur;
 	size_t uiLongueur2;
 
 	//Lecture et interpretation de la premiere ligne (type de la matrice)
-	const char* pcLigneMatrice = PARLireLigne(pFILFichier);
+	char* pcLigneMatrice = PARLireLigne(pFILFichier);
 	
-	uiLongueur = strcspn(pcLigneMatrice, "=");
-	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur + 1, pcSeparateurs) - 1;
+	uiLongueur = strcspn(pcLigneMatrice, "=") + 1; //Cerche le "=" de la ligne TypeMatrice= et garde l'index du charactere suivant
+	uiLongueur += strspn(pcLigneMatrice + uiLongueur, pcEspace); //Garde l'index du premier non espace apres le "="
+	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur, pcSeparateurs) - 1; //Trouve l'index du premier charactere signifiant la fin du type (pcSeparators)
 	char pcTypeMatrice[20];
-	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur + 1, uiLongueur2);
-	pcTypeMatrice[uiLongueur2] = '\0';
+	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur, uiLongueur2); //Copie le type de la matrice dans pcTypeMatrice
+	pcTypeMatrice[uiLongueur2] = '\0'; //Ajoute le caractere de fin de chaine à pcTypeMatrice
+
+	if (pcLigneMatrice) {
+		free(pcLigneMatrice);
+	}
 
 	//Erreur si le type de la matrice du fichier n'est pas double
 	if (strcmp(pcTypeMatrice, "double") != 0) {
 		throw CException(190, "Exception : Mauvais type de matrice renseigne dans le fichier");
 	}
-	cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
+	//cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
 
 	//Lecture et interpretation de la seconde ligne (nombre de lignes)
 
-	const char* pcLigneLigne = PARLireLigne(pFILFichier);
+	char* pcLigneLigne = PARLireLigne(pFILFichier);
 	uiLongueur = strcspn(pcLigneLigne, pcChiffres);
 	unsigned int uiNbLignes = atoi(pcLigneLigne + uiLongueur);
-	cout << "nbLignes = " << uiNbLignes << "\n"; //(debug) Affiche le nombre de ligne de la matrice
+
+	if (pcLigneLigne) {
+		free(pcLigneLigne);
+	}
+	//cout << "nbLignes = " << uiNbLignes << "\n"; //(debug) Affiche le nombre de ligne de la matrice
 
 	//Lecture et interpretation de la troisieme ligne (nombre de colonnes)
-	const char* pcLigneColonne = PARLireLigne(pFILFichier);
+	char* pcLigneColonne = PARLireLigne(pFILFichier);
 	uiLongueur = strcspn(pcLigneColonne, pcChiffres);
 	unsigned int uiNbColonnes = atoi(pcLigneColonne + uiLongueur);
-	cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
+
+	if (pcLigneColonne) {
+		free(pcLigneColonne);
+	}
+	//cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
 
 	//Creation de la matrice
 	CMatricePlus<double>* MAPMatrice = new CMatricePlus<double>(uiNbLignes, uiNbColonnes);
 
 	//Saute la ligne "Matrice=[
-	PARLireLigne(pFILFichier);
+	char* pcChaine = PARLireLigne(pFILFichier);
+	if (pcChaine) {
+		free(pcChaine);
+	}
 
 	//Lecture et interpretation des nblignes prochaines lignes (elements de la matrice)
 	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
-		const char* pcLigne = PARLireLigne(pFILFichier);
+		char* pcLigne = PARLireLigne(pFILFichier);
 		uiLongueur = 0;
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);
@@ -82,7 +110,12 @@ CMatricePlus<double>& CParseur::PARLirefichier(const char * pcFichier)
 			(*MAPMatrice)[uiBoucleI][uiBoucleJ] = iElement;
 			uiLongueur += strcspn(pcLigne + uiLongueur, pcEspace);
 		}
+		if (pcLigne) {
+			free(pcLigne);
+		}
 	}
+
+	_fcloseall();
 
 	return *MAPMatrice;
 }
