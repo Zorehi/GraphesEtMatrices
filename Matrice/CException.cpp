@@ -1,5 +1,17 @@
-#include "CException.h"
+/**
+ * @file CException.cpp
+ * @author LJ BV JM
+ * @brief Contient les definitions des methodes de la classe CException
+ * CException permet de gerer les erreurs
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
+#include "CException.h"
 
 CException::CException()
 {

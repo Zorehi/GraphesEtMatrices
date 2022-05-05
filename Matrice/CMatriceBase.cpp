@@ -1,3 +1,16 @@
+/**
+ * @file CMatriceBase.cpp
+ * @author LJ BV JM
+ * @brief Contient les definitions des methodes de la classe CMatriceBase
+ * CMatriceBase permet de gerer une Matrice de n'importe quel MType
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "CMatriceBase.h"
 
 template <class MType>
@@ -34,33 +47,33 @@ CMatriceBase<MType>::~CMatriceBase()
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbLignes(unsigned int uiParamNbLignes)
 {
-	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiParamNbLignes, uiMABNbColonnes);
+	CMatriceBase<MType> MABMatrice(uiParamNbLignes, uiMABNbColonnes);
 	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiParamNbLignes; uiBoucleLigne++)
 	{
 		if (uiBoucleLigne < uiMABNbLignes) {
 			for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiMABNbColonnes; uiBoucleColonne++)
 			{
-				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
+				MABMatrice[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
 			}
 		}
 	}
-	*this = *MABMatrice;
+	*this = MABMatrice;
 }
 
 template <class MType>
 void CMatriceBase<MType>::MABModifierNbColonnes(unsigned int uiParamNbColonnes)
 {
-	CMatriceBase<MType>* MABMatrice = new CMatriceBase<MType>(uiMABNbLignes, uiParamNbColonnes);
-	for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
+	CMatriceBase<MType> MABMatrice(uiMABNbLignes, uiParamNbColonnes);
+	for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiParamNbColonnes; uiBoucleColonne++)
 	{
-		for (unsigned int uiBoucleColonne = 0; uiBoucleColonne < uiParamNbColonnes; uiBoucleColonne++)
-		{
-			if (uiBoucleColonne < uiMABNbColonnes) {
-				(*MABMatrice)[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
+		if (uiBoucleColonne < uiMABNbColonnes) {
+			for (unsigned int uiBoucleLigne = 0; uiBoucleLigne < uiMABNbLignes; uiBoucleLigne++)
+			{
+				MABMatrice[uiBoucleLigne][uiBoucleColonne] = (*this)[uiBoucleLigne][uiBoucleColonne];
 			}
 		}
 	}
-	*this = *MABMatrice;
+	*this = MABMatrice;
 }
 
 template <class MType>

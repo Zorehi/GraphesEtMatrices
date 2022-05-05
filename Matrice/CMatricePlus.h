@@ -2,6 +2,7 @@
  * @file CMatricePlus.h
  * @author LJ BV JM
  * @brief Contient la declaration de la classe CMatricePlus
+ * CMatricePlus herite de CMatriceBase et lui rajoute les operations +, -, *, / et la transposee
  * 
  * @version 0.1
  * @date 2022-05-02

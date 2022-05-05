@@ -1,11 +1,24 @@
-#include "CParseur.h"
+/**
+ * @file CParseur.cpp
+ * @author LJ BV JM
+ * @brief Contient les definitions des methodes de la classe CParseur
+ * CParseur contient des methodes statiques permettant
+ * de creer des matrices a partir de fichier
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
+#include "CParseur.h"
 
 char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
 	if (pFILFichier == NULL) {
-		throw CException(160, "Exception : Absence de fichier à ce chemin");
+		throw CException(160, "Exception : Absence de fichier ï¿½ ce chemin");
 	}
 
 	char* pcChaine = (char*)malloc(sizeof(char) * 64);
@@ -46,7 +59,7 @@ CMatricePlus<double> CParseur::PARLirefichier(const char * pcNomFichier)
 	const char* pcEspace = " ";
 	const char* pcSeparateurs = " \0\n\r";
 
-	//Je considere size_t comme un unsigned int pour le nommage de la variable, à voir avec le prof
+	//Je considere size_t comme un unsigned int pour le nommage de la variable, ï¿½ voir avec le prof
 	size_t uiLongueur;
 	size_t uiLongueur2;
 
@@ -58,7 +71,7 @@ CMatricePlus<double> CParseur::PARLirefichier(const char * pcNomFichier)
 	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur, pcSeparateurs) - 1; //Trouve l'index du premier charactere signifiant la fin du type (pcSeparators)
 	char pcTypeMatrice[20];
 	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur, uiLongueur2); //Copie le type de la matrice dans pcTypeMatrice
-	pcTypeMatrice[uiLongueur2] = '\0'; //Ajoute le caractere de fin de chaine à pcTypeMatrice
+	pcTypeMatrice[uiLongueur2] = '\0'; //Ajoute le caractere de fin de chaine ï¿½ pcTypeMatrice
 
 	if (pcLigneMatrice) {
 		free(pcLigneMatrice);

@@ -1,4 +1,17 @@
-﻿#include "CListe.h"
+﻿/**
+ * @file CListe.cpp
+ * @author LJ BV JM
+ * @brief Contient les definitions des methodes de la classe CListe
+ * CListe permet de gerer une Liste de n'importe quel MType
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+#include "CListe.h"
 
 template <class MType>
 CListe<MType>::CListe()

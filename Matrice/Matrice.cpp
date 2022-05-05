@@ -1,5 +1,15 @@
-// Matrice.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
+/**
+ * @file Matrice.cpp
+ * @author LJ BV JM
+ * @brief Contient la fonction main du programme
+ * 
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "CMatricePlus.h"
 #include "CParseur.h"
@@ -16,6 +26,7 @@ int main(int iArgc, char * ppcArgv[])
 		double dC;
 
 		// Lecture de tous les fichiers et creation des matrices
+		cout << "Matrices lu dans les fichiers : " << endl;
 		for (iBoucleI = 0; iBoucleI < iArgc - 1; iBoucleI++)
 		{
 			try
@@ -28,7 +39,7 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 		}
 
@@ -48,7 +59,7 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 
 			cout << "\n";
@@ -66,12 +77,13 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 			
 			cout << "\n";
 		}
 		
+		// Si le nombre de matrice est egale a 1 la suite des operations ne sert a rien
 		if (iNbReelMatrice > 1) {
 			// Addition de toutes les matrices
 			cout << "Resultat de l'addition de toutes les matrices :\n";
@@ -89,7 +101,7 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 
 			// Operation (M1-M2+M3-M4+...)
@@ -112,7 +124,7 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 
 			// Multiplication des matrices entre elles
@@ -130,7 +142,7 @@ int main(int iArgc, char * ppcArgv[])
 			catch (CException& EXCException)
 			{
 				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n";
+				cout << EXCException.EXCLireMsg() << "\n\n";
 			}
 		}
 		else {
