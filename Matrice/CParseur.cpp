@@ -18,7 +18,7 @@ char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
 	//Si pas de fichier -> Erreur
 	if (pFILFichier == NULL) {
-		throw CException(160, "Exception : Absence de fichier � ce chemin");
+		throw CException(160, "Exception : Absence de fichier a ce chemin");
 	}
 
 	char* pcChaine = (char*)malloc(sizeof(char) * 64);
@@ -79,7 +79,7 @@ CMatricePlus<double> CParseur::PARLirefichier(const char * pcNomFichier)
 
 	//Erreur si le type de la matrice du fichier n'est pas double
 	if (strcmp(pcTypeMatrice, "double") != 0) {
-		throw CException(190, "Exception : Mauvais type de matrice renseigne dans le fichier");
+		throw CException(190, "Exception : Mauvais type de matrice renseignee dans le fichier");
 	}
 	//cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
 
