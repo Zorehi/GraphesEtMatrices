@@ -24,6 +24,7 @@ int main(int iArgc, char * ppcArgv[])
 		int iBoucleI;
 		int iNbReelMatrice = 0;
 		double dC;
+		char cCharactere;
 
 		// Lecture de tous les fichiers et creation des matrices
 		cout << "Matrices lu dans les fichiers : " << endl;
@@ -32,9 +33,14 @@ int main(int iArgc, char * ppcArgv[])
 			try
 			{
 				LISListeMatrices[iNbReelMatrice] = CParseur::PARLirefichier(ppcArgv[iBoucleI + 1]);
+
+				//Affichage
+				cCharactere = 'A' + iNbReelMatrice;
+				cout << "Matrice " << cCharactere << " =\n";
 				LISListeMatrices[iNbReelMatrice].MABAfficherMatrice();
-				iNbReelMatrice += 1;
 				cout << "\n";
+
+				iNbReelMatrice += 1;
 			}
 			catch (CException& EXCException)
 			{
@@ -54,6 +60,10 @@ int main(int iArgc, char * ppcArgv[])
 			try
 			{
 				MAPResultat = LISListeMatrices[iBoucleI] * dC;
+
+				//Affichage
+				cCharactere = 'A' + iBoucleI;
+				cout << cCharactere << " * " << dC << " =\n";
 				MAPResultat.MABAfficherMatrice();
 			}
 			catch (CException& EXCException)
@@ -72,6 +82,10 @@ int main(int iArgc, char * ppcArgv[])
 			try
 			{
 				MAPResultat = LISListeMatrices[iBoucleI] / dC;
+
+				//Affichage
+				cCharactere = 'A' + iBoucleI;
+				cout << cCharactere << " / " << dC << " =\n";
 				MAPResultat.MABAfficherMatrice();
 			}
 			catch (CException& EXCException)
@@ -95,6 +109,21 @@ int main(int iArgc, char * ppcArgv[])
 				{
 					MAPResultatAddition = MAPResultatAddition + LISListeMatrices[iBoucleI];
 				}
+
+				//Affichage
+				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
+				{
+					if (iBoucleI == 0) {
+						cCharactere = 'A';
+						cout << cCharactere;
+					}
+					else {
+						cCharactere = 'A' + iBoucleI;
+						cout << " + " << cCharactere;
+					}
+				}
+				cout << " =\n";
+
 				MAPResultatAddition.MABAfficherMatrice();
 				cout << "\n";
 			}
@@ -118,6 +147,26 @@ int main(int iArgc, char * ppcArgv[])
 						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
 					}
 				}
+
+				//Affichage
+				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
+				{
+					if (iBoucleI == 0) {
+						cCharactere = 'A';
+						cout << cCharactere;
+					}
+					else {
+						cCharactere = 'A' + iBoucleI;
+						if (iBoucleI % 2 == 0) {
+							cout << " + " << cCharactere;
+						}
+						else {
+							cout << " - " << cCharactere;
+						}
+					}
+				}
+				cout << " =\n";
+
 				MAPResultatOperation.MABAfficherMatrice();
 				cout << "\n";
 			}
@@ -136,6 +185,21 @@ int main(int iArgc, char * ppcArgv[])
 				{
 					MAPResultatProduit = MAPResultatProduit * LISListeMatrices[iBoucleI];
 				}
+
+				//Affichage
+				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
+				{
+					if (iBoucleI == 0) {
+						cCharactere = 'A';
+						cout << cCharactere;
+					}
+					else {
+						cCharactere = 'A' + iBoucleI;
+						cout << " * " << cCharactere;
+					}
+				}
+				cout << " =\n";
+
 				MAPResultatProduit.MABAfficherMatrice();
 				cout << "\n";
 			}
