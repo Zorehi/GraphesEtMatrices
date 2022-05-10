@@ -140,10 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="Graphe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CException.h" />
+    <ClInclude Include="CGraphe.h" />
+    <ClInclude Include="CParseur.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
