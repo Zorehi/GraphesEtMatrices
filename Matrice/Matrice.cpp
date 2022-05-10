@@ -18,9 +18,7 @@
 
 int main(int iArgc, char * ppcArgv[])
 {
-	CListe<double> d(10);
-	d.LISModifierTaille(20);
-	/*if (iArgc > 1) {
+	if (iArgc > 1) {
 		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
 		CMatricePlus<double> MAPResultat;
 		int iBoucleI;
@@ -218,7 +216,7 @@ int main(int iArgc, char * ppcArgv[])
 	}
 	else {
 		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
-	}*/
+	}
 
 	return 0;
 }

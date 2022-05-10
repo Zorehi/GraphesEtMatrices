@@ -59,11 +59,22 @@ unsigned int CListe<MType>::LISLireTaille() {
 
 template <class MType>
 void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
-	uiLISTaille = uiTaille;
-	peLISTableau = realloc(peLISTableau, uiLISTaille * sizeof(MType));
-	if (!peLISTableau) {
+	MType* pTableau = new MType[uiTaille];
+	if (!pTableau) {
 		throw CException(120, "Exception : Erreur lors de la modification de la taille");
 	}
+	for (unsigned int uiBoucle = 0; uiBoucle < uiTaille; uiBoucle++)
+	{
+		if (uiTaille < uiLISTaille) {
+			pTableau[uiBoucle] = peLISTableau[uiBoucle];
+		}
+		else {
+			pTableau[uiBoucle] = MType();
+		}
+	}
+	delete[] peLISTableau;
+	peLISTableau = pTableau;
+	uiLISTaille = uiTaille;
 }
 
 template <class MType>
