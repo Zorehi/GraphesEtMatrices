@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "CParseur.h"
+#include "CGraphe.h"
 #include "CException.h"
 
 using namespace std;
@@ -128,10 +129,10 @@ CGraphe CParseur::PARLirefichier(const char* pcNomFichier)
 		ppiArcs[uiBoucle] = (int*)malloc(2 * sizeof(int));
 
 		char* pcLigneArc = PARLireLigne(pFILFichier);
-		uiLongueur = strcspn(pcLigneArc, "=") + 1; //Cerche le "=" de la ligne Numero= et garde l'index du charactere suivant
+		uiLongueur = strcspn(pcLigneArc, "=") + 1; //Cerche le "=" de la ligne Debut= et garde l'index du charactere suivant
 		ppiArcs[uiBoucle][0] = atoi(pcLigneArc + uiLongueur);
 
-		uiLongueur += strcspn(pcLigneArc + uiLongueur, "=") + 1; //Cerche le "=" de la ligne Numero= et garde l'index du charactere suivant
+		uiLongueur += strcspn(pcLigneArc + uiLongueur, "=") + 1; //Cerche le "=" de la ligne Fin= et garde l'index du charactere suivant
 		ppiArcs[uiBoucle][1] = atoi(pcLigneArc + uiLongueur);
 
 		cout << "Debut : " << ppiArcs[uiBoucle][0] << " Fin : " << ppiArcs[uiBoucle][1] << "\n"; //(debug)

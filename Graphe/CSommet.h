@@ -8,9 +8,8 @@ class CSommet
 {
 private:
 	int iSOMNumero;
-	CListe<CArc*> LISSOMArrivant;
-	CListe<CArc*> LISSOMPartant;
-
+	CListe<CArc*>* pLISSOMArrivant;
+	CListe<CArc*>* pLISSOMPartant;
 public:
 	CSommet();
 	CSommet(int iNumero);

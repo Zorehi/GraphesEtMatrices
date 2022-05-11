@@ -1,47 +1,46 @@
-
 #include "CSommet.h"
 
 CSommet::CSommet()
 {
 	iSOMNumero = 0;
-	LISSOMArrivant = CListe<CArc*>();
-	LISSOMPartant = CListe<CArc*>();
+	pLISSOMArrivant = NULL;
+	pLISSOMPartant = NULL;
 }
 
 CSommet::CSommet(int iNumero)
 {
 	iSOMNumero = iNumero;
-	LISSOMArrivant = CListe<CArc*>();
-	LISSOMPartant = CListe<CArc*>();
+	pLISSOMArrivant = NULL;
+	pLISSOMPartant = NULL;
 }
 
 CSommet::CSommet(CSommet& SOMArg)
 {
 	iSOMNumero = SOMArg.iSOMNumero;
-	if (SOMArg.LISSOMArrivant) {
-		LISSOMArrivant = CListe<CArc*>(SOMArg.SOMLireArrivant().LISLireTaille());
+	if (SOMArg.pLISSOMArrivant != NULL) {
+		pLISSOMArrivant = new CListe<CArc*>(SOMArg.SOMLireArrivant().LISLireTaille());
 		for (int iBoucleArriv = 0; iBoucleArriv < SOMArg.SOMLireArrivant().LISLireTaille(); iBoucleArriv++) {
-			LISSOMArrivant[iBoucleArriv] = SOMArg.SOMLireArrivant()[iBoucleArriv];
+			(*pLISSOMArrivant)[iBoucleArriv] = SOMArg.SOMLireArrivant()[iBoucleArriv];
 		}
 	}
 	else {
-		LISSOMArrivant = NULL;
+		pLISSOMArrivant = NULL;
 	}
-	if (SOMArg.LISSOMPartant != NULL) {
-		LISSOMPartant = new CListe<CArc*>(SOMArg.SOMLirePartant().LISLireTaille());
+	if (SOMArg.pLISSOMPartant) {
+		pLISSOMPartant = new CListe<CArc*>(SOMArg.SOMLirePartant().LISLireTaille());
 		for (int iBouclePart = 0; iBouclePart < SOMArg.SOMLirePartant().LISLireTaille(); iBouclePart++) {
-			(*LISSOMPartant)[iBouclePart] = SOMArg.SOMLirePartant()[iBouclePart];
+			(*pLISSOMPartant)[iBouclePart] = SOMArg.SOMLirePartant()[iBouclePart];
 		}
 	}
 	else {
-		LISSOMPartant = NULL;
+		pLISSOMPartant = NULL;
 	}
 }
 
 CSommet::~CSommet()
 {
-	delete LISSOMArrivant;
-	delete LISSOMPartant;
+	delete pLISSOMArrivant;
+	delete pLISSOMPartant;
 }
 
 int CSommet::SOMLireNumero()
@@ -54,41 +53,41 @@ void CSommet::SOMModifierNumero(int iNumero)
 	iSOMNumero = iNumero;
 }
 
-CListe<CArc*> CSommet::SOMLireArrivant()
+CListe<CArc*>& CSommet::SOMLireArrivant()
 {
-	return LISSOMArrivant;
+	return *pLISSOMArrivant;
 }
 
-CListe<CArc*> CSommet::SOMLirePartant()
+CListe<CArc*>& CSommet::SOMLirePartant()
 {
-	return LISSOMPartant;
+	return *pLISSOMPartant;
 }
 
 void CSommet::SOMAjouterArrivant(CArc* pArcArrivant)
 {
-	unsigned int uiNewTaille = LISSOMArrivant.LISLireTaille() + 1;
-	LISSOMArrivant.LISModifierTaille(uiNewTaille);
-	LISSOMPartant[uiNewTaille - 1] = pArcArrivant;
+	unsigned int uiNewTaille = pLISSOMArrivant->LISLireTaille() + 1;
+	pLISSOMArrivant->LISModifierTaille(uiNewTaille);
+	(*pLISSOMPartant)[uiNewTaille - 1] = pArcArrivant;
 }
 
 void CSommet::SOMAjouterPartant(CArc* pArcPartant)
 {
-	unsigned int uiNewTaille = LISSOMPartant.LISLireTaille() + 1;
-	LISSOMPartant.LISModifierTaille(uiNewTaille);
-	LISSOMPartant[uiNewTaille - 1] = pArcPartant;
+	unsigned int uiNewTaille = pLISSOMPartant->LISLireTaille() + 1;
+	pLISSOMPartant->LISModifierTaille(uiNewTaille);
+	(*pLISSOMPartant)[uiNewTaille - 1] = pArcPartant;
 }
 
 void CSommet::SOMSupprimerArrivant(CArc* pArcArrivant)
 {
-	unsigned int uiNewTaille = LISSOMArrivant.LISLireTaille() - 1;
-	LISSOMArrivant.LISModifierTaille(uiNewTaille);
-	LISSOMPartant[uiNewTaille - 1] = pArcArrivant;
+	unsigned int uiNewTaille = pLISSOMArrivant->LISLireTaille() - 1;
+	pLISSOMArrivant->LISModifierTaille(uiNewTaille);
+	(*pLISSOMPartant)[uiNewTaille - 1] = pArcArrivant;
 }
 
 void CSommet::SOMSupprimerPartant(CArc* pArcPartant)
 {
-	unsigned int uiNewTaille = LISSOMPartant.LISLireTaille() - 1;
-	LISSOMPartant.LISModifierTaille(uiNewTaille);
-	LISSOMPartant[uiNewTaille - 1] = pArcPartant;
+	unsigned int uiNewTaille = pLISSOMPartant->LISLireTaille() - 1;
+	pLISSOMPartant->LISModifierTaille(uiNewTaille);
+	(*pLISSOMPartant)[uiNewTaille - 1] = pArcPartant;
 }
 
