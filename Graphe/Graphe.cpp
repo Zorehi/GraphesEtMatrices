@@ -16,15 +16,21 @@
 #include <stdio.h>
 
 #include "CException.h"
-#include "CListe.h"
+#include "CParseur.h"
+#include "CGraphe.h"
+
+using namespace std;
 
 int main(int iArgc, char* ppcArgv[])
 {
-    CListe<CException*> * d = new CListe<CException*>(10);
-    delete (*d)[1];
-    CException * objet = new CException(1, "coucou");
-    (*d)[1] = objet;
-    std::cout << (*d)[1]->EXCLireMsg();
-    delete objet;
-    delete d;
+	try
+	{
+		CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
+	}
+	catch (CException& EXCException)
+	{
+		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+		cout << EXCException.EXCLireMsg() << "\n\n";
+	}
+    
 }
