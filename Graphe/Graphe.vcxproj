@@ -145,6 +145,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CAnalyseurLexical.cpp" />
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
     <ClCompile Include="CParseur.cpp" />
@@ -153,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Matrice\CListe.h" />
+    <ClInclude Include="CAnalyseurLexical.h" />
+    <ClInclude Include="CAnalyseurSyntaxique.h" />
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CException.h" />
     <ClInclude Include="CGraphe.h" />
