@@ -18,6 +18,7 @@
 #include "CException.h"
 #include "CParseur.h"
 #include "CGraphe.h"
+#include "CAnalyseurLexical.h"
 #include "CGrapheOperation.h"
 
 using namespace std;
@@ -67,7 +68,7 @@ int main(int iArgc, char* ppcArgv[])
 		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
 		cout << EXCException.EXCLireMsg() << "\n\n";
 	}
-	*/
+
 
 	try
 	{
@@ -78,5 +79,6 @@ int main(int iArgc, char* ppcArgv[])
 		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
 		cout << EXCException.EXCLireMsg() << "\n\n";
 	}
+	*/
     
 }
