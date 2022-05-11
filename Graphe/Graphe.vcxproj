@@ -139,11 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Matrice\CListe.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CGraphe.cpp" />
     <ClCompile Include="Graphe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Matrice\CListe.h" />
+    <ClInclude Include="CArc.h" />
     <ClInclude Include="CException.h" />
+    <ClInclude Include="CGraphe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
