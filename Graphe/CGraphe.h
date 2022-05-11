@@ -1,14 +1,12 @@
 #pragma once
 
-//#include "CSommet.h"
+#include "CSommet.h"
 
 class CGraphe
 {
 private:
-	//CSommet* pSOMGRATableau;
+	CSommet* pSOMGRATableau;
 public:
 	void GRAAfficherGraphe();
 	void GRAAfficherGrapheGraphique();
-};
-
 };

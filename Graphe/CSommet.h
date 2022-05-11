@@ -1,5 +1,5 @@
 #pragma once
-/*
+
 #include "CArc.h"
 #include "CListe.h"
 #include "CException.h"
@@ -26,5 +26,5 @@ public:
 	void SOMSupprimerPartant(CArc* pArcPartant);
 
 };
-*/
+
 
