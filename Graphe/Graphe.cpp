@@ -17,15 +17,28 @@
 
 #include "CException.h"
 #include "CParseur.h"
+#include "CAnalyseurLexical.h"
 #include "CGraphe.h"
 
 using namespace std;
 
 int main(int iArgc, char* ppcArgv[])
 {
+	/*
 	try
 	{
 		CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
+	}
+	catch (CException& EXCException)
+	{
+		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+		cout << EXCException.EXCLireMsg() << "\n\n";
+	}
+	*/
+
+	try
+	{
+		CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
 	}
 	catch (CException& EXCException)
 	{
