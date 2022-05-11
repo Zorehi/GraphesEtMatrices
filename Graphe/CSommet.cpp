@@ -1,3 +1,4 @@
+/*
 #include "CSommet.h"
 
 CSommet::CSommet()
@@ -91,3 +92,4 @@ void CSommet::SOMSupprimerPartant(CArc* pArcPartant)
 	ppSOMPartant[uiNewTaille - 1] = pArcPartant;
 }
 
+*/

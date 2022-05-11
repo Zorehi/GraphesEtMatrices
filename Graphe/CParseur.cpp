@@ -12,8 +12,12 @@
  *
  */
 
+#include <iostream>
+
 #include "CParseur.h"
 #include "CException.h"
+
+using namespace std;
 
 char* CParseur::PARLireLigne(FILE* pFILFichier)
 {
@@ -58,89 +62,83 @@ CGraphe CParseur::PARLirefichier(const char* pcNomFichier)
 		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
-
-
-	_fcloseall();
-	return CGraphe();
-
-	/*
 	const char* pcChiffres = "-1234567890";
 	const char* pcEspace = " ";
 	const char* pcSeparateurs = " \0\n\r";
 
-	//Je considere size_t comme un unsigned int pour le nommage de la variable, a voir avec le prof
 	size_t uiLongueur;
-	size_t uiLongueur2;
 
-	//Lecture et interpretation de la premiere ligne (type de la matrice)
-	char* pcLigneMatrice = PARLireLigne(pFILFichier);
+	unsigned int uiNbSommet;
+	unsigned int uiNbArc;
+	int* piNomsSommet;
+	int** ppiArcs;
 
-	uiLongueur = strcspn(pcLigneMatrice, "=") + 1; //Cerche le "=" de la ligne TypeMatrice= et garde l'index du charactere suivant
-	uiLongueur += strspn(pcLigneMatrice + uiLongueur, pcEspace); //Garde l'index du premier non espace apres le "="
-	uiLongueur2 = strcspn(pcLigneMatrice + uiLongueur, pcSeparateurs) - 1; //Trouve l'index du premier charactere signifiant la fin du type (pcSeparators)
-	char pcTypeMatrice[20];
-	strncpy_s(pcTypeMatrice, pcLigneMatrice + uiLongueur, uiLongueur2); //Copie le type de la matrice dans pcTypeMatrice
-	pcTypeMatrice[uiLongueur2] = '\0'; //Ajoute le caractere de fin de chaine a pcTypeMatrice
 
-	if (pcLigneMatrice) {
-		free(pcLigneMatrice);
+
+	//Extrait le nombre de sommet
+	//Lecture et interpretation de la premiere ligne (Nombre de sommets)
+	char* pcLigneNbSommet = PARLireLigne(pFILFichier);
+	uiLongueur = strcspn(pcLigneNbSommet, "=") + 1; //Cerche le "=" de la ligne NBSommets= et garde l'index du charactere suivant
+	uiNbSommet = atoi(pcLigneNbSommet + uiLongueur);
+
+	free(pcLigneNbSommet);
+
+	cout << "Nombre de sommets : " << uiNbSommet << "\n"; //(debug)
+
+
+	//Extrait le nombre d'arc
+	//Lecture et interpretation de la premiere ligne (Nombre d'arc)
+	char* pcLigneNbArc = PARLireLigne(pFILFichier);
+	uiLongueur = strcspn(pcLigneNbArc, "=") + 1; //Cerche le "=" de la ligne NBArcs= et garde l'index du charactere suivant
+	uiNbArc = atoi(pcLigneNbArc + uiLongueur);
+
+	free(pcLigneNbArc);
+
+	cout << "Nombre d'arc : " << uiNbArc << "\n"; //(debug)
+
+
+	//Passe la ligne "Sommets=["
+	char* pcLigne = PARLireLigne(pFILFichier);
+	free(pcLigne);
+
+	//Extrait le numero de chaque sommet (dans l'ordre)
+	piNomsSommet = (int*)malloc(uiNbSommet * sizeof(int));
+
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbSommet; uiBoucle++) {
+		char* pcLigneSommet = PARLireLigne(pFILFichier);
+		uiLongueur = strcspn(pcLigneSommet, "=") + 1; //Cerche le "=" de la ligne Numero= et garde l'index du charactere suivant
+		piNomsSommet[uiBoucle] = atoi(pcLigneSommet + uiLongueur);
+
+		cout << "Numero : " << piNomsSommet[uiBoucle] << "\n"; //(debug)
 	}
 
-	//Erreur si le type de la matrice du fichier n'est pas double
-	if (strcmp(pcTypeMatrice, "double") != 0) {
-		throw CException(190, "Exception : Mauvais type de matrice renseignee dans le fichier");
-	}
-	//cout << "Type = " << pcTypeMatrice << "\n"; //(debug) Affiche le type de la matrice
 
-	//Lecture et interpretation de la seconde ligne (nombre de lignes)
+	//Passe la ligne "]"
+	char* pcLigne1 = PARLireLigne(pFILFichier);
+	free(pcLigne1);
 
-	char* pcLigneLigne = PARLireLigne(pFILFichier);
-	uiLongueur = strcspn(pcLigneLigne, pcChiffres);
-	unsigned int uiNbLignes = atoi(pcLigneLigne + uiLongueur);
+	//Passe la ligne "Arcs=["
+	char* pcLigne2 = PARLireLigne(pFILFichier);
+	free(pcLigne2);
 
-	if (pcLigneLigne) {
-		free(pcLigneLigne);
-	}
-	//cout << "nbLignes = " << uiNbLignes << "\n"; //(debug) Affiche le nombre de ligne de la matrice
+	//Extrait les infos de chaque arcs (Debut, Fin)
+	ppiArcs = (int**)malloc(uiNbArc * sizeof(int*));
 
-	//Lecture et interpretation de la troisieme ligne (nombre de colonnes)
-	char* pcLigneColonne = PARLireLigne(pFILFichier);
-	uiLongueur = strcspn(pcLigneColonne, pcChiffres);
-	unsigned int uiNbColonnes = atoi(pcLigneColonne + uiLongueur);
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbSommet; uiBoucle++) {
+		ppiArcs[uiBoucle] = (int*)malloc(2 * sizeof(int));
 
-	if (pcLigneColonne) {
-		free(pcLigneColonne);
-	}
-	//cout << "nbColonnes = " << uiNbColonnes << "\n"; //(debug) Affiche le nombre de colonnes de la matrice
+		char* pcLigneArc = PARLireLigne(pFILFichier);
+		uiLongueur = strcspn(pcLigneArc, "=") + 1; //Cerche le "=" de la ligne Numero= et garde l'index du charactere suivant
+		ppiArcs[uiBoucle][0] = atoi(pcLigneArc + uiLongueur);
 
-	//Creation de la matrice
-	CMatricePlus<double> MAPMatrice(uiNbLignes, uiNbColonnes);
+		uiLongueur += strcspn(pcLigneArc + uiLongueur, "=") + 1; //Cerche le "=" de la ligne Numero= et garde l'index du charactere suivant
+		ppiArcs[uiBoucle][1] = atoi(pcLigneArc + uiLongueur);
 
-	//Saute la ligne "Matrice=[
-	char* pcChaine = PARLireLigne(pFILFichier);
-	if (pcChaine) {
-		free(pcChaine);
+		cout << "Debut : " << ppiArcs[uiBoucle][0] << " Fin : " << ppiArcs[uiBoucle][1] << "\n"; //(debug)
 	}
 
-	//Lecture et interpretation des nblignes prochaines lignes (elements de la matrice)
-	for (unsigned int uiBoucleI = 0; uiBoucleI < uiNbLignes; uiBoucleI++) {
-		char* pcLigne = PARLireLigne(pFILFichier);
-		uiLongueur = 0;
-		for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbColonnes; uiBoucleJ++) {
-			uiLongueur += strcspn(pcLigne + uiLongueur, pcChiffres);
-			double iElement = atof(pcLigne + uiLongueur);
-			MAPMatrice[uiBoucleI][uiBoucleJ] = iElement;
-			uiLongueur += strcspn(pcLigne + uiLongueur, pcEspace);
-		}
-		if (pcLigne) {
-			free(pcLigne);
-		}
-	}
 
 	_fcloseall();
-
-	return MAPMatrice;
-
-	*/
+	return CGraphe();
 }
 
