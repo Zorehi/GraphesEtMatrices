@@ -2,7 +2,7 @@
 
 CGraphe CGrapheOperation::GROInverserArc(CGraphe GRAArg)
 {
-	CGraphe CGrapheNew;
+	CGraphe CGrapheNew = CGraphe();
 
 	return CGrapheNew;
 }

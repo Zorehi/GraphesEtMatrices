@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "CException.h"
+#include "CListe.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class CAnalyseurLexical
 
 		static char* ANLLireProchaineLigne(FILE* pFILFichier);
 
-		static char** ANLExtraireInfoLigne(const char* pcLigne);
+		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<char**>& pLISTabCorrespondance);
 
 
 };
