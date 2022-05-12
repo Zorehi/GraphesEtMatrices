@@ -58,27 +58,27 @@ int main(int iArgc, char* ppcArgv[])
 			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
 			cout << EXCException.EXCLireMsg() << "\n\n";
 		}
-	/*
-	try
-	{
-		CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
-	}
-	catch (CException& EXCException)
-	{
-		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-		cout << EXCException.EXCLireMsg() << "\n\n";
-	}
+		/*
+		try
+		{
+			CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
 
 
-	try
-	{
-		CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
+		try
+		{
+			CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
+		*/
 	}
-	catch (CException& EXCException)
-	{
-		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-		cout << EXCException.EXCLireMsg() << "\n\n";
-	}
-	*/
-    
 }

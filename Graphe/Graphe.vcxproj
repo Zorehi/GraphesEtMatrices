@@ -148,6 +148,7 @@
     <ClCompile Include="CAnalyseurLexical.cpp" />
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CGraphe.cpp" />
     <ClCompile Include="CGrapheOperation.cpp" />
     <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="CSommet.cpp" />
