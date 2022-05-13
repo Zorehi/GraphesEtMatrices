@@ -16,39 +16,40 @@
 template <class MType>
 CListe<MType>::CListe()
 {
+	peLISTableau = new MType[uiLISTaille];
 	uiLISTaille = 0;
-	pMLISTableau = NULL;
 }
 
 template <class MType>
 CListe<MType>::CListe(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
-	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
-	if (!pMLISTableau) {
+	peLISTableau = new MType[uiLISTaille];
+	if (!peLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
+	}
+	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
+		peLISTableau[uiBoucle] = MType();
 	}
 }
 
 template <class MType>
-CListe<MType>::CListe(CListe<MType>& LISParam)
+CListe<MType>::CListe(CListe &LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
-	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
-	if (!pMLISTableau) {
+	peLISTableau = new MType[uiLISTaille];
+	if (!peLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		pMLISTableau[uiBoucle] = LISParam[uiBoucle];
+		peLISTableau[uiBoucle] = LISParam[uiBoucle];
 	}
 }
 
 template <class MType>
 CListe<MType>::~CListe()
 {
-	if (pMLISTableau) {
-		free(pMLISTableau);
-	}
+	delete [] peLISTableau;
 }
 
 template <class MType>
@@ -65,11 +66,14 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
 	for (unsigned int uiBoucle = 0; uiBoucle < uiTaille; uiBoucle++)
 	{
 		if (uiTaille < uiLISTaille) {
-			pTableau[uiBoucle] = pMLISTableau[uiBoucle];
+			pTableau[uiBoucle] = peLISTableau[uiBoucle];
+		}
+		else {
+			pTableau[uiBoucle] = MType();
 		}
 	}
-	delete[] pMLISTableau;
-	pMLISTableau = pTableau;
+	delete[] peLISTableau;
+	peLISTableau = pTableau;
 	uiLISTaille = uiTaille;
 }
 
@@ -78,18 +82,18 @@ MType& CListe<MType>::operator[](unsigned int uiIndex) {
 	if (uiIndex > uiLISTaille) {
 		throw CException(130, "Exception : Index non compris dans la liste");
 	}
-	return pMLISTableau[uiIndex];
+	return peLISTableau[uiIndex];
 }
 
 template <class MType>
 CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam) {
 	uiLISTaille = LISParam.LISLireTaille();
-	free(pMLISTableau);
-	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	free(peLISTableau);
+	peLISTableau = new MType[uiLISTaille];
 
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++)
 	{
-		pMLISTableau[uiBoucle] = LISParam[uiBoucle];
+		peLISTableau[uiBoucle] = LISParam[uiBoucle];
 	}
 
 	return *this;

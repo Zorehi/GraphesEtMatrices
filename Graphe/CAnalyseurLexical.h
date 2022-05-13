@@ -8,6 +8,12 @@
 
 using namespace std;
 
+typedef struct {
+	char* Mot;
+	char* Valeur;
+}Correpondance;
+
+
 class CAnalyseurLexical
 {
 	private:
@@ -18,7 +24,7 @@ class CAnalyseurLexical
 
 		static char* ANLLireProchaineLigne(FILE* pFILFichier);
 
-		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<char**>& pLISTabCorrespondance);
+		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpondance>& pLISCorrespondance);
 
 
 };
