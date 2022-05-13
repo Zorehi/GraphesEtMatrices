@@ -26,11 +26,11 @@ CListe<Correpondance>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFi
 	free(pcChaine);
 
 	//(debug) affiche les mots recupere
-	/*
+	
 	for (unsigned int uiBoucle = 0; uiBoucle < (*pLISCorrespondance).LISLireTaille(); uiBoucle++) {
 		cout << (*pLISCorrespondance)[uiBoucle].Mot << " : " << (*pLISCorrespondance)[uiBoucle].Valeur << endl;
 	}
-	*/
+	
 
 	return *pLISCorrespondance;
 }
@@ -93,13 +93,24 @@ void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpo
 		//cout << "Mot : " << pcMot << endl;
 
 		pcEnCours += iIndex + 1;
-
-		if (uiBoucle % 2 == 0) {
-			pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
-			pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
+		if (uiNbElement % 2 == 0) {
+			if (uiBoucle % 2 == 0) {
+				pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
+				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
+			}
+			else {
+				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
+			}
 		}
 		else {
-			pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
+			if (uiNbElement == 1) {
+				pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
+				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
+				char* pcMot = (char*)malloc(1 * sizeof(char));
+				pcMot[0] = '\0';
+				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
+
+			}
 		}
 	}
 }
