@@ -13,7 +13,7 @@ private:
 public:
 	CSommet();
 	CSommet(int iNumero);
-	CSommet(CSommet& SOMArg);
+	CSommet(const CSommet& SOMArg);
 	~CSommet();
 
 	int SOMLireNumero();

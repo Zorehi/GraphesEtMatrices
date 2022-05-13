@@ -31,9 +31,9 @@ CListe<MType>::CListe(unsigned int uiTaille)
 }
 
 template <class MType>
-CListe<MType>::CListe(CListe &LISParam)
+CListe<MType>::CListe(const CListe &LISParam)
 {
-	uiLISTaille = LISParam.LISLireTaille();
+	uiLISTaille = LISParam.uiLISTaille;
 	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!pMLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
@@ -66,7 +66,15 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
 }
 
 template <class MType>
-MType& CListe<MType>::operator[](unsigned int uiIndex) {
+MType& CListe<MType>::operator[](const unsigned int uiIndex) {
+	if (uiIndex > uiLISTaille) {
+		throw CException(130, "Exception : Index non compris dans la liste");
+	}
+	return pMLISTableau[uiIndex];
+}
+
+template <class MType>
+const MType& CListe<MType>::operator[](const unsigned int uiIndex)const {
 	if (uiIndex > uiLISTaille) {
 		throw CException(130, "Exception : Index non compris dans la liste");
 	}
@@ -75,7 +83,7 @@ MType& CListe<MType>::operator[](unsigned int uiIndex) {
 
 template <class MType>
 CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam) {
-	uiLISTaille = LISParam.LISLireTaille();
+	uiLISTaille = LISParam.uiLISTaille;
 	free(pMLISTableau);
 	pMLISTableau = new MType[uiLISTaille];
 

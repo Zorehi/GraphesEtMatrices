@@ -16,7 +16,7 @@ private:
 public:
 	CGraphe();
 	CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc);
-	CGraphe(CGraphe& GRAParam);
+	CGraphe(const CGraphe& GRAParam);
 	~CGraphe();
 
 	CListe<CSommet*>& GRALireSommet();

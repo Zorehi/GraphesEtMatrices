@@ -14,7 +14,7 @@ CGraphe::CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc)
 	LISGRAArc = CListe<CArc*>(iNbArc);
 }
 
-CGraphe::CGraphe(CGraphe& GRAParam)
+CGraphe::CGraphe(const CGraphe& GRAParam)
 {
 	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet);
 	LISGRAArc = CListe<CArc*>(GRAParam.LISGRAArc);
