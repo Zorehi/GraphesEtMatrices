@@ -14,11 +14,14 @@ private:
 	CListe<CArc*> LISGRAArc;
 
 public:
+	CGraphe();
 	CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc);
+	CGraphe(CGraphe& GRAParam);
 	~CGraphe();
 
 	CListe<CSommet*>& GRALireSommet();
 	CListe<CArc*>& GRALireArc();
 	void GRAAfficherGraphe();
 	void GRAAfficherGrapheGraphique();
+	CGraphe& operator=(const CGraphe& GRAParam);
 };

@@ -2,10 +2,22 @@
 
 using namespace std;
 
+CGraphe::CGraphe()
+{
+	LISGRASommet = CListe<CSommet*>();
+	LISGRAArc = CListe<CArc*>();
+}
+
 CGraphe::CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc)
 {
 	LISGRASommet = CListe<CSommet*>(iNbSommet);
 	LISGRAArc = CListe<CArc*>(iNbArc);
+}
+
+CGraphe::CGraphe(CGraphe& GRAParam)
+{
+	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet);
+	LISGRAArc = CListe<CArc*>(GRAParam.LISGRAArc);
 }
 
 CGraphe::~CGraphe()
@@ -53,14 +65,14 @@ void CGraphe::GRAAfficherGraphe()
 		cout << "\n";
 
 		CListe<CArc*> LISArcPartant = LISGRASommet[iBoucleI]->SOMLirePartant();
-		int iNbArcArrivant = LISArcPartant.LISLireTaille();
+		int iNbArcPartant = LISArcPartant.LISLireTaille();
 
-		if (iNbArcArrivant > 0) {
-			cout << "\tArcs Arrivants :\n";
+		if (iNbArcPartant > 0) {
+			cout << "\tArcs Partants :\n";
 
-			for (int iBoucleJ = 0; iBoucleJ < iNbArcArrivant; iBoucleJ++)
+			for (int iBoucleZ = 0; iBoucleZ < iNbArcPartant; iBoucleZ++)
 			{
-				cout << "\t\tArc " << iBoucleJ << " : Provenant : " << LISArcPartant[iBoucleJ]->ARCLireDestination() << "\n";
+				cout << "\t\tArc " << iBoucleZ << " : Destination : " << LISArcPartant[iBoucleZ]->ARCLireDestination() << "\n";
 			}
 		}
 		cout << "\n";
@@ -70,4 +82,12 @@ void CGraphe::GRAAfficherGraphe()
 void CGraphe::GRAAfficherGrapheGraphique()
 {
 
+}
+
+CGraphe& CGraphe::operator=(const CGraphe& GRAParam)
+{
+	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet);
+	LISGRAArc = CListe<CArc*>(GRAParam.LISGRAArc);
+
+	return *this;
 }
