@@ -1,6 +1,6 @@
 #include "CAnalyseurLexical.h"
 
-CListe<Correpondance>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
+CListe<char*>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -11,7 +11,7 @@ CListe<Correpondance>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFi
 		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
-	CListe<Correpondance>* pLISCorrespondance = new CListe<Correpondance>(0);
+	CListe<char*>* pLISCorrespondance = new CListe<char*>(0);
 
 	char* pcChaine = ANLLireProchaineLigne(pFILFichier);
 	//Tant que l'on est pas arrive a la fin du fichier on analyse chaque ligne les unes apres les autres
@@ -25,11 +25,12 @@ CListe<Correpondance>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFi
 	}
 	free(pcChaine);
 
-	//(debug) affiche les mots recupere
-	
+	/*
+	//(debug) affiche les mots recuperes
 	for (unsigned int uiBoucle = 0; uiBoucle < (*pLISCorrespondance).LISLireTaille(); uiBoucle++) {
-		cout << (*pLISCorrespondance)[uiBoucle].Mot << " : " << (*pLISCorrespondance)[uiBoucle].Valeur << endl;
+		cout << (*pLISCorrespondance)[uiBoucle] << endl;
 	}
+	*/
 	
 
 	return *pLISCorrespondance;
@@ -59,7 +60,7 @@ char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
 
 }
 
-void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpondance>& pLISCorrespondance)
+void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& pLISCorrespondance)
 {
 	//Compte le nombre d'elements que l'on va avoir (nombre de "=" dans la ligne + 1)
 	unsigned int uiNbElement = 0;
@@ -92,25 +93,10 @@ void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpo
 		pcMot[iIndex] = '\0';
 		//cout << "Mot : " << pcMot << endl;
 
-		pcEnCours += iIndex + 1;
-		if (uiNbElement % 2 == 0) {
-			if (uiBoucle % 2 == 0) {
-				pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
-				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
-			}
-			else {
-				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
-			}
-		}
-		else {
-			if (uiNbElement == 1) {
-				pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
-				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
-				char* pcMot = (char*)malloc(1 * sizeof(char));
-				pcMot[0] = '\0';
-				pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
+		//Ajout du mot a la liste des mots
+		pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
+		pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1] = pcMot;
 
-			}
-		}
+		pcEnCours += iIndex + 1;
 	}
 }

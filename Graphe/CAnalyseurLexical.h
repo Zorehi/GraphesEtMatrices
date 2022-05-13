@@ -8,20 +8,14 @@
 
 using namespace std;
 
-typedef struct {
-	char* Mot;
-	char* Valeur;
-}Correpondance;
-
-
 class CAnalyseurLexical
 {
 	public:
-		static CListe<Correpondance>& ANLAnalyserFichier(const char* pcNomFichier); 
+		static CListe<char*>& ANLAnalyserFichier(const char* pcNomFichier); 
 
 		static char* ANLLireProchaineLigne(FILE* pFILFichier);
 
-		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpondance>& pLISCorrespondance);
+		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& pLISCorrespondance);
 
 
 };
