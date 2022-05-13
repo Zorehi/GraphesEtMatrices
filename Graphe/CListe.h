@@ -27,7 +27,7 @@ template <class MType>
 class CListe {
 
 private:
-	MType *peLISTableau;
+	MType *pMLISTableau;
 	unsigned int uiLISTaille;
 
 public:

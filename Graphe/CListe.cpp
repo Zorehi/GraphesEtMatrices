@@ -16,7 +16,7 @@
 template <class MType>
 CListe<MType>::CListe()
 {
-	peLISTableau = new MType[uiLISTaille];
+	pMLISTableau = NULL;
 	uiLISTaille = 0;
 }
 
@@ -24,12 +24,9 @@ template <class MType>
 CListe<MType>::CListe(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
-	peLISTableau = new MType[uiLISTaille];
-	if (!peLISTableau) {
+	pMLISTableau = (MType*)malloc(uiTaille * sizeof(MType));
+	if (!pMLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
-	}
-	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = MType();
 	}
 }
 
@@ -37,19 +34,21 @@ template <class MType>
 CListe<MType>::CListe(CListe &LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
-	peLISTableau = new MType[uiLISTaille];
-	if (!peLISTableau) {
+	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	if (!pMLISTableau) {
 		throw CException(110, "Exception : Allocation mémoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
-		peLISTableau[uiBoucle] = LISParam[uiBoucle];
+		pMLISTableau[uiBoucle] = LISParam[uiBoucle];
 	}
 }
 
 template <class MType>
 CListe<MType>::~CListe()
 {
-	delete [] peLISTableau;
+	if (pMLISTableau) {
+		free(pMLISTableau);
+	}
 }
 
 template <class MType>
@@ -59,22 +58,11 @@ unsigned int CListe<MType>::LISLireTaille() {
 
 template <class MType>
 void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
-	MType* pTableau = new MType[uiTaille];
-	if (!pTableau) {
-		throw CException(120, "Exception : Erreur lors de la modification de la taille");
-	}
-	for (unsigned int uiBoucle = 0; uiBoucle < uiTaille; uiBoucle++)
-	{
-		if (uiTaille < uiLISTaille) {
-			pTableau[uiBoucle] = peLISTableau[uiBoucle];
-		}
-		else {
-			pTableau[uiBoucle] = MType();
-		}
-	}
-	delete[] peLISTableau;
-	peLISTableau = pTableau;
 	uiLISTaille = uiTaille;
+	pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille*sizeof(MType));
+	if (!pMLISTableau) {
+		throw CException(120, "Exception : Erreur lors de la modification de la taille");
+	}	
 }
 
 template <class MType>
@@ -82,18 +70,18 @@ MType& CListe<MType>::operator[](unsigned int uiIndex) {
 	if (uiIndex > uiLISTaille) {
 		throw CException(130, "Exception : Index non compris dans la liste");
 	}
-	return peLISTableau[uiIndex];
+	return pMLISTableau[uiIndex];
 }
 
 template <class MType>
 CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam) {
 	uiLISTaille = LISParam.LISLireTaille();
-	free(peLISTableau);
-	peLISTableau = new MType[uiLISTaille];
+	free(pMLISTableau);
+	pMLISTableau = new MType[uiLISTaille];
 
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++)
 	{
-		peLISTableau[uiBoucle] = LISParam[uiBoucle];
+		pMLISTableau[uiBoucle] = LISParam[uiBoucle];
 	}
 
 	return *this;
