@@ -11,19 +11,24 @@ void CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
-	CListe<char**>* pLISTabCorrespondance = new CListe<char**>(0);
+	CListe<Correpondance>* pLISCorrespondance = new CListe<Correpondance>(0);
 
 	char* pcChaine = ANLLireProchaineLigne(pFILFichier);
 	//Tant que l'on est pas arrive a la fin du fichier on analyse chaque ligne les unes apres les autres
 	while (pcChaine[0] != '\0') {
 		
-		ANLExtraireInfoLigne(pcChaine, *pLISTabCorrespondance);
+		ANLExtraireInfoLigne(pcChaine, *pLISCorrespondance);
 		//cout << pcChaine;
 
 		free(pcChaine);
 		pcChaine = ANLLireProchaineLigne(pFILFichier);
 	}
 	free(pcChaine);
+
+	//(debug) affiche les mots recupere
+	for (unsigned int uiBoucle = 0; uiBoucle < (*pLISCorrespondance).LISLireTaille(); uiBoucle++) {
+		cout << (*pLISCorrespondance)[uiBoucle].Mot << " : " << (*pLISCorrespondance)[uiBoucle].Valeur << endl;
+	}
 
 
 }
@@ -52,7 +57,7 @@ char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
 
 }
 
-void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char**>& pLISTabCorrespondance)
+void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<Correpondance>& pLISCorrespondance)
 {
 	//Compte le nombre d'elements que l'on va avoir (nombre de "=" dans la ligne + 1)
 	unsigned int uiNbElement = 0;
@@ -69,17 +74,7 @@ void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char**>
 	}
 	char* pcEnCours = (char*)pcLigne;
 	//Separe les infos de la ligne
-	char** ppcCorrespondanceUnMot = (char**)malloc(2 * sizeof(char*));
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbElement; uiBoucle++) {
-		if (uiBoucle % 2 == 0) {
-			
-			char** ppcCorrespondanceUnMot = (char**)malloc(2 * sizeof(char*));
-		}
-		
-		// Verification de l'allocation
-		if (ppcCorrespondanceUnMot == NULL) {
-			throw CException(170, "Erreur d'allocation");
-		}
 		//Enleve les espaces au debut qui pourrait etre avant le mot
 		pcEnCours += strspn(pcEnCours, " ");
 			
@@ -93,20 +88,16 @@ void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char**>
 
 		strncpy_s(pcMot, (iIndex + 1), pcEnCours, iIndex);
 		pcMot[iIndex] = '\0';
-		ppcCorrespondanceUnMot[uiBoucle%2] = pcMot;
 		//cout << "Mot : " << pcMot << endl;
 
 		pcEnCours += iIndex + 1;
 
-		if (uiBoucle % 2 != 0) {
-			int tailleListe = pLISTabCorrespondance.LISLireTaille() + 1;
-			pLISTabCorrespondance.LISModifierTaille(tailleListe);
-			pLISTabCorrespondance[tailleListe-1] = ppcCorrespondanceUnMot;
+		if (uiBoucle % 2 == 0) {
+			pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
+			pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Mot = pcMot;
 		}
-	}
-
-	//(debug) affiche les mots recupere
-	for (unsigned int uiBoucle = 0; uiBoucle < pLISTabCorrespondance.LISLireTaille(); uiBoucle++) {
-		cout << pLISTabCorrespondance[uiBoucle][0] << " : " << pLISTabCorrespondance[uiBoucle][1] << endl;
+		else {
+			pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1].Valeur = pcMot;
+		}
 	}
 }
