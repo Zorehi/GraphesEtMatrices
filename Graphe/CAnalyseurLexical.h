@@ -16,11 +16,8 @@ typedef struct {
 
 class CAnalyseurLexical
 {
-	private:
-		
-
 	public:
-		static void ANLAnalyserFichier(const char* pcNomFichier); 
+		static CListe<Correpondance>& ANLAnalyserFichier(const char* pcNomFichier); 
 
 		static char* ANLLireProchaineLigne(FILE* pFILFichier);
 

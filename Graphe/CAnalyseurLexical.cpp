@@ -1,6 +1,6 @@
 #include "CAnalyseurLexical.h"
 
-void CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
+CListe<Correpondance>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -26,11 +26,13 @@ void CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 	free(pcChaine);
 
 	//(debug) affiche les mots recupere
+	/*
 	for (unsigned int uiBoucle = 0; uiBoucle < (*pLISCorrespondance).LISLireTaille(); uiBoucle++) {
 		cout << (*pLISCorrespondance)[uiBoucle].Mot << " : " << (*pLISCorrespondance)[uiBoucle].Valeur << endl;
 	}
+	*/
 
-
+	return *pLISCorrespondance;
 }
 
 char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
