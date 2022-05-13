@@ -49,7 +49,7 @@ public:
 	 * 
 	 * @param LISParam Liste a dupliquer
 	 */
-	CListe(CListe &LISParam);
+	CListe(const CListe &LISParam);
 
 	/**
 	 * @brief Destructeur : Libere la memoire alloue pour l'objet Liste
@@ -79,7 +79,15 @@ public:
 	 * @param uiIndex Indice de l'element souhaite dans la liste
 	 * @return MType& Reference de l'element souhaite
 	 */
-	MType& operator[](unsigned int uiIndex);
+	MType& operator[](const unsigned int uiIndex);
+
+	/**
+	 * @brief Surcharge de l'operateur d'indice du tableau
+	 *
+	 * @param uiIndex Indice de l'element souhaite dans la liste
+	 * @return MType& Reference de l'element souhaite
+	 */
+	const MType& operator[](const unsigned int uiIndex)const;
 
 	/**
 	 * @brief Surcharge de l'operateur d'affectation, recopie LISParam dans la liste appelante

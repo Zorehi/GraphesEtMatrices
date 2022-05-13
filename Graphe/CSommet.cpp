@@ -14,22 +14,22 @@ CSommet::CSommet(int iNumero)
 	pLISSOMPartant = NULL;
 }
 
-CSommet::CSommet(CSommet& SOMArg)
+CSommet::CSommet(const CSommet& SOMArg)
 {
 	iSOMNumero = SOMArg.iSOMNumero;
 	if (SOMArg.pLISSOMArrivant != NULL) {
-		pLISSOMArrivant = new CListe<CArc*>(SOMArg.SOMLireArrivant().LISLireTaille());
-		for (int iBoucleArriv = 0; iBoucleArriv < SOMArg.SOMLireArrivant().LISLireTaille(); iBoucleArriv++) {
-			(*pLISSOMArrivant)[iBoucleArriv] = SOMArg.SOMLireArrivant()[iBoucleArriv];
+		pLISSOMArrivant = new CListe<CArc*>(SOMArg.pLISSOMArrivant->LISLireTaille());
+		for (int iBoucleArriv = 0; iBoucleArriv < SOMArg.pLISSOMArrivant->LISLireTaille(); iBoucleArriv++) {
+			(*pLISSOMArrivant)[iBoucleArriv] = (*SOMArg.pLISSOMArrivant)[iBoucleArriv];
 		}
 	}
 	else {
 		pLISSOMArrivant = NULL;
 	}
 	if (SOMArg.pLISSOMPartant) {
-		pLISSOMPartant = new CListe<CArc*>(SOMArg.SOMLirePartant().LISLireTaille());
-		for (int iBouclePart = 0; iBouclePart < SOMArg.SOMLirePartant().LISLireTaille(); iBouclePart++) {
-			(*pLISSOMPartant)[iBouclePart] = SOMArg.SOMLirePartant()[iBouclePart];
+		pLISSOMPartant = new CListe<CArc*>(SOMArg.pLISSOMPartant->LISLireTaille());
+		for (int iBouclePart = 0; iBouclePart < SOMArg.pLISSOMPartant->LISLireTaille(); iBouclePart++) {
+			(*pLISSOMPartant)[iBouclePart] = (*SOMArg.pLISSOMPartant)[iBouclePart];
 		}
 	}
 	else {

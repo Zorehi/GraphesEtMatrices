@@ -1,12 +1,27 @@
 #pragma once
 
+#include <iostream>
+#include <stdio.h>
+
 #include "CSommet.h"
+#include "CListe.h"
+#include "CArc.h"
 
 class CGraphe
 {
 private:
-	CSommet* pSOMGRATableau;
+	CListe<CSommet*> LISGRASommet;
+	CListe<CArc*> LISGRAArc;
+
 public:
+	CGraphe();
+	CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc);
+	CGraphe(const CGraphe& GRAParam);
+	~CGraphe();
+
+	CListe<CSommet*>& GRALireSommet();
+	CListe<CArc*>& GRALireArc();
 	void GRAAfficherGraphe();
 	void GRAAfficherGrapheGraphique();
+	CGraphe& operator=(const CGraphe& GRAParam);
 };
