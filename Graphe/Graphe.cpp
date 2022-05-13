@@ -18,19 +18,67 @@
 #include "CException.h"
 #include "CParseur.h"
 #include "CGraphe.h"
+#include "CAnalyseurLexical.h"
+#include "CGrapheOperation.h"
 
 using namespace std;
 
 int main(int iArgc, char* ppcArgv[])
 {
-	try
-	{
-		CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
+	if (iArgc > 1) {
+		CGraphe monGraphe;
+		CGraphe newGraphe;
+
+		// Lecture du fichier passé en parametre, creation du graphe, et affichage de ce graphe
+		try
+		{
+			monGraphe = CParseur::PARLirefichier(ppcArgv[1]);
+
+			cout << "Graphe du fichier" << " =\n";
+			monGraphe.GRAAfficherGraphe();
+			cout << "\n";
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
+
+		// Creation d'un nouveau graphe en inversant tout les arc du premier graphe, et affichage de ce graphe
+		try
+		{
+			newGraphe = CGrapheOperation::GROInverserArc(monGraphe);
+
+			cout << "Graphe avec arc inversés" << " =\n";
+			newGraphe.GRAAfficherGraphe();
+			cout << "\n";
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
+		/*
+		try
+		{
+			CGraphe monGraphe = CParseur::PARLirefichier("test_graphe1.txt");
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
+
+
+		try
+		{
+			CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
+		}
+		catch (CException& EXCException)
+		{
+			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+			cout << EXCException.EXCLireMsg() << "\n\n";
+		}
+		*/
 	}
-	catch (CException& EXCException)
-	{
-		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-		cout << EXCException.EXCLireMsg() << "\n\n";
-	}
-    
 }
