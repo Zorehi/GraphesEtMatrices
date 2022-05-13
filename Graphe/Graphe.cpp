@@ -69,16 +69,16 @@ int main(int iArgc, char* ppcArgv[])
 			cout << EXCException.EXCLireMsg() << "\n\n";
 		}
 
+		*/		
+	}
 
-		try
-		{
-			CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
-		}
-		catch (CException& EXCException)
-		{
-			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-			cout << EXCException.EXCLireMsg() << "\n\n";
-		}
-		*/
+	try
+	{
+		CAnalyseurLexical::ANLAnalyserFichier("test_graphe1.txt");
+	}
+	catch (CException& EXCException)
+	{
+		cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
+		cout << EXCException.EXCLireMsg() << "\n\n";
 	}
 }
