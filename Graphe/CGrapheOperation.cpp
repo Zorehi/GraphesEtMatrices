@@ -1,6 +1,6 @@
 #include "CGrapheOperation.h"
 
-CGraphe CGrapheOperation::GROInverserArc(CGraphe GRAArg)
+CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 {
 	CGraphe CGrapheNew = CGraphe();
 

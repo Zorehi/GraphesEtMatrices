@@ -5,7 +5,7 @@ CArc::CArc(int iNumeroSommet)
 	iARCDestination = iNumeroSommet;
 }
 
-int CArc::ARCLireDestination()
+int CArc::ARCLireDestination()const
 {
 	return iARCDestination;
 }

@@ -39,6 +39,11 @@ CListe<CSommet*>& CGraphe::GRALireSommet()
 	return LISGRASommet;
 }
 
+const CListe<CSommet*>& CGraphe::GRALireSommet()const
+{
+	return LISGRASommet;
+}
+
 CListe<CArc*>& CGraphe::GRALireArc()
 {
 	return LISGRAArc;
@@ -57,6 +62,12 @@ void CGraphe::GRAAjouterArc(CArc* pArc)
 }
 
 void CGraphe::GRAAfficherGraphe()
+const CListe<CArc*>& CGraphe::GRALireArc()const
+{
+	return LISGRAArc;
+}
+
+void CGraphe::GRAAfficherGraphe()const
 {
 	int iNbSommet = LISGRASommet.LISLireTaille();
 	for (int iBoucleI = 0; iBoucleI < iNbSommet; iBoucleI++)
@@ -91,7 +102,7 @@ void CGraphe::GRAAfficherGraphe()
 	}
 }
 
-void CGraphe::GRAAfficherGrapheGraphique()
+void CGraphe::GRAAfficherGrapheGraphique()const
 {
 
 }

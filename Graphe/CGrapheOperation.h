@@ -6,6 +6,6 @@
 class CGrapheOperation
 {
 	public:
-		static CGraphe GROInverserArc(CGraphe GRAArg);
+		static CGraphe GROInverserArc(const CGraphe& GRAArg);
 };
 
