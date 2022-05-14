@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CAnalyseurLexical.cpp" />
+    <ClCompile Include="CAnalyseurSyntaxique.cpp" />
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
     <ClCompile Include="CGraphe.cpp" />
