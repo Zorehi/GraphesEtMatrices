@@ -18,7 +18,7 @@ public:
 	 * @param  
 	 * @return 
 	*/
-	int ARCLireDestination();
+	int ARCLireDestination()const;
 
 	/**
 	 * @brief 

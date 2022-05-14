@@ -43,7 +43,7 @@ CSommet::~CSommet()
 	delete pLISSOMPartant;
 }
 
-int CSommet::SOMLireNumero()
+int CSommet::SOMLireNumero()const
 {
 	return iSOMNumero;
 }
@@ -58,7 +58,17 @@ CListe<CArc*>& CSommet::SOMLireArrivant()
 	return *pLISSOMArrivant;
 }
 
+const CListe<CArc*>& CSommet::SOMLireArrivant()const
+{
+	return *pLISSOMArrivant;
+}
+
 CListe<CArc*>& CSommet::SOMLirePartant()
+{
+	return *pLISSOMPartant;
+}
+
+const CListe<CArc*>& CSommet::SOMLirePartant()const
 {
 	return *pLISSOMPartant;
 }

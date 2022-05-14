@@ -20,8 +20,10 @@ public:
 	~CGraphe();
 
 	CListe<CSommet*>& GRALireSommet();
+	const CListe<CSommet*>& GRALireSommet()const;
 	CListe<CArc*>& GRALireArc();
-	void GRAAfficherGraphe();
-	void GRAAfficherGrapheGraphique();
+	const CListe<CArc*>& GRALireArc()const;
+	void GRAAfficherGraphe()const;
+	void GRAAfficherGrapheGraphique()const;
 	CGraphe& operator=(const CGraphe& GRAParam);
 };

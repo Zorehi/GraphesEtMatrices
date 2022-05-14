@@ -3,12 +3,12 @@
  * @author LJ BV JM
  * @brief Contient les definitions des methodes de la classe CListe
  * CListe permet de gerer une Liste de n'importe quel MType
- * 
+ *
  * @version 0.1
  * @date 2022-05-02
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include "CListe.h"
@@ -31,7 +31,7 @@ CListe<MType>::CListe(unsigned int uiTaille)
 }
 
 template <class MType>
-CListe<MType>::CListe(const CListe &LISParam)
+CListe<MType>::CListe(const CListe& LISParam)
 {
 	uiLISTaille = LISParam.uiLISTaille;
 	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
@@ -52,21 +52,24 @@ CListe<MType>::~CListe()
 }
 
 template <class MType>
-unsigned int CListe<MType>::LISLireTaille() {
+unsigned int CListe<MType>::LISLireTaille()const
+{
 	return uiLISTaille;
 }
 
 template <class MType>
-void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
+void CListe<MType>::LISModifierTaille(unsigned int uiTaille)
+{
 	uiLISTaille = uiTaille;
-	pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille*sizeof(MType));
+	pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille * sizeof(MType));
 	if (!pMLISTableau) {
 		throw CException(120, "Exception : Erreur lors de la modification de la taille");
-	}	
+	}
 }
 
 template <class MType>
-MType& CListe<MType>::operator[](const unsigned int uiIndex) {
+MType& CListe<MType>::operator[](unsigned int uiIndex)
+{
 	if (uiIndex > uiLISTaille) {
 		throw CException(130, "Exception : Index non compris dans la liste");
 	}
@@ -74,7 +77,8 @@ MType& CListe<MType>::operator[](const unsigned int uiIndex) {
 }
 
 template <class MType>
-const MType& CListe<MType>::operator[](const unsigned int uiIndex)const {
+const MType& CListe<MType>::operator[](unsigned int uiIndex)const
+{
 	if (uiIndex > uiLISTaille) {
 		throw CException(130, "Exception : Index non compris dans la liste");
 	}
@@ -82,7 +86,8 @@ const MType& CListe<MType>::operator[](const unsigned int uiIndex)const {
 }
 
 template <class MType>
-CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam) {
+CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam)
+{
 	uiLISTaille = LISParam.uiLISTaille;
 	free(pMLISTableau);
 	pMLISTableau = new MType[uiLISTaille];

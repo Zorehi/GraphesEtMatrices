@@ -16,10 +16,12 @@ public:
 	CSommet(const CSommet& SOMArg);
 	~CSommet();
 
-	int SOMLireNumero();
+	int SOMLireNumero()const;
 	void SOMModifierNumero(int iNumero);
 	CListe<CArc*>& SOMLireArrivant();
+	const CListe<CArc*>& SOMLireArrivant()const;
 	CListe<CArc*>& SOMLirePartant();
+	const CListe<CArc*>& SOMLirePartant()const;
 	void SOMAjouterArrivant(CArc* pArcArrivant);
 	void SOMAjouterPartant(CArc* pArcPartant);
 	void SOMSupprimerArrivant(CArc* pArcArrivant);
