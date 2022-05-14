@@ -53,19 +53,9 @@ void CSommet::SOMModifierNumero(int iNumero)
 	iSOMNumero = iNumero;
 }
 
-CListe<CArc*>& CSommet::SOMLireArrivant()
-{
-	return *pLISSOMArrivant;
-}
-
 const CListe<CArc*>& CSommet::SOMLireArrivant()const
 {
 	return *pLISSOMArrivant;
-}
-
-CListe<CArc*>& CSommet::SOMLirePartant()
-{
-	return *pLISSOMPartant;
 }
 
 const CListe<CArc*>& CSommet::SOMLirePartant()const

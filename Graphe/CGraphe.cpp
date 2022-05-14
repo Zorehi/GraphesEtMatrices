@@ -34,17 +34,12 @@ CGraphe::~CGraphe()
 	}
 }
 
-CListe<CSommet*>& CGraphe::GRALireSommet()
-{
-	return LISGRASommet;
-}
-
 const CListe<CSommet*>& CGraphe::GRALireSommet()const
 {
 	return LISGRASommet;
 }
 
-CListe<CArc*>& CGraphe::GRALireArc()
+const CListe<CArc*>& CGraphe::GRALireArc()const
 {
 	return LISGRAArc;
 }
@@ -59,12 +54,6 @@ void CGraphe::GRAAjouterArc(CArc* pArc)
 {
 	LISGRAArc.LISModifierTaille(LISGRAArc.LISLireTaille() + 1);
 	LISGRAArc[LISGRAArc.LISLireTaille() - 1] = pArc;
-}
-
-void CGraphe::GRAAfficherGraphe()
-const CListe<CArc*>& CGraphe::GRALireArc()const
-{
-	return LISGRAArc;
 }
 
 void CGraphe::GRAAfficherGraphe()const
