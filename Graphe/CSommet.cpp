@@ -3,15 +3,15 @@
 CSommet::CSommet()
 {
 	iSOMNumero = 0;
-	pLISSOMArrivant = NULL;
-	pLISSOMPartant = NULL;
+	pLISSOMArrivant = new CListe<CArc*>();
+	pLISSOMPartant = new CListe<CArc*>();
 }
 
 CSommet::CSommet(int iNumero)
 {
 	iSOMNumero = iNumero;
-	pLISSOMArrivant = NULL;
-	pLISSOMPartant = NULL;
+	pLISSOMArrivant = new CListe<CArc*>();
+	pLISSOMPartant = new CListe<CArc*>();
 }
 
 CSommet::CSommet(const CSommet& SOMArg)
@@ -67,7 +67,7 @@ void CSommet::SOMAjouterArrivant(CArc* pArcArrivant)
 {
 	unsigned int uiNewTaille = pLISSOMArrivant->LISLireTaille() + 1;
 	pLISSOMArrivant->LISModifierTaille(uiNewTaille);
-	(*pLISSOMPartant)[uiNewTaille - 1] = pArcArrivant;
+	(*pLISSOMArrivant)[uiNewTaille - 1] = pArcArrivant;
 }
 
 void CSommet::SOMAjouterPartant(CArc* pArcPartant)
