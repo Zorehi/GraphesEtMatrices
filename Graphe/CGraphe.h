@@ -21,7 +21,10 @@ public:
 
 	CListe<CSommet*>& GRALireSommet();
 	CListe<CArc*>& GRALireArc();
+	void GRAAjouterSommet(CSommet* pSommet);
+	void GRAAjouterArc(CArc* pArc);
 	void GRAAfficherGraphe();
 	void GRAAfficherGrapheGraphique();
+
 	CGraphe& operator=(const CGraphe& GRAParam);
 };

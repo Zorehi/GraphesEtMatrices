@@ -44,6 +44,18 @@ CListe<CArc*>& CGraphe::GRALireArc()
 	return LISGRAArc;
 }
 
+void CGraphe::GRAAjouterSommet(CSommet* pSommet)
+{
+	LISGRASommet.LISModifierTaille(LISGRASommet.LISLireTaille() + 1);
+	LISGRASommet[LISGRASommet.LISLireTaille() - 1] = pSommet;
+}
+
+void CGraphe::GRAAjouterArc(CArc* pArc)
+{
+	LISGRAArc.LISModifierTaille(LISGRAArc.LISLireTaille() + 1);
+	LISGRAArc[LISGRAArc.LISLireTaille() - 1] = pArc;
+}
+
 void CGraphe::GRAAfficherGraphe()
 {
 	int iNbSommet = LISGRASommet.LISLireTaille();
