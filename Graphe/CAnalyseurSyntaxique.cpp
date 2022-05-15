@@ -1,148 +1,148 @@
 #include "CAnalyseurSyntaxique.h"
 
 
-CGraphe& CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
+CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 {
 	//Appel de l'analyseur lexical qui retourne la liste des mots dans l'odre contenu dans le fichier
-	CListe<char*> pcListeMots = CAnalyseurLexical::ANLAnalyserFichier(pcCheminFichier);
+	CListe<char*> LISListeMots = CAnalyseurLexical::ANLAnalyserFichier(pcCheminFichier);
 
 	/*
 	//(debug) affiche les mots recuperes
-	for (unsigned int uiBoucle = 0; uiBoucle < (pcListeMots).LISLireTaille(); uiBoucle++) {
-		cout << (pcListeMots)[uiBoucle] << endl;
+	for (unsigned int uiBoucle = 0; uiBoucle < (LISListeMots).LISLireTaille(); uiBoucle++) {
+		cout << (LISListeMots)[uiBoucle] << endl;
 	}
 	*/	
 	
-	int nbSommet = ANSExtraireNbSommet(pcListeMots);
+	int iNbSommet = ANSExtraireNbSommet(LISListeMots);
 	/*
-	cout << nbSommet << endl;
+	cout << iNbSommet << endl;
 	*/
 
-	int nbArc = ANSExtraireNbArc(pcListeMots);
+	int iNbArc = ANSExtraireNbArc(LISListeMots);
 	/*
-	cout << nbArc << endl;
+	cout << iNbArc << endl;
 	*/
 
-	CListe<int> listeSommet = ANSExtraireSommets(pcListeMots, nbSommet);
+	CListe<int> LISListeSommet = ANSExtraireSommets(LISListeMots, iNbSommet);
 	/*
 	//(debug) affiche les numeros des sommets
-	for (unsigned int uiBoucle = 0; uiBoucle < listeSommet.LISLireTaille(); uiBoucle++) {
-		cout << listeSommet[uiBoucle] << endl;
+	for (unsigned int uiBoucle = 0; uiBoucle < LISListeSommet.LISLireTaille(); uiBoucle++) {
+		cout << LISListeSommet[uiBoucle] << endl;
 	}
 	*/
 
-	CListe<int> listeArc = ANSExtraireArcs(pcListeMots, nbArc);
+	CListe<int> LISListeArc = ANSExtraireArcs(LISListeMots, iNbArc);
 	/*
 	//(debug) affiche le depart des arcs et la destination des arcs
-	for (unsigned int uiBoucle = 0; uiBoucle < listeArc.LISLireTaille(); uiBoucle++) {
-		cout << listeArc[uiBoucle] << endl;
+	for (unsigned int uiBoucle = 0; uiBoucle < LISListeArc.LISLireTaille(); uiBoucle++) {
+		cout << LISListeArc[uiBoucle] << endl;
 	}
 	*/
 
 	//Creation du graphe
-	CGraphe* monGraphe = new CGraphe();
+	CGraphe GRAMonGraphe = CGraphe();
 
 	//Creation et ajout des sommets au graphe (sans les arcs)
-	for (unsigned int uiBoucle = 0; uiBoucle < nbSommet; uiBoucle++) {
-		(*monGraphe).GRAAjouterSommet(new CSommet(listeSommet[uiBoucle]));
+	for (unsigned int uiBoucle = 0; uiBoucle < iNbSommet; uiBoucle++) {
+		GRAMonGraphe.GRAAjouterSommet(new CSommet(LISListeSommet[uiBoucle]));
 	}
 
 	//Creation et ajout des arcs dans les Sommets
-	for (unsigned int uiBoucle = 0; uiBoucle < nbArc; uiBoucle++) {
-		CArc* pArc = new CArc(listeArc[uiBoucle * 2 + 1]);
-		for (unsigned int uiBoucleJ = 0; uiBoucleJ < (*monGraphe).GRALireSommet().LISLireTaille(); uiBoucleJ++) {
+	for (unsigned int uiBoucleI = 0; uiBoucleI < iNbArc; uiBoucleI++) {
+		CArc* pArc = new CArc(LISListeArc[uiBoucleI * 2 + 1]);
+		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAMonGraphe.GRALireSommet().LISLireTaille(); uiBoucleJ++) {
 			//Si l'arc doit arriver part de ce sommet -> ajouter l'arc aux partants
-			if ((*monGraphe).GRALireSommet()[uiBoucleJ]->SOMLireNumero() == listeArc[uiBoucle * 2]) {
-				(*monGraphe).GRALireSommet()[uiBoucleJ]->SOMAjouterPartant(pArc);
+			if (GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMLireNumero() == LISListeArc[uiBoucleI * 2]) {
+				GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMAjouterPartant(pArc);
 			}
 			//Si l'arc doit arriver arrive a ce sommet -> ajouter l'arc aux arrivants
-			if ((*monGraphe).GRALireSommet()[uiBoucleJ]->SOMLireNumero() == pArc->ARCLireDestination()) {
-				(*monGraphe).GRALireSommet()[uiBoucleJ]->SOMAjouterArrivant(pArc);
+			if (GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMLireNumero() == pArc->ARCLireDestination()) {
+				GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMAjouterArrivant(pArc);
 			}
 		}
 	}
 
 	//libere la memore de la liste des mots
-	for (unsigned int uiBoucle = 0; uiBoucle < pcListeMots.LISLireTaille(); uiBoucle++) {
-		if (pcListeMots[uiBoucle]) {
-			free(pcListeMots[uiBoucle]);
+	for (unsigned int uiBoucle = 0; uiBoucle < LISListeMots.LISLireTaille(); uiBoucle++) {
+		if (LISListeMots[uiBoucle]) {
+			free(LISListeMots[uiBoucle]);
 		}
 	}
 
 
 	//question est ce qu'il faut creer le grapeh en tant qu'un nouvel objet ?
-	return *monGraphe;
+	return GRAMonGraphe;
 }
 
-int CAnalyseurSyntaxique::ANSExtraireNbSommet(CListe<char*> pcLISListeMot)
+int CAnalyseurSyntaxique::ANSExtraireNbSommet(CListe<char*>& LISListeMot)
 {
-	int nbSommet = -1;
-	for (unsigned int uiBoucle = 0; uiBoucle < pcLISListeMot.LISLireTaille(); uiBoucle++) {
-		if (strcmp(pcLISListeMot[uiBoucle],"NBSommets") == 0) {
-			nbSommet = atoi(pcLISListeMot[uiBoucle + 1]);
+	int iNbSommet = -1;
+	for (unsigned int uiBoucle = 0; uiBoucle < LISListeMot.LISLireTaille(); uiBoucle++) {
+		if (strcmp(LISListeMot[uiBoucle], "NBSommets") == 0) {
+			iNbSommet = atoi(LISListeMot[uiBoucle + 1]);
 		}
 	}
-	if (nbSommet < 1) {
+	if (iNbSommet < 1) {
 		throw CException(999, "Pas de nombre de sommets déclaré dans le fichier texte");
 	}
-	return nbSommet;
+	return iNbSommet;
 }
 
-int CAnalyseurSyntaxique::ANSExtraireNbArc(CListe<char*> pcLISListeMot)
+int CAnalyseurSyntaxique::ANSExtraireNbArc(CListe<char*>& LISListeMot)
 {
-	int nbArc = -1;
-	for (unsigned int uiBoucle = 0; uiBoucle < pcLISListeMot.LISLireTaille(); uiBoucle++) {
-		if (strcmp(pcLISListeMot[uiBoucle], "NBArcs") == 0) {
-			nbArc = atoi(pcLISListeMot[uiBoucle + 1]);
+	int iNbArc = -1;
+	for (unsigned int uiBoucle = 0; uiBoucle < LISListeMot.LISLireTaille(); uiBoucle++) {
+		if (strcmp(LISListeMot[uiBoucle], "NBArcs") == 0) {
+			iNbArc = atoi(LISListeMot[uiBoucle + 1]);
 		}
 	}
-	if (nbArc < 1) {
+	if (iNbArc < 1) {
 		throw CException(998, "Pas de nombre d'arc déclaré dans le fichier texte");
 	}
-	return nbArc;
+	return iNbArc;
 }
 
-CListe<int> CAnalyseurSyntaxique::ANSExtraireSommets(CListe<char*> pcLISListeMot, int iNbSommet)
+CListe<int> CAnalyseurSyntaxique::ANSExtraireSommets(CListe<char*>& LISListeMot, int iNbSommet)
 {
-	CListe<int> listeNumSommet = CListe<int>(0);
+	CListe<int> LISListeNumSommet = CListe<int>(0);
 
-	for (unsigned int uiBoucleI = 0; uiBoucleI < pcLISListeMot.LISLireTaille(); uiBoucleI++) {
-		if (strcmp(pcLISListeMot[uiBoucleI], "Sommets") == 0 && strcmp(pcLISListeMot[uiBoucleI + 1], "[") == 0) {
+	for (unsigned int uiBoucleI = 0; uiBoucleI < LISListeMot.LISLireTaille(); uiBoucleI++) {
+		if (strcmp(LISListeMot[uiBoucleI], "Sommets") == 0 && strcmp(LISListeMot[uiBoucleI + 1], "[") == 0) {
 			int iIndice = uiBoucleI + 2;
 			for (unsigned int uiBoucleJ = 0; uiBoucleJ < iNbSommet * 2; uiBoucleJ += 2) {
-				if (strcmp(pcLISListeMot[iIndice + uiBoucleJ], "Numero") == 0) {
-					listeNumSommet.LISModifierTaille(listeNumSommet.LISLireTaille() + 1);
-					listeNumSommet[listeNumSommet.LISLireTaille() - 1] = atoi(pcLISListeMot[iIndice + uiBoucleJ + 1]);
+				if (strcmp(LISListeMot[iIndice + uiBoucleJ], "Numero") == 0) {
+					LISListeNumSommet.LISModifierTaille(LISListeNumSommet.LISLireTaille() + 1);
+					LISListeNumSommet[LISListeNumSommet.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 1]);
 				}
 			}
 		}
 	}
 
-	if (listeNumSommet.LISLireTaille() != iNbSommet) {
+	if (LISListeNumSommet.LISLireTaille() != iNbSommet) {
 		throw CException(997, "Le nombre de sommet défini est different du nomnbre de sommet annonce");
 	}
 
-	return listeNumSommet;
+	return LISListeNumSommet;
 }
 
-CListe<int> CAnalyseurSyntaxique::ANSExtraireArcs(CListe<char*> pcLISListeMot, int iNbArc)
+CListe<int> CAnalyseurSyntaxique::ANSExtraireArcs(CListe<char*>& LISListeMot, int iNbArc)
 {
-	CListe<int> listeNumArc = CListe<int>(0);
+	CListe<int> LISListeNumArc = CListe<int>(0);
 
-	for (unsigned int uiBoucleI = 0; uiBoucleI < pcLISListeMot.LISLireTaille(); uiBoucleI++) {
-		if (strcmp(pcLISListeMot[uiBoucleI], "Arcs") == 0 && strcmp(pcLISListeMot[uiBoucleI + 1], "[") == 0) {
+	for (unsigned int uiBoucleI = 0; uiBoucleI < LISListeMot.LISLireTaille(); uiBoucleI++) {
+		if (strcmp(LISListeMot[uiBoucleI], "Arcs") == 0 && strcmp(LISListeMot[uiBoucleI + 1], "[") == 0) {
 			int iIndice = uiBoucleI + 2;
 			for (unsigned int uiBoucleJ = 0; uiBoucleJ < iNbArc * 4; uiBoucleJ += 4) {
-				if (strcmp(pcLISListeMot[iIndice + uiBoucleJ], "Debut") == 0) {
-					listeNumArc.LISModifierTaille(listeNumArc.LISLireTaille() + 1);
-					listeNumArc[listeNumArc.LISLireTaille() - 1] = atoi(pcLISListeMot[iIndice + uiBoucleJ + 1]);
+				if (strcmp(LISListeMot[iIndice + uiBoucleJ], "Debut") == 0) {
+					LISListeNumArc.LISModifierTaille(LISListeNumArc.LISLireTaille() + 1);
+					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 1]);
 				}
 				else {
 					throw CException(996, "Arc mal défini (Debut=x, Fin=x)");
 				}
-				if (strcmp(pcLISListeMot[iIndice + uiBoucleJ + 2], "Fin") == 0) {
-					listeNumArc.LISModifierTaille(listeNumArc.LISLireTaille() + 1);
-					listeNumArc[listeNumArc.LISLireTaille() - 1] = atoi(pcLISListeMot[iIndice + uiBoucleJ + 3]);
+				if (strcmp(LISListeMot[iIndice + uiBoucleJ + 2], "Fin") == 0) {
+					LISListeNumArc.LISModifierTaille(LISListeNumArc.LISLireTaille() + 1);
+					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 3]);
 				}
 				else {
 					throw CException(996, "Arc mal défini (Debut=x, Fin=x)");
@@ -151,10 +151,10 @@ CListe<int> CAnalyseurSyntaxique::ANSExtraireArcs(CListe<char*> pcLISListeMot, i
 		}
 	}
 	
-	if (listeNumArc.LISLireTaille() != iNbArc*2) {
+	if (LISListeNumArc.LISLireTaille() != iNbArc*2) {
 		throw CException(997, "Le nombre de sommet défini est different du nomnbre de sommet annonce");
 	}
 
-	return listeNumArc;
+	return LISListeNumArc;
 }
 

@@ -12,13 +12,13 @@ class CAnalyseurSyntaxique
 		 * @param pcCheminFichier 
 		 * @return 
 		*/
-		static CGraphe& ANSAnalyserFichier(const char* pcCheminFichier);
+		static CGraphe ANSAnalyserFichier(const char* pcCheminFichier);
 
-		static int ANSExtraireNbSommet(CListe<char*> pcLISListeMot);
+		static int ANSExtraireNbSommet(CListe<char*>& LISListeMot);
 
-		static int ANSExtraireNbArc(CListe<char*> pcLISListeMot);
+		static int ANSExtraireNbArc(CListe<char*>& LISListeMot);
 
-		static CListe<int> ANSExtraireSommets(CListe<char*> pcLISListeMot, int iNbSommet);
+		static CListe<int> ANSExtraireSommets(CListe<char*>& LISListeMot, int iNbSommet);
 
-		static CListe<int> ANSExtraireArcs(CListe<char*> pcLISListeMot, int iNbArc);
+		static CListe<int> ANSExtraireArcs(CListe<char*>& LISListeMot, int iNbArc);
 };

@@ -1,6 +1,6 @@
 #include "CAnalyseurLexical.h"
 
-CListe<char*>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
+CListe<char*> CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -11,13 +11,13 @@ CListe<char*>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
-	CListe<char*>* pLISCorrespondance = new CListe<char*>(0);
+	CListe<char*> LISCorrespondance(0);
 
 	char* pcChaine = ANLLireProchaineLigne(pFILFichier);
 	//Tant que l'on est pas arrive a la fin du fichier on analyse chaque ligne les unes apres les autres
 	while (pcChaine[0] != '\0') {
 		
-		ANLExtraireInfoLigne(pcChaine, *pLISCorrespondance);
+		ANLExtraireInfoLigne(pcChaine, LISCorrespondance);
 		//cout << pcChaine;
 
 		free(pcChaine);
@@ -27,13 +27,12 @@ CListe<char*>& CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 
 	/*
 	//(debug) affiche les mots recuperes
-	for (unsigned int uiBoucle = 0; uiBoucle < (*pLISCorrespondance).LISLireTaille(); uiBoucle++) {
-		cout << (*pLISCorrespondance)[uiBoucle] << endl;
+	for (unsigned int uiBoucle = 0; uiBoucle < LISCorrespondance.LISLireTaille(); uiBoucle++) {
+		cout << LISCorrespondance[uiBoucle] << endl;
 	}
 	*/
 	
-
-	return *pLISCorrespondance;
+	return LISCorrespondance;
 }
 
 char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
@@ -60,7 +59,7 @@ char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
 
 }
 
-void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& pLISCorrespondance)
+void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& LISCorrespondance)
 {
 	//Compte le nombre d'elements que l'on va avoir (nombre de "=" dans la ligne + 1)
 	unsigned int uiNbElement = 0;
@@ -82,21 +81,21 @@ void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>&
 		pcEnCours += strspn(pcEnCours, " ");
 			
 		//Trouve l'indice du prochain "=, \r\n"
-		size_t iIndex = strcspn(pcEnCours, "=, \r\n");
-		char* pcMot = (char*)malloc((iIndex+1) * sizeof(char));
+		size_t uiIndex = strcspn(pcEnCours, "=, \r\n");
+		char* pcMot = (char*)malloc((uiIndex+1) * sizeof(char));
 		//Verification de l'allocation
 		if (pcMot == NULL) {
 			throw CException(170, "Erreur d'allocation");
 		}
 
-		strncpy_s(pcMot, (iIndex + 1), pcEnCours, iIndex);
-		pcMot[iIndex] = '\0';
+		strncpy_s(pcMot, (uiIndex + 1), pcEnCours, uiIndex);
+		pcMot[uiIndex] = '\0';
 		//cout << "Mot : " << pcMot << endl;
 
 		//Ajout du mot a la liste des mots
-		pLISCorrespondance.LISModifierTaille(pLISCorrespondance.LISLireTaille() + 1);
-		pLISCorrespondance[pLISCorrespondance.LISLireTaille() - 1] = pcMot;
+		LISCorrespondance.LISModifierTaille(LISCorrespondance.LISLireTaille() + 1);
+		LISCorrespondance[LISCorrespondance.LISLireTaille() - 1] = pcMot;
 
-		pcEnCours += iIndex + 1;
+		pcEnCours += uiIndex + 1;
 	}
 }

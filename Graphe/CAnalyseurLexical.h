@@ -16,7 +16,7 @@ class CAnalyseurLexical
 		 * @param pcNomFichier 
 		 * @return 
 		*/
-		static CListe<char*>& ANLAnalyserFichier(const char* pcNomFichier); 
+		static CListe<char*> ANLAnalyserFichier(const char* pcNomFichier);
 
 		/**
 		 * @brief 
@@ -30,6 +30,6 @@ class CAnalyseurLexical
 		 * @param pcLigne 
 		 * @param pLISCorrespondance 
 		*/
-		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& pLISCorrespondance);
+		static void ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& LISCorrespondance);
 
 };
