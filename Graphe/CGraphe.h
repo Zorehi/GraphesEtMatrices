@@ -11,7 +11,6 @@ class CGraphe
 {
 private:
 	CListe<CSommet*> LISGRASommet;
-	CListe<CArc*> LISGRAArc;
 
 public:
 	CGraphe();
@@ -20,9 +19,7 @@ public:
 	~CGraphe();
 
 	const CListe<CSommet*>& GRALireSommet()const;
-	const CListe<CArc*>& GRALireArc()const;
 	void GRAAjouterSommet(CSommet* pSommet);
-	void GRAAjouterArc(CArc* pArc);
 
 	void GRAAfficherGraphe()const;
 	void GRAAfficherGrapheGraphique()const;

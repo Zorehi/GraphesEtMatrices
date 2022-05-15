@@ -24,7 +24,7 @@ CSommet::CSommet(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMArrivant = NULL;
+		pLISSOMArrivant = new CListe<CArc*>();;
 	}
 	if (SOMArg.pLISSOMPartant) {
 		pLISSOMPartant = new CListe<CArc*>(SOMArg.pLISSOMPartant->LISLireTaille());
@@ -33,7 +33,7 @@ CSommet::CSommet(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMPartant = NULL;
+		pLISSOMPartant = new CListe<CArc*>();;
 	}
 }
 
@@ -79,15 +79,11 @@ void CSommet::SOMAjouterPartant(CArc* pArcPartant)
 
 void CSommet::SOMSupprimerArrivant(CArc* pArcArrivant)
 {
-	unsigned int uiNewTaille = pLISSOMArrivant->LISLireTaille() - 1;
-	pLISSOMArrivant->LISModifierTaille(uiNewTaille);
-	(*pLISSOMPartant)[uiNewTaille - 1] = pArcArrivant;
+
 }
 
 void CSommet::SOMSupprimerPartant(CArc* pArcPartant)
 {
-	unsigned int uiNewTaille = pLISSOMPartant->LISLireTaille() - 1;
-	pLISSOMPartant->LISModifierTaille(uiNewTaille);
-	(*pLISSOMPartant)[uiNewTaille - 1] = pArcPartant;
+
 }
 

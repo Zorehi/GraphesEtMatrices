@@ -16,8 +16,8 @@
 template <class MType>
 CListe<MType>::CListe()
 {
-	pMLISTableau = NULL;
 	uiLISTaille = 0;
+	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 }
 
 template <class MType>
@@ -90,7 +90,7 @@ CListe<MType>& CListe<MType>::operator=(const CListe<MType>& LISParam)
 {
 	uiLISTaille = LISParam.uiLISTaille;
 	free(pMLISTableau);
-	pMLISTableau = new MType[uiLISTaille];
+	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++)
 	{

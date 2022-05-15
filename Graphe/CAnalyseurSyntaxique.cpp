@@ -69,7 +69,6 @@ CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 		}
 	}
 
-
 	//question est ce qu'il faut creer le grapeh en tant qu'un nouvel objet ?
 	return GRAMonGraphe;
 }

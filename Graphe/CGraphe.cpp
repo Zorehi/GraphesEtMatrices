@@ -5,19 +5,19 @@ using namespace std;
 CGraphe::CGraphe()
 {
 	LISGRASommet = CListe<CSommet*>();
-	LISGRAArc = CListe<CArc*>();
 }
 
 CGraphe::CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc)
 {
 	LISGRASommet = CListe<CSommet*>(iNbSommet);
-	LISGRAArc = CListe<CArc*>(iNbArc);
 }
 
 CGraphe::CGraphe(const CGraphe& GRAParam)
 {
-	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet);
-	LISGRAArc = CListe<CArc*>(GRAParam.LISGRAArc);
+	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
+	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
+		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
+	}
 }
 
 CGraphe::~CGraphe()
@@ -27,21 +27,11 @@ CGraphe::~CGraphe()
 	{
 		delete LISGRASommet[iBoucle];
 	}
-	int iNbArcs = LISGRAArc.LISLireTaille();
-	for (int iBoucle = 0; iBoucle < iNbArcs; iBoucle++)
-	{
-		delete LISGRAArc[iBoucle];
-	}
 }
 
 const CListe<CSommet*>& CGraphe::GRALireSommet()const
 {
 	return LISGRASommet;
-}
-
-const CListe<CArc*>& CGraphe::GRALireArc()const
-{
-	return LISGRAArc;
 }
 
 void CGraphe::GRAAjouterSommet(CSommet* pSommet)
@@ -50,18 +40,13 @@ void CGraphe::GRAAjouterSommet(CSommet* pSommet)
 	LISGRASommet[LISGRASommet.LISLireTaille() - 1] = pSommet;
 }
 
-void CGraphe::GRAAjouterArc(CArc* pArc)
-{
-	LISGRAArc.LISModifierTaille(LISGRAArc.LISLireTaille() + 1);
-	LISGRAArc[LISGRAArc.LISLireTaille() - 1] = pArc;
-}
 
 void CGraphe::GRAAfficherGraphe()const
 {
 	int iNbSommet = LISGRASommet.LISLireTaille();
 	for (int iBoucleI = 0; iBoucleI < iNbSommet; iBoucleI++)
 	{
-		cout << "Sommet " << iBoucleI << " :\n";
+		cout << "Sommet " << LISGRASommet[iBoucleI]->SOMLireNumero() << " :\n";
 
 		CListe<CArc*> LISArcArrivant = LISGRASommet[iBoucleI]->SOMLireArrivant();
 		int iNbArcArrivant = LISArcArrivant.LISLireTaille();
@@ -71,7 +56,13 @@ void CGraphe::GRAAfficherGraphe()const
 
 			for (int iBoucleJ = 0; iBoucleJ < iNbArcArrivant; iBoucleJ++)
 			{
-				cout << "\t\tArc " << iBoucleJ << " : Provenant : " << LISArcArrivant[iBoucleJ]->ARCLireDestination() << "\n";
+				for (int iBoucleW = 0; iBoucleW < iNbSommet; iBoucleW++) {
+					for (int iBoucleX = 0; iBoucleX < LISGRASommet[iBoucleW]->SOMLirePartant().LISLireTaille(); iBoucleX++) {
+						if (LISGRASommet[iBoucleW]->SOMLirePartant()[iBoucleX] == LISArcArrivant[iBoucleJ]) {
+							cout << "\t\tArc " << iBoucleJ << " : Provenant : " << LISGRASommet[iBoucleW]->SOMLireNumero() << "\n";
+						}
+					}
+				}
 			}
 		}
 		cout << "\n";
@@ -98,8 +89,10 @@ void CGraphe::GRAAfficherGrapheGraphique()const
 
 CGraphe& CGraphe::operator=(const CGraphe& GRAParam)
 {
-	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet);
-	LISGRAArc = CListe<CArc*>(GRAParam.LISGRAArc);
+	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
+	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
+		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
+	}
 
 	return *this;
 }
