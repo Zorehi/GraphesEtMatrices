@@ -74,6 +74,13 @@ public:
 	const CListe<CArc*>& SOMLireArrivant()const;
 
 	/**
+	 * @brief Getter pour la liste des Arcs arrivant
+	 *
+	 * @return const CListe<CArc*>& Objet CListe contenant les pointeurs vers les arcs arrivant
+	 */
+	CListe<CArc*>& SOMLireArrivant();
+
+	/**
 	 * @brief Getter pour la liste des Arcs partant
 	 * 
 	 * @return CListe<CArc*>& Objet CListe contenant les pointeurs vers les arcs partant

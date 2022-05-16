@@ -34,13 +34,13 @@ public:
 	 */
 	CGraphe();
 
+	CGraphe(unsigned int uiType);
+	
 	/**
 	 * @brief Constructeur de recopie : Creer un duplicata d'un Graphe deja cree
 	 *
 	 * @param GRAParam Graphe a dupliquer
 	 */
-	CGraphe(unsigned int uiType);
-	CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc);
 	CGraphe(const CGraphe& GRAParam);
 
 	/**
@@ -56,13 +56,13 @@ public:
 	 */
 	const CListe<CSommet*>& GRALireSommet()const;
 
+	const unsigned int GRALireType()const;
+
 	/**
 	 * @brief Methode pour ajouter un sommet au graphe
 	 * 
 	 * @param pSommet Pointeur sur l'objet sommet à ajouter
 	 */
-	const unsigned int GRALireType()const;
-
 	void GRAAjouterSommet(CSommet* pSommet);
 	void GRAAjouterArc(int iDebut, int iDestination);
 

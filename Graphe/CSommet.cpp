@@ -77,6 +77,10 @@ const CListe<CArc*>& CSommet::SOMLireArrivant()const
 	return *pLISSOMArrivant;
 }
 
+CListe<CArc*>& CSommet::SOMLireArrivant()
+{
+	return *pLISSOMArrivant;
+}
 
 CListe<CArc*>& CSommet::SOMLirePartant()
 {
