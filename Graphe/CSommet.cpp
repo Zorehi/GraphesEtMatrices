@@ -51,6 +51,12 @@ int CSommet::SOMLireNumero()const
 void CSommet::SOMModifierNumero(int iNumero)
 {
 	iSOMNumero = iNumero;
+
+	//Modifier la destination de tout les arcs arrivant dans ce sommet
+	for (unsigned int uiBoucle = 0; uiBoucle < pLISSOMArrivant->LISLireTaille(); uiBoucle++) {
+		(*pLISSOMArrivant)[uiBoucle]->ARCModifierDestination(iNumero);
+	}
+
 }
 
 const CListe<CArc*>& CSommet::SOMLireArrivant()const
@@ -68,6 +74,8 @@ void CSommet::SOMAjouterArrivant(CArc* pArcArrivant)
 	unsigned int uiNewTaille = pLISSOMArrivant->LISLireTaille() + 1;
 	pLISSOMArrivant->LISModifierTaille(uiNewTaille);
 	(*pLISSOMArrivant)[uiNewTaille - 1] = pArcArrivant;
+
+
 }
 
 void CSommet::SOMAjouterPartant(CArc* pArcPartant)
