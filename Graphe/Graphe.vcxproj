@@ -151,7 +151,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="Graphe.cpp" />
   </ItemGroup>
@@ -163,7 +162,6 @@
     <ClInclude Include="CGraphe.h" />
     <ClInclude Include="CGrapheOperation.h" />
     <ClInclude Include="CListe.h" />
-    <ClInclude Include="CParseur.h" />
     <ClInclude Include="CSommet.h" />
   </ItemGroup>
   <ItemGroup>
