@@ -74,6 +74,13 @@ public:
 	void LISModifierTaille(unsigned int uiTaille);
 
 	/**
+	 * @brief Supprimer l'element d'indice uiIndice dans la liste et modifie la taille de CListe
+	 * 
+	 * @param uiIndice Indice de l'element a supprimer
+	*/
+	void LISSupprimerElement(unsigned int uiIndice);
+
+	/**
 	 * @brief Surcharge de l'operateur d'indice du tableau
 	 * 
 	 * @param uiIndex Indice de l'element souhaite dans la liste

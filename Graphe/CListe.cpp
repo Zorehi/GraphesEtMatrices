@@ -68,6 +68,19 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille)
 }
 
 template <class MType>
+void CListe<MType>::LISSupprimerElement(unsigned int uiIndice)
+{
+	if (uiIndice > uiLISTaille) {
+		throw CException(130, "Exception : Index non compris dans la liste");
+	}
+	for (unsigned int iBoucle = uiIndice; iBoucle < uiLISTaille - 1; iBoucle++)
+	{
+		pMLISTableau[iBoucle] = pMLISTableau[iBoucle + 1];
+	}
+	LISModifierTaille(uiLISTaille - 1);
+}
+
+template <class MType>
 MType& CListe<MType>::operator[](unsigned int uiIndex)
 {
 	if (uiIndex > uiLISTaille) {
