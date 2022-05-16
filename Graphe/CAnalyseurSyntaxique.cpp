@@ -1,5 +1,18 @@
-#include "CAnalyseurSyntaxique.h"
+/**
+ * @file CAnalyseurSyntaxique.cpp
+ * @author LJ BV JM
+ * @brief Contient la definition des methodes de la classe CAnalyseurSyntaxique
+ * CAnalyseurSyntaxique permet de creer un Graphe avec les donnees
+ * que CAnalyseurLexicale lui donne
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
+#include "CAnalyseurSyntaxique.h"
 
 CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 {
@@ -72,7 +85,7 @@ int CAnalyseurSyntaxique::ANSExtraireNbSommet(CListe<char*>& LISListeMot)
 		}
 	}
 	if (iNbSommet < 1) {
-		throw CException(999, "Pas de nombre de sommets déclaré dans le fichier texte");
+		throw CException(999, "Pas de nombre de sommets dï¿½clarï¿½ dans le fichier texte");
 	}
 	return iNbSommet;
 }
@@ -86,7 +99,7 @@ int CAnalyseurSyntaxique::ANSExtraireNbArc(CListe<char*>& LISListeMot)
 		}
 	}
 	if (iNbArc < 1) {
-		throw CException(998, "Pas de nombre d'arc déclaré dans le fichier texte");
+		throw CException(998, "Pas de nombre d'arc dï¿½clarï¿½ dans le fichier texte");
 	}
 	return iNbArc;
 }
@@ -108,7 +121,7 @@ CListe<int> CAnalyseurSyntaxique::ANSExtraireSommets(CListe<char*>& LISListeMot,
 	}
 
 	if (LISListeNumSommet.LISLireTaille() != iNbSommet) {
-		throw CException(997, "Le nombre de sommet défini est different du nomnbre de sommet annonce");
+		throw CException(997, "Le nombre de sommet dï¿½fini est different du nomnbre de sommet annonce");
 	}
 
 	return LISListeNumSommet;
@@ -127,21 +140,21 @@ CListe<int> CAnalyseurSyntaxique::ANSExtraireArcs(CListe<char*>& LISListeMot, in
 					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 1]);
 				}
 				else {
-					throw CException(996, "Arc mal défini (Debut=x, Fin=x)");
+					throw CException(996, "Arc mal dï¿½fini (Debut=x, Fin=x)");
 				}
 				if (strcmp(LISListeMot[iIndice + uiBoucleJ + 2], "Fin") == 0) {
 					LISListeNumArc.LISModifierTaille(LISListeNumArc.LISLireTaille() + 1);
 					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 3]);
 				}
 				else {
-					throw CException(996, "Arc mal défini (Debut=x, Fin=x)");
+					throw CException(996, "Arc mal dï¿½fini (Debut=x, Fin=x)");
 				}
 			}
 		}
 	}
 	
 	if (LISListeNumArc.LISLireTaille() != iNbArc*2) {
-		throw CException(997, "Le nombre de sommet défini est different du nomnbre de sommet annonce");
+		throw CException(997, "Le nombre de sommet dï¿½fini est different du nomnbre de sommet annonce");
 	}
 
 	return LISListeNumArc;

@@ -16,7 +16,6 @@
 #include <stdio.h>
 
 #include "CException.h"
-#include "CParseur.h"
 #include "CGraphe.h"
 #include "CAnalyseurLexical.h"
 #include "CAnalyseurSyntaxique.h"
@@ -30,7 +29,7 @@ int main(int iArgc, char* ppcArgv[])
 		CGraphe monGraphe;
 		CGraphe newGraphe;
 
-		// Lecture du fichier passé en parametre, creation du graphe, et affichage de ce graphe
+		// Lecture du fichier passe en parametre, creation du graphe, et affichage de ce graphe
 		try
 		{
 			monGraphe = CAnalyseurSyntaxique::ANSAnalyserFichier(ppcArgv[1]);
@@ -51,7 +50,7 @@ int main(int iArgc, char* ppcArgv[])
 		{
 			newGraphe = CGrapheOperation::GROInverserArc(monGraphe);
 
-			cout << "Graphe avec arc inversés" << " =\n";
+			cout << "Graphe avec arc inverses" << " =\n";
 			newGraphe.GRAAfficherGraphe();
 			cout << "\n";
 		}

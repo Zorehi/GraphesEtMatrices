@@ -1,3 +1,16 @@
+/**
+ * @file CAnalyseurLexical.cpp
+ * @author LJ BV JM
+ * @brief Contient la definition des methodes de la classe CAnalyseurLexical
+ * CAnalyseurLexical permet de 
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "CAnalyseurLexical.h"
 
 CListe<char*> CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)

@@ -1,3 +1,17 @@
+/**
+ * @file CGraphe.cpp
+ * @author LJ BV JM
+ * @brief Contient la definition des methodes de la classe CGraphe
+ * CGraphe permet de creer et gerer un graphe contenant
+ * des sommets relier par des arcs
+ *
+ * @version 0.1
+ * @date 2022-05-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include "CGraphe.h"
 
 using namespace std;
@@ -14,11 +28,6 @@ CGraphe::CGraphe(unsigned int uiType)
 	LISGRASommet = CListe<CSommet*>();
 }
 
-CGraphe::CGraphe(int iNbSommet, int* piSommet, int iNbArc, int** ppiArc)
-{
-	LISGRASommet = CListe<CSommet*>(iNbSommet);
-}
-
 CGraphe::CGraphe(const CGraphe& GRAParam)
 {
 	uiType = GRAParam.GRALireType();
@@ -31,9 +40,14 @@ CGraphe::CGraphe(const CGraphe& GRAParam)
 CGraphe::~CGraphe()
 {
 	int iNbSommets = LISGRASommet.LISLireTaille();
-	for (int iBoucle = 0; iBoucle < iNbSommets; iBoucle++)
+	for (int iBoucleI = 0; iBoucleI < iNbSommets; iBoucleI++)
 	{
-		delete LISGRASommet[iBoucle];
+		int NbArcPartant = LISGRASommet[iBoucleI]->SOMLirePartant().LISLireTaille();
+		for (int iBoucleJ = 0; iBoucleJ < NbArcPartant; iBoucleJ++)
+		{
+			delete LISGRASommet[iBoucleI]->SOMLirePartant()[iBoucleJ];
+		}
+		delete LISGRASommet[iBoucleI];
 	}
 }
 
@@ -264,11 +278,6 @@ void CGraphe::GRAAfficherGraphe()const
 		}
 		cout << "\n";
 	}
-}
-
-void CGraphe::GRAAfficherGrapheGraphique()const
-{
-
 }
 
 CGraphe& CGraphe::operator=(const CGraphe& GRAParam)
