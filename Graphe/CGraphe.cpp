@@ -140,6 +140,7 @@ void CGraphe::GRASupprimerSommet(CSommet* pSommet)
 
 void CGraphe::GRASupprimerSommet(int iNumSommet)
 {
+	/*
 	//Recherche le sommet
 	unsigned int uiNbSommet = LISGRASommet.LISLireTaille();
 	for (unsigned int uiBoucle = 0; uiBoucle < uiNbSommet; uiBoucle++) {
@@ -201,7 +202,9 @@ void CGraphe::GRASupprimerSommet(int iNumSommet)
 			delete SOMSommet->SOMLirePartant();
 			delete SOMSommet->SOMLireArrivant();
 		}
+		
 	}
+	*/
 }
 
 void CGraphe::GRAModifierSommet(int iOldNum, int iNewNum)
