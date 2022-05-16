@@ -1,6 +1,19 @@
+/**
+ * @file CAnalyseurLexical.cpp
+ * @author LJ BV JM
+ * @brief Contient la definition des methodes de la classe CAnalyseurLexical
+ * CAnalyseurLexical permet de 
+ * 
+ * @version 0.1
+ * @date 2022-05-02
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "CAnalyseurLexical.h"
 
-void CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
+CListe<char*> CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 {
 	//Ouverture du fichier
 	FILE* pFILFichier;
@@ -11,19 +24,28 @@ void CAnalyseurLexical::ANLAnalyserFichier(const char* pcNomFichier)
 		throw CException(180, "Exception : Erreur lors de l'ouverture du fichier");
 	}
 
+	CListe<char*> LISCorrespondance(0);
+
 	char* pcChaine = ANLLireProchaineLigne(pFILFichier);
 	//Tant que l'on est pas arrive a la fin du fichier on analyse chaque ligne les unes apres les autres
 	while (pcChaine[0] != '\0') {
 		
-		char** ppcTest = ANLExtraireInfoLigne(pcChaine);
-		cout << pcChaine;
+		ANLExtraireInfoLigne(pcChaine, LISCorrespondance);
+		//cout << pcChaine;
 
 		free(pcChaine);
 		pcChaine = ANLLireProchaineLigne(pFILFichier);
 	}
 	free(pcChaine);
 
-
+	/*
+	//(debug) affiche les mots recuperes
+	for (unsigned int uiBoucle = 0; uiBoucle < LISCorrespondance.LISLireTaille(); uiBoucle++) {
+		cout << LISCorrespondance[uiBoucle] << endl;
+	}
+	*/
+	
+	return LISCorrespondance;
 }
 
 char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
@@ -50,7 +72,7 @@ char* CAnalyseurLexical::ANLLireProchaineLigne(FILE* pFILFichier)
 
 }
 
-char** CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne)
+void CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne, CListe<char*>& LISCorrespondance)
 {
 	//Compte le nombre d'elements que l'on va avoir (nombre de "=" dans la ligne + 1)
 	unsigned int uiNbElement = 0;
@@ -65,9 +87,28 @@ char** CAnalyseurLexical::ANLExtraireInfoLigne(const char* pcLigne)
 	else {
 		uiNbElement = uiNbElement * 2;
 	}
+	char* pcEnCours = (char*)pcLigne;
+	//Separe les infos de la ligne
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbElement; uiBoucle++) {
+		//Enleve les espaces au debut qui pourrait etre avant le mot
+		pcEnCours += strspn(pcEnCours, " ");
+			
+		//Trouve l'indice du prochain "=, \r\n"
+		size_t uiIndex = strcspn(pcEnCours, "=, \r\n");
+		char* pcMot = (char*)malloc((uiIndex+1) * sizeof(char));
+		//Verification de l'allocation
+		if (pcMot == NULL) {
+			throw CException(170, "Erreur d'allocation");
+		}
 
-	cout << "nb Element : " << uiNbElement << "\n";
+		strncpy_s(pcMot, (uiIndex + 1), pcEnCours, uiIndex);
+		pcMot[uiIndex] = '\0';
+		//cout << "Mot : " << pcMot << endl;
 
+		//Ajout du mot a la liste des mots
+		LISCorrespondance.LISModifierTaille(LISCorrespondance.LISLireTaille() + 1);
+		LISCorrespondance[LISCorrespondance.LISLireTaille() - 1] = pcMot;
 
-	return nullptr;
+		pcEnCours += uiIndex + 1;
+	}
 }
