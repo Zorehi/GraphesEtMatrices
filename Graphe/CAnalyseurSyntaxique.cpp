@@ -47,22 +47,12 @@ CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 		GRAMonGraphe.GRAAjouterSommet(new CSommet(LISListeSommet[uiBoucle]));
 	}
 
-	//Creation et ajout des arcs dans les Sommets
+	//Ajout des arcs dans les Sommets
 	for (unsigned int uiBoucleI = 0; uiBoucleI < iNbArc; uiBoucleI++) {
-		CArc* pArc = new CArc(LISListeArc[uiBoucleI * 2 + 1]);
-		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAMonGraphe.GRALireSommet().LISLireTaille(); uiBoucleJ++) {
-			//Si l'arc doit arriver part de ce sommet -> ajouter l'arc aux partants
-			if (GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMLireNumero() == LISListeArc[uiBoucleI * 2]) {
-				GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMAjouterPartant(pArc);
-			}
-			//Si l'arc doit arriver arrive a ce sommet -> ajouter l'arc aux arrivants
-			if (GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMLireNumero() == pArc->ARCLireDestination()) {
-				GRAMonGraphe.GRALireSommet()[uiBoucleJ]->SOMAjouterArrivant(pArc);
-			}
-		}
+		GRAMonGraphe.GRAAjouterArc(LISListeArc[uiBoucleI * 2], LISListeArc[uiBoucleI * 2 + 1]);
 	}
 
-	//libere la memore de la liste des mots
+	//Libere la memore de la liste des mots
 	for (unsigned int uiBoucle = 0; uiBoucle < LISListeMots.LISLireTaille(); uiBoucle++) {
 		if (LISListeMots[uiBoucle]) {
 			free(LISListeMots[uiBoucle]);
