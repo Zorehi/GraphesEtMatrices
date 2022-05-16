@@ -61,7 +61,13 @@ template <class MType>
 void CListe<MType>::LISModifierTaille(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
-	pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille * sizeof(MType));
+	if (pMLISTableau) {
+		pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille * sizeof(MType));
+	}
+	else {
+		pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+	}
+	
 	if (!pMLISTableau) {
 		throw CException(120, "Exception : Erreur lors de la modification de la taille");
 	}
