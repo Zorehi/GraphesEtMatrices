@@ -1,3 +1,16 @@
+/**
+ * @file CSommet.cpp
+ * @author LJ BV JM
+ * @brief Contient la definition des methodes de la classe CSommet
+ * CSommet permet de gerer un sommet d'un graphe
+ *
+ * @version 0.1
+ * @date 2022-05-02
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include "CSommet.h"
 
 CSommet::CSommet()
@@ -56,6 +69,12 @@ void CSommet::SOMModifierNumero(int iNumero)
 const CListe<CArc*>& CSommet::SOMLireArrivant()const
 {
 	return *pLISSOMArrivant;
+}
+
+
+CListe<CArc*>& CSommet::SOMLirePartant()
+{
+	return *pLISSOMPartant;
 }
 
 const CListe<CArc*>& CSommet::SOMLirePartant()const
