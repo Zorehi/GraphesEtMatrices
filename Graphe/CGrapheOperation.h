@@ -15,6 +15,7 @@
 
 #include "CGraphe.h"
 #include "CArc.h"
+#include "CSommet.h"
 
 class CGrapheOperation
 {
