@@ -81,18 +81,18 @@ public:
 	CListe<CArc*>& SOMLireArrivant();
 
 	/**
+	 * @brief Getter pour la liste des Arcs partant en lecture uniquement
+	 *
+	 * @return const CListe<CArc*>& Objet CListe contenant les pointeurs vers les arcs partant
+	 */
+	const CListe<CArc*>& SOMLirePartant()const;
+
+	/**
 	 * @brief Getter pour la liste des Arcs partant
 	 * 
 	 * @return CListe<CArc*>& Objet CListe contenant les pointeurs vers les arcs partant
 	*/
 	CListe<CArc*>& SOMLirePartant();
-
-	/**
-	 * @brief Getter pour la liste des Arcs partant en lecture uniquement
-	 * 
-	 * @return const CListe<CArc*>& Objet CListe contenant les pointeurs vers les arcs partant
-	 */
-	const CListe<CArc*>& SOMLirePartant()const;
 
 	/**
 	 * @brief Methode pour ajouter un Arc arrivant
@@ -108,19 +108,20 @@ public:
 	 */
 	void SOMAjouterPartant(CArc* pArcPartant);
 	
+	
 	/**
 	 * @brief Methode pour supprimer un Arc arrivant
 	 * 
 	 * @param pArcArrivant Arc a supprimer
 	 */
-	void SOMSupprimerArrivant(CArc* pArcArrivant);
+	//void SOMSupprimerArrivant(CArc* pArcArrivant);
 
 	/**
 	 * @brief Methode pour supprimer un Arc partant
 	 * 
 	 * @param pArcPartant Arc a supprimer
 	 */
-	void SOMSupprimerPartant(CArc* pArcPartant);
+	//void SOMSupprimerPartant(CArc* pArcPartant);
 
 	/**
 	 * @brief 
