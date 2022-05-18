@@ -15,25 +15,36 @@
 
 CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 {
-	CGraphe GrapheNew; //graphnew doit avoir tout les sommets de graag mais vides
+	CGraphe* GrapheNew = new CGraphe(); //graphnew doit avoir tout les sommets de graag mais vides
 	unsigned int uiNombreSommet = GRAArg.GRALireSommet().LISLireTaille();
 
 	for (int iBoucle1 = 0; iBoucle1 < uiNombreSommet; iBoucle1++) { //pour chaque Sommet dans GRAArg
-		unsigned int uiNombreArcPartant = GRAArg.GRALireSommet()[iBoucle1]->SOMLirePartant().LISLireTaille();
+		GrapheNew->GRAAjouterSommet(GRAArg.GRALireSommet()[iBoucle1]); // on ajoute le sommet de GRAArg sur GrapheNew
+	}
+	for (int iBoucle2 = 0; iBoucle2 < uiNombreSommet; iBoucle2++) { //pour chaque Sommet dans GRAArg
+		unsigned int uiNombreArcPartant = GRAArg.GRALireSommet()[iBoucle2]->SOMLirePartant().LISLireTaille();
 
-		for (int iBoucle2 = 0; iBoucle2 < uiNombreArcPartant; iBoucle2++) { // pour chaque arcPartant dans chaque sommet dans GRAArg
-			// creation arc qui part de la destination où il arrivait dans GRAArg 
-			int DestiNewDepart = GRAArg.GRALireSommet()[iBoucle1]->SOMLirePartant()[iBoucle2]->ARCLireDestination(); // numéro du sommet de l'arc
-			CArc CurentArcNew(DestiNewDepart); //Arc ou l'on se situe 
-
-			// et qui arrive au sommet d'ou il part dans GRAArg
-			CurentArcNew.ARCModifierDestination(GRAArg.GRALireSommet()[iBoucle1]->SOMLireNumero());
-
+		for (int iBoucle3 = 0; iBoucle3 < uiNombreArcPartant; iBoucle3++) { // pour chaque arcPartant dans chaque sommet dans GRAArg
+			CArc* ArcNew = new CArc(GRAArg.GRALireSommet()[iBoucle2]->SOMLireNumero()); // creation d'un arc avec destination sur le sommet ou l'on est
 			// ajout de l'arc au sommet d'ou il part 
-			GrapheNew.GRALireSommet()[DestiNewDepart]->SOMAjouterPartant(&CurentArcNew);
+			int DestiNewDepart = GRAArg.GRALireSommet()[iBoucle2]->SOMLirePartant()[iBoucle3]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
 
+
+			// on cherche l'indice dans la liste des sommets, du sommet d'ou va partir le nouveau arc
+			bool trouve = false;
+			int iBoucle4 = 0;
+			while ((iBoucle4 < uiNombreSommet) && (trouve == false)) {
+				int iNumTemp = GRAArg.GRALireSommet()[iBoucle4]->SOMLireNumero();
+				if (iNumTemp == DestiNewDepart){
+					trouve = true;
+				}
+				else {
+					iBoucle4++;
+				}
+
+			}
+			GrapheNew->GRALireSommet()[iBoucle4]->SOMAjouterPartant(ArcNew);
 		}
 	}
-
-	return GrapheNew;
+	return *GrapheNew;
 }

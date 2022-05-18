@@ -44,7 +44,7 @@ int main(int iArgc, char* ppcArgv[])
 			cout << EXCException.EXCLireMsg() << "\n\n";
 		}
 
-		/*
+		
 		// Creation d'un nouveau graphe en inversant tout les arc du premier graphe, et affichage de ce graphe
 		try
 		{
@@ -59,6 +59,6 @@ int main(int iArgc, char* ppcArgv[])
 			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
 			cout << EXCException.EXCLireMsg() << "\n\n";
 		}
-		*/	
+			
 	}
 }
