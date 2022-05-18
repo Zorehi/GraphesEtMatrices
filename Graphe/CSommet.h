@@ -122,4 +122,11 @@ public:
 	 */
 	void SOMSupprimerPartant(CArc* pArcPartant);
 
+	/**
+	 * @brief 
+	 * @param SOMArg 
+	 * @return 
+	*/
+	CSommet& operator=(const CSommet& SOMArg);
+
 };
