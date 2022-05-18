@@ -34,12 +34,15 @@ CGraphe::CGraphe(const CGraphe& GRAParam)
 	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
 	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
 		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
-		/*
-		//Recopie des arcs Partant
+	}
+	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
+		//Creer les arcs
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant().LISLireTaille(); uiBoucleJ++) {
-			LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ] = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]);
+			GRAAjouterArc(LISGRASommet[uiBoucle]->SOMLireNumero(), GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]->ARCLireDestination());
+			//LISGRASommet[uiBoucle]. = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]);
 		}
-		//Recopie des arcs Arrivant
+		/*
+		//Creer les arcs Arrivant
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAParam.LISGRASommet[uiBoucle]->SOMLireArrivant().LISLireTaille(); uiBoucleJ++) {
 			LISGRASommet[uiBoucle]->SOMLireArrivant()[uiBoucleJ] = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLireArrivant()[uiBoucleJ]);
 		}
@@ -297,16 +300,19 @@ void CGraphe::GRAAfficherGraphe()const
 
 CGraphe& CGraphe::operator=(const CGraphe& GRAParam)
 {
+	uiType = GRAParam.GRALireType();
 	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
 	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
 		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
-
-		/*
-		//Recopie des arcs Partant
+	}
+	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
+		//Creer les arcs
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant().LISLireTaille(); uiBoucleJ++) {
-			LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ] = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]);
+			GRAAjouterArc(LISGRASommet[uiBoucle]->SOMLireNumero(), GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]->ARCLireDestination());
+			//LISGRASommet[uiBoucle]. = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]);
 		}
-		//Recopie des arcs Arrivant
+		/*
+		//Creer les arcs Arrivant
 		for (unsigned int uiBoucleJ = 0; uiBoucleJ < GRAParam.LISGRASommet[uiBoucle]->SOMLireArrivant().LISLireTaille(); uiBoucleJ++) {
 			LISGRASommet[uiBoucle]->SOMLireArrivant()[uiBoucleJ] = new CArc(*GRAParam.LISGRASommet[uiBoucle]->SOMLireArrivant()[uiBoucleJ]);
 		}

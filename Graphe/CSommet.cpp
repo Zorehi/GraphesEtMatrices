@@ -30,6 +30,9 @@ CSommet::CSommet(int iNumero)
 CSommet::CSommet(const CSommet& SOMArg)
 {
 	iSOMNumero = SOMArg.iSOMNumero;
+	pLISSOMArrivant = new CListe<CArc*>();
+	pLISSOMPartant = new CListe<CArc*>();
+	/*
 	if (SOMArg.pLISSOMArrivant != NULL) {
 		pLISSOMArrivant = new CListe<CArc*>(SOMArg.pLISSOMArrivant->LISLireTaille());
 		for (int iBoucleArriv = 0; iBoucleArriv < SOMArg.pLISSOMArrivant->LISLireTaille(); iBoucleArriv++) {
@@ -37,7 +40,7 @@ CSommet::CSommet(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMArrivant = new CListe<CArc*>();;
+		pLISSOMArrivant = new CListe<CArc*>();
 	}
 	if (SOMArg.pLISSOMPartant) {
 		pLISSOMPartant = new CListe<CArc*>(SOMArg.pLISSOMPartant->LISLireTaille());
@@ -46,8 +49,9 @@ CSommet::CSommet(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMPartant = new CListe<CArc*>();;
+		pLISSOMPartant = new CListe<CArc*>();
 	}
+	*/
 }
 
 CSommet::~CSommet()
@@ -121,6 +125,9 @@ void CSommet::SOMSupprimerPartant(CArc* pArcPartant)
 CSommet& CSommet::operator=(const CSommet& SOMArg)
 {
 	iSOMNumero = SOMArg.iSOMNumero;
+	pLISSOMArrivant = new CListe<CArc*>();
+	pLISSOMPartant = new CListe<CArc*>();
+	/*
 	if (SOMArg.pLISSOMArrivant != NULL) {
 		pLISSOMArrivant = new CListe<CArc*>(SOMArg.pLISSOMArrivant->LISLireTaille());
 		for (int iBoucleArriv = 0; iBoucleArriv < SOMArg.pLISSOMArrivant->LISLireTaille(); iBoucleArriv++) {
@@ -128,7 +135,7 @@ CSommet& CSommet::operator=(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMArrivant = new CListe<CArc*>();;
+		pLISSOMArrivant = new CListe<CArc*>();
 	}
 	if (SOMArg.pLISSOMPartant) {
 		pLISSOMPartant = new CListe<CArc*>(SOMArg.pLISSOMPartant->LISLireTaille());
@@ -137,8 +144,10 @@ CSommet& CSommet::operator=(const CSommet& SOMArg)
 		}
 	}
 	else {
-		pLISSOMPartant = new CListe<CArc*>();;
+		pLISSOMPartant = new CListe<CArc*>();
 	}
+	*/
+
 	return *this;
 }
 
