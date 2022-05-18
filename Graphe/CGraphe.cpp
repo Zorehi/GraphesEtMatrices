@@ -61,7 +61,7 @@ CGraphe::~CGraphe()
 		{
 			if (LISGRASommet[iBoucleI]->SOMLirePartant()[iBoucleJ]) {
 
-				//delete LISGRASommet[iBoucleI]->SOMLirePartant()[iBoucleJ];
+				delete LISGRASommet[iBoucleI]->SOMLirePartant()[iBoucleJ];
 			}
 		}
 		
