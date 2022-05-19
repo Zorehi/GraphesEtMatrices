@@ -112,6 +112,7 @@ void CSommet::SOMAjouterPartant(CArc* pArcPartant)
 	(*pLISSOMPartant)[uiNewTaille - 1] = pArcPartant;
 }
 
+/*
 void CSommet::SOMSupprimerArrivant(CArc* pArcArrivant)
 {
 
@@ -121,6 +122,7 @@ void CSommet::SOMSupprimerPartant(CArc* pArcPartant)
 {
 
 }
+*/
 
 CSommet& CSommet::operator=(const CSommet& SOMArg)
 {
