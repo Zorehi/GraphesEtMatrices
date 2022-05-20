@@ -62,7 +62,13 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille)
 {
 	uiLISTaille = uiTaille;
 	if (pMLISTableau) {
-		pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille * sizeof(MType));
+		if (uiLISTaille == 0) {
+			free(pMLISTableau);
+			pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
+		}
+		else {
+			pMLISTableau = (MType*)realloc(pMLISTableau, uiTaille * sizeof(MType));
+		}
 	}
 	else {
 		pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));

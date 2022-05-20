@@ -251,7 +251,44 @@ void CGraphe::GRAAjouterArc(int iDebut, int iDestination)
 	}
 }
 
+void CGraphe::GRAModifierArc(CArc* pArc) {
+	
+}
 
+void CGraphe::GRASupprimerArc(CArc* pArc) {
+	//Parcours la liste des sommets 
+	for (unsigned int uiBoucle = 0; uiBoucle < LISGRASommet.LISLireTaille(); uiBoucle++) {
+		//Parcours la liste des arcs partant de ce sommet pour voir si il y a l'arc dans les partant
+		for (unsigned int uiBoucleJ = 0; uiBoucleJ < LISGRASommet[uiBoucle]->SOMLirePartant().LISLireTaille(); uiBoucleJ++) {
+			if (LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ] == pArc) {
+				LISGRASommet[uiBoucle]->SOMLirePartant().LISSupprimerElement(uiBoucleJ);
+			}
+		}
+
+		//Parcours la liste des arcs arrivant de ce sommet pour voir si il y a l'arc dans les arrivant
+		for (unsigned int uiBoucleJ = 0; uiBoucleJ < LISGRASommet[uiBoucle]->SOMLireArrivant().LISLireTaille(); uiBoucleJ++) {
+			if (LISGRASommet[uiBoucle]->SOMLireArrivant()[uiBoucleJ] == pArc) {
+				LISGRASommet[uiBoucle]->SOMLireArrivant().LISSupprimerElement(uiBoucleJ);
+			}
+		}
+	}
+}
+
+void CGraphe::GRASupprimerArc(int iProvenance, int iDestination) {
+	//Parcours la liste des sommet
+	for (unsigned int uiBoucle = 0; uiBoucle < LISGRASommet.LISLireTaille(); uiBoucle++) {
+		//Si le sommet correspond au sommet provenance
+		if (LISGRASommet[uiBoucle]->SOMLireNumero() == iProvenance) {
+			//Cherche l'arc correspondant a la destination
+			for (unsigned int uiBoucleJ = 0; uiBoucleJ < LISGRASommet[uiBoucle]->SOMLirePartant().LISLireTaille(); uiBoucleJ++) {
+				if (LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]->ARCLireDestination() == iDestination) {
+					//Supprime l'arc en question
+					GRASupprimerArc(LISGRASommet[uiBoucle]->SOMLirePartant()[uiBoucleJ]);
+				}
+			}
+		}
+	}
+}
 
 
 

@@ -73,7 +73,9 @@ public:
 
 	void GRAAjouterArc(int iDebut, int iDestination);
 	void GRAModifierArc(CArc* pArc);
+	
 	void GRASupprimerArc(CArc* pArc);
+	void GRASupprimerArc(int iProvenance, int iDestination);
 
 	/**
 	 * @brief Methode pour afficher le graphe sur le shell
