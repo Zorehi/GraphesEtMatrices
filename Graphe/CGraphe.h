@@ -72,8 +72,10 @@ public:
 	void GRASupprimerSommet(int iNumSommet);
 
 	void GRAAjouterArc(int iDebut, int iDestination);
-	void GRAModifierArc(CArc* pArc);
-	
+
+	void GRAModifierArc(CArc* pArc, int iNewDestination);
+	void GRAModifierArc(int iProvenance, int iDestination, int iNewDestination);
+
 	void GRASupprimerArc(CArc* pArc);
 	void GRASupprimerArc(int iProvenance, int iDestination);
 
