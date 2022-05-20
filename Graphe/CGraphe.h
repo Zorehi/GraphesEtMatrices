@@ -21,11 +21,14 @@
 #include "CListe.h"
 #include "CArc.h"
 
+#define GrapheOriente 0
+#define GrapheNonOriente 1
+
 class CGraphe
 {
 private:
 	CListe<CSommet*> LISGRASommet;
-	unsigned int uiType;
+	unsigned int uiGRAType;
 
 public:
 	/**
@@ -34,6 +37,11 @@ public:
 	 */
 	CGraphe();
 
+	/**
+	 * @brief Constructeur de confort : Creer un objet Graphe avec son type en parametre
+	 * 
+	 * @param uiType 
+	*/
 	CGraphe(unsigned int uiType);
 	
 	/**
@@ -56,6 +64,11 @@ public:
 	 */
 	const CListe<CSommet*>& GRALireSommet()const;
 
+	/**
+	 * @brief Getter pour le type du Graphe
+	 * 
+	 * @return le type du Graphe
+	*/
 	const unsigned int GRALireType()const;
 
 	/**
@@ -65,18 +78,64 @@ public:
 	 */
 	void GRAAjouterSommet(CSommet* pSommet);
 
+	/**
+	 * @brief Modifie le numero du Sommet
+	 * 
+	 * @param pSommet Pointeur du Sommet a modifier
+	 * @param iNewNum Nouveau numero du Sommet
+	*/
 	void GRAModifierSommet(CSommet* pSommet, int iNewNum);
+
+	/**
+	 * @brief Modifie le numero du Sommet et donc le numero de destination des Arcs qui y arrivent
+	 *
+	 * @param iOldNum Numero du Sommet a modifier
+	 * @param iNewNum Nouveau numero du Sommet
+	*/
 	void GRAModifierSommet(int iOldNum, int iNewNum);
 
+	/**
+	 * @brief Supprime le Sommet et les Arcs qui y arrivent et qui y partent
+	 * 
+	 * @param pSommet Pointeur vers le Sommet a supprimer
+	*/
 	void GRASupprimerSommet(CSommet* pSommet);
+
+	/**
+	 * @brief Supprime le Sommet et les Arcs qui y arrivent et qui y partent
+	 * 
+	 * @param iNumSommet Numero du Sommet a supprimer
+	*/
 	void GRASupprimerSommet(int iNumSommet);
 
+	/**
+	 * @brief Ajoute un arc 
+	 * 
+	 * @param iDebut Numero du Sommet partant
+	 * @param iDestination Numero du Sommet de destination
+	*/
 	void GRAAjouterArc(int iDebut, int iDestination);
 
 	void GRAModifierArc(CArc* pArc, int iNewDestination);
 	void GRAModifierArc(int iProvenance, int iDestination, int iNewDestination);
 
+
+
+	void GRAModifierArc(CArc* pArc);
+	
+	/**
+	 * @brief Supprime un Arc
+	 * 
+	 * @param pArc Pointeur sur l'arc a enlever
+	*/
 	void GRASupprimerArc(CArc* pArc);
+
+	/**
+	 * @brief Supprime un Arc
+	 * 
+	 * @param iProvenance Numero du Sommet partant
+	 * @param iDestination Numero du Sommet de destination
+	*/
 	void GRASupprimerArc(int iProvenance, int iDestination);
 
 	/**

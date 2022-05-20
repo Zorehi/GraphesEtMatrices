@@ -15,7 +15,7 @@
 
 CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 {
-	CGraphe GrapheNew = CGraphe(); //graphnew doit avoir tout les sommets de graag mais vides
+	CGraphe GrapheNew(GrapheOriente); //graphnew doit avoir tout les sommets de graag mais vides
 	unsigned int uiNombreSommet = GRAArg.GRALireSommet().LISLireTaille();
 
 	for (int iBoucle1 = 0; iBoucle1 < uiNombreSommet; iBoucle1++) { //pour chaque Sommet dans GRAArg
@@ -38,7 +38,7 @@ CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 
 CGraphe CGrapheOperation::GROCreeNonOriente(const CGraphe& GRAArgOriente)
 {
-	CGraphe GrapheNew = CGraphe(); //graphnew doit avoir tout les sommets de graag mais vides
+	CGraphe GrapheNew(GrapheNonOriente); //graphnew doit avoir tout les sommets de graag mais vides
 	unsigned int uiNombreSommet = GRAArgOriente.GRALireSommet().LISLireTaille();
 
 	for (int iBoucleI = 0; iBoucleI < uiNombreSommet; iBoucleI++) { //pour chaque Sommet dans GRAArgOriente

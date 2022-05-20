@@ -19,18 +19,18 @@ using namespace std;
 CGraphe::CGraphe()
 {
 	LISGRASommet = CListe<CSommet*>();
-	uiType = 0;
+	uiGRAType = GrapheOriente;
 }
 
 CGraphe::CGraphe(unsigned int uiType) 
 {
-	this->uiType = uiType;
+	uiGRAType = uiType;
 	LISGRASommet = CListe<CSommet*>();
 }
 
 CGraphe::CGraphe(const CGraphe& GRAParam)
 {
-	uiType = GRAParam.GRALireType();
+	uiGRAType = GRAParam.GRALireType();
 	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
 	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
 		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
@@ -48,7 +48,7 @@ CGraphe::~CGraphe()
 	int iNbSommets = LISGRASommet.LISLireTaille();
 	for (int iBoucleI = 0; iBoucleI < iNbSommets; iBoucleI++)
 	{
-		
+
 		int NbArcPartant = LISGRASommet[iBoucleI]->SOMLirePartant().LISLireTaille();
 		for (int iBoucleJ = 0; iBoucleJ < NbArcPartant; iBoucleJ++)
 		{
@@ -57,7 +57,7 @@ CGraphe::~CGraphe()
 				delete LISGRASommet[iBoucleI]->SOMLirePartant()[iBoucleJ];
 			}
 		}
-		
+
 		delete LISGRASommet[iBoucleI];
 	}
 }
@@ -69,7 +69,7 @@ const CListe<CSommet*>& CGraphe::GRALireSommet()const
 
 const unsigned int CGraphe::GRALireType() const
 {
-	return uiType;
+	return uiGRAType;
 }
 
 void CGraphe::GRAAjouterSommet(CSommet* pSommet)
@@ -237,7 +237,7 @@ void CGraphe::GRAAjouterArc(int iDebut, int iDestination)
 	}
 
 	//Si graphe non oriente, ajout de l'arc inverse
-	if (uiType == 1) {
+	if (uiGRAType == 1) {
 		//Creation de l'arc inverse + ajout de cet arc aux sommets concernes
 		CArc* pARCmonArc2 = new CArc(iDestination);
 		for (unsigned int uiBoucle = 0; uiBoucle < LISGRASommet.LISLireTaille(); uiBoucle++) {
@@ -367,7 +367,7 @@ void CGraphe::GRAAfficherGraphe()const
 
 CGraphe& CGraphe::operator=(const CGraphe& GRAParam)
 {
-	uiType = GRAParam.GRALireType();
+	uiGRAType = GRAParam.GRALireType();
 	LISGRASommet = CListe<CSommet*>(GRAParam.LISGRASommet.LISLireTaille());
 	for (unsigned int uiBoucle = 0; uiBoucle < GRAParam.LISGRASommet.LISLireTaille(); uiBoucle++) {
 		LISGRASommet[uiBoucle] = new CSommet(*GRAParam.LISGRASommet[uiBoucle]);
