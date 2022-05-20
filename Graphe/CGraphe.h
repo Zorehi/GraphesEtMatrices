@@ -118,10 +118,6 @@ public:
 
 	void GRAModifierArc(CArc* pArc, int iNewDestination);
 	void GRAModifierArc(int iProvenance, int iDestination, int iNewDestination);
-
-
-
-	void GRAModifierArc(CArc* pArc);
 	
 	/**
 	 * @brief Supprime un Arc
