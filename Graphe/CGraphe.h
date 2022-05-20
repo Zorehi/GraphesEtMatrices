@@ -37,6 +37,11 @@ public:
 	 */
 	CGraphe();
 
+	/**
+	 * @brief Constructeur de confort : Creer un objet Graphe avec son type en parametre
+	 * 
+	 * @param uiType 
+	*/
 	CGraphe(unsigned int uiType);
 	
 	/**
@@ -114,7 +119,19 @@ public:
 
 	void GRAModifierArc(CArc* pArc);
 	
+	/**
+	 * @brief Supprime un Arc
+	 * 
+	 * @param pArc Pointeur sur l'arc a enlever
+	*/
 	void GRASupprimerArc(CArc* pArc);
+
+	/**
+	 * @brief Supprime un Arc
+	 * 
+	 * @param iProvenance Numero du Sommet partant
+	 * @param iDestination Numero du Sommet de destination
+	*/
 	void GRASupprimerArc(int iProvenance, int iDestination);
 
 	/**
