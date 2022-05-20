@@ -116,7 +116,21 @@ public:
 	*/
 	void GRAAjouterArc(int iDebut, int iDestination);
 
+	/**
+	 * @brief Modifie l'Arc en changeant son Sommet de destination
+	 * 
+	 * @param pArc Pointeur sur l'Arc a modifier
+	 * @param iNewDestination Numero du nouveau Sommet de destination de l'Arc
+	*/
 	void GRAModifierArc(CArc* pArc, int iNewDestination);
+
+	/**
+	 * @brief Modifie l'Arc en changeant son Sommet de destination
+	 * 
+	 * @param iProvenance Numero du Sommet partant de l'Arc 
+	 * @param iDestination Numero du Sommet de destination de l'Arc
+	 * @param iNewDestination Nouveau numero du Sommet de destination de l'Arc
+	*/
 	void GRAModifierArc(int iProvenance, int iDestination, int iNewDestination);
 	
 	/**
