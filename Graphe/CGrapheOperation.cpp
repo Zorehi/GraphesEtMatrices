@@ -35,3 +35,26 @@ CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 	}
 	return GrapheNew;
 }
+
+CGraphe CGrapheOperation::GROCreeNonOriente(const CGraphe& GRAArgOriente)
+{
+	CGraphe GrapheNew = CGraphe(); //graphnew doit avoir tout les sommets de graag mais vides
+	unsigned int uiNombreSommet = GRAArgOriente.GRALireSommet().LISLireTaille();
+
+	for (int iBoucleI = 0; iBoucleI < uiNombreSommet; iBoucleI++) { //pour chaque Sommet dans GRAArgOriente
+		// on crée des nouveaux sommets dans GrapheNew ayant les mêmes numéros que ceux dans GRAArgOriente
+		GrapheNew.GRAAjouterSommet(new CSommet(GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLireNumero()));
+	}
+	for (int iBoucleI = 0; iBoucleI < uiNombreSommet; iBoucleI++) { //pour chaque Sommet dans GRAArgOriente
+		unsigned int uiNombreArcPartant = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLirePartant().LISLireTaille();
+
+		for (int iBoucleJ = 0; iBoucleJ < uiNombreArcPartant; iBoucleJ++) { // pour chaque arcPartant dans chaque sommet dans GRAArgOriente
+			int destination = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLireNumero(); // numéro du sommet de destination du nouveau arc
+			int depart = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLirePartant()[iBoucleJ]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
+
+			GrapheNew.GRAAjouterArc(depart, destination); //ajout de l'arc dans les sommets arrivant et partant du nouveau graphe
+			GrapheNew.GRAAjouterArc(destination, depart);
+		}
+	}
+	return GrapheNew;
+}
