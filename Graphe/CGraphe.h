@@ -64,13 +64,16 @@ public:
 	 * @param pSommet Pointeur sur l'objet sommet à ajouter
 	 */
 	void GRAAjouterSommet(CSommet* pSommet);
-	void GRAAjouterArc(int iDebut, int iDestination);
 
 	void GRAModifierSommet(CSommet* pSommet, int iNewNum);
 	void GRAModifierSommet(int iOldNum, int iNewNum);
 
 	void GRASupprimerSommet(CSommet* pSommet);
 	void GRASupprimerSommet(int iNumSommet);
+
+	void GRAAjouterArc(int iDebut, int iDestination);
+	void GRAModifierArc(CArc* pArc);
+	void GRASupprimerArc(CArc* pArc);
 
 	/**
 	 * @brief Methode pour afficher le graphe sur le shell

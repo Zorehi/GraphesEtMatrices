@@ -90,6 +90,104 @@ void CGraphe::GRAAjouterSommet(CSommet* pSommet)
 	LISGRASommet[LISGRASommet.LISLireTaille() - 1] = pSommet;
 }
 
+void CGraphe::GRAModifierSommet(CSommet* pSommet, int iNewNum)
+{
+	GRAModifierSommet(pSommet->SOMLireNumero(), iNewNum);
+}
+
+void CGraphe::GRAModifierSommet(int iOldNum, int iNewNum)
+{
+	unsigned int uiExiste = 0;
+	//Parcours tout les sommets pour trouver le sommet a modifier
+	for (unsigned int uiBoucle = 0; uiBoucle < LISGRASommet.LISLireTaille(); uiBoucle++) {
+		//Si c'est le sommet a modifier
+		if (LISGRASommet[uiBoucle]->SOMLireNumero() == iOldNum) {
+			uiExiste = 1;
+			LISGRASommet[uiBoucle]->SOMModifierNumero(iNewNum); //Modifier le numero du sommet
+		}
+	}
+
+	//Si le sommet a modifier n'a pas ete trouve -> erreur
+	if (uiExiste == 0) {
+		throw CException(993, "Le sommet a modifier n'existe pas");
+	}
+}
+
+void CGraphe::GRASupprimerSommet(CSommet* pSommet)
+{
+	GRASupprimerSommet(pSommet->SOMLireNumero());
+}
+
+void CGraphe::GRASupprimerSommet(int iNumSommet)
+{
+	/*
+	//Recherche le sommet
+	unsigned int uiNbSommet = LISGRASommet.LISLireTaille();
+	for (unsigned int uiBoucle = 0; uiBoucle < uiNbSommet; uiBoucle++) {
+		if (LISGRASommet[uiBoucle]->SOMLireNumero() == iNumSommet) {
+			CSommet* SOMSommet = LISGRASommet[uiBoucle];
+
+			//Parcours les arcs partants
+			unsigned int uiNbArcPartant = SOMSommet->SOMLirePartant().LISLireTaille();
+			for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbArcPartant; uiBoucleJ++) {
+				//Parcours les sommets pour chercher le sommet de destination de l'arc
+				for (unsigned int uiBoucleZ = 0; uiBoucleZ < uiNbSommet; uiBoucleZ++) {
+					CSommet* SOMSommet2 = LISGRASommet[uiBoucleZ];
+					//Si le numero du sommet est le meme que la destination de l'arc
+					if (SOMSommet2->SOMLireNumero() == SOMSommet->SOMLirePartant()[uiBoucleJ]->ARCLireDestination()) {
+
+						unsigned int uiNbArcArrivant = SOMSommet2->SOMLireArrivant().LISLireTaille();
+						//Cherche l'arc dans la liste des arrivants
+						for (unsigned int uiBoucleY = 0; uiBoucleY < uiNbArcArrivant; uiBoucleY++) {
+							//Si l'arc est le bon
+							if (SOMSommet2->SOMLireArrivant()[uiBoucleY]->ARCLireDestination() == SOMSommet->SOMLireNumero()) {
+								//Modifier la liste des arrivants du sommet2 pour qu'elle ne contiennent plus l'arc
+								SOMSommet2->SOMLireArrivant().LISSupprimerElement(uiBoucleY);
+							}
+						}
+					}
+				}
+
+				//Supprime l'arc partant
+				delete SOMSommet->SOMLirePartant()[uiBoucleJ];
+			}
+
+
+
+			//PArcours tout les sommets
+			//Regarde les partants
+			//Regarde si le partant a comme direction notre sommet
+			//Enleve cet arc partant de la liste des partants
+
+			//Parcours tout les sommets
+			for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbSommet; uiBoucleJ++) {
+				CSommet* SOMSommet3 = LISGRASommet[uiBoucleJ];
+				unsigned int uiNbPartant = SOMSommet3->SOMLirePartant().LISLireTaille();;
+				//Regarde les partants
+				for (unsigned int uiBoucleZ = 0; uiBoucleZ < uiNbPartant; uiBoucleZ++) {
+					//Regarde si le partant a comme direction notre sommet
+					if (SOMSommet3->SOMLirePartant()[uiBoucleZ]->ARCLireDestination() == SOMSommet->SOMLireNumero()) {
+						//Enleve cet arc partant de la liste des partants
+						SOMSommet3->SOMLirePartant().LISSupprimerElement(uiBoucleZ);
+					}
+				}
+			}
+
+			//Parcours tout les arrivants du sommet pour les supprimer
+			for (unsigned int uiBoucle = 0; uiBoucle < SOMSommet->SOMLireArrivant().LISLireTaille(); uiBoucle++) {
+				delete SOMSommet->SOMLireArrivant()[uiBoucle];
+			}
+
+			//Supprime les deux listes d'arc (arrivant, partant)
+			delete SOMSommet->SOMLirePartant();
+			delete SOMSommet->SOMLireArrivant();
+		}
+
+	}
+	*/
+}
+
+
 void CGraphe::GRAAjouterArc(int iDebut, int iDestination)
 {
 	//Verification que les les sommets de Debut et de Destination existes
@@ -153,102 +251,10 @@ void CGraphe::GRAAjouterArc(int iDebut, int iDestination)
 	}
 }
 
-void CGraphe::GRAModifierSommet(CSommet* pSommet, int iNewNum)
-{
-	GRAModifierSommet(pSommet->SOMLireNumero(), iNewNum);
-}
-
-void CGraphe::GRASupprimerSommet(CSommet* pSommet)
-{
-	GRASupprimerSommet(pSommet->SOMLireNumero());
-}
-
-void CGraphe::GRASupprimerSommet(int iNumSommet)
-{
-	/*
-	//Recherche le sommet
-	unsigned int uiNbSommet = LISGRASommet.LISLireTaille();
-	for (unsigned int uiBoucle = 0; uiBoucle < uiNbSommet; uiBoucle++) {
-		if (LISGRASommet[uiBoucle]->SOMLireNumero() == iNumSommet) {
-			CSommet* SOMSommet = LISGRASommet[uiBoucle];
-
-			//Parcours les arcs partants
-			unsigned int uiNbArcPartant = SOMSommet->SOMLirePartant().LISLireTaille();
-			for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbArcPartant; uiBoucleJ++) {
-				//Parcours les sommets pour chercher le sommet de destination de l'arc
-				for (unsigned int uiBoucleZ = 0; uiBoucleZ < uiNbSommet; uiBoucleZ++) {
-					CSommet* SOMSommet2 = LISGRASommet[uiBoucleZ];
-					//Si le numero du sommet est le meme que la destination de l'arc
-					if (SOMSommet2->SOMLireNumero() == SOMSommet->SOMLirePartant()[uiBoucleJ]->ARCLireDestination()) {
-						
-						unsigned int uiNbArcArrivant = SOMSommet2->SOMLireArrivant().LISLireTaille();
-						//Cherche l'arc dans la liste des arrivants 
-						for (unsigned int uiBoucleY = 0; uiBoucleY < uiNbArcArrivant; uiBoucleY++) {
-							//Si l'arc est le bon
-							if (SOMSommet2->SOMLireArrivant()[uiBoucleY]->ARCLireDestination() == SOMSommet->SOMLireNumero()) {
-								//Modifier la liste des arrivants du sommet2 pour qu'elle ne contiennent plus l'arc
-								SOMSommet2->SOMLireArrivant().LISSupprimerElement(uiBoucleY);
-							}
-						}
-					}
-				}
-
-				//Supprime l'arc partant
-				delete SOMSommet->SOMLirePartant()[uiBoucleJ];
-			}
 
 
 
-			//PArcours tout les sommets
-			//Regarde les partants
-			//Regarde si le partant a comme direction notre sommet
-			//Enleve cet arc partant de la liste des partants
 
-			//Parcours tout les sommets
-			for (unsigned int uiBoucleJ = 0; uiBoucleJ < uiNbSommet; uiBoucleJ++) {
-				CSommet* SOMSommet3 = LISGRASommet[uiBoucleJ];
-				unsigned int uiNbPartant = SOMSommet3->SOMLirePartant().LISLireTaille();;
-				//Regarde les partants
-				for (unsigned int uiBoucleZ = 0; uiBoucleZ < uiNbPartant; uiBoucleZ++) {
-					//Regarde si le partant a comme direction notre sommet
-					if (SOMSommet3->SOMLirePartant()[uiBoucleZ]->ARCLireDestination() == SOMSommet->SOMLireNumero()) {
-						//Enleve cet arc partant de la liste des partants
-						SOMSommet3->SOMLirePartant().LISSupprimerElement(uiBoucleZ);
-					}
-				}
-			}
-
-			//Parcours tout les arrivants du sommet pour les supprimer
-			for (unsigned int uiBoucle = 0; uiBoucle < SOMSommet->SOMLireArrivant().LISLireTaille(); uiBoucle++) {
-				delete SOMSommet->SOMLireArrivant()[uiBoucle];
-			}
-
-			//Supprime les deux listes d'arc (arrivant, partant)
-			delete SOMSommet->SOMLirePartant();
-			delete SOMSommet->SOMLireArrivant();
-		}
-		
-	}
-	*/
-}
-
-void CGraphe::GRAModifierSommet(int iOldNum, int iNewNum)
-{
-	unsigned int uiExiste = 0;
-	//Parcours tout les sommets pour trouver le sommet a modifier
-	for (unsigned int uiBoucle = 0; uiBoucle < LISGRASommet.LISLireTaille(); uiBoucle++) {
-		//Si c'est le sommet a modifier
-		if (LISGRASommet[uiBoucle]->SOMLireNumero() == iOldNum) {
-			uiExiste = 1;
-			LISGRASommet[uiBoucle]->SOMModifierNumero(iNewNum); //Modifier le numero du sommet
-		}
-	}
-
-	//Si le sommet a modifier n'a pas ete trouve -> erreur
-	if (uiExiste == 0) {
-		throw CException(993, "Le sommet a modifier n'existe pas");
-	}
-}
 
 void CGraphe::GRAAfficherGraphe()const
 {
