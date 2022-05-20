@@ -27,5 +27,13 @@ class CGrapheOperation
 		 * @return CGraphe Graphe inverser
 		 */
 		static CGraphe GROInverserArc(const CGraphe& GRAArg);
+
+		/**
+		 * @brief Methode static pour creer un Graphe non oriente
+		 *
+		 * @param GRAArgOriente Graphe orienté
+		 * @return GRAArgOriente Graphe non orienté
+		 */
+		static CGraphe GROCreeNonOriente(const CGraphe& GRAArgOriente);
 };
 
