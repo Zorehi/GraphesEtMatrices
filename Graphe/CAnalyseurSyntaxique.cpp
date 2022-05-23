@@ -53,7 +53,7 @@ CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 	*/
 
 	//Creation du graphe
-	CGraphe GRAMonGraphe = CGraphe();
+	CGraphe GRAMonGraphe;
 
 	//Creation et ajout des sommets au graphe (sans les arcs)
 	for (unsigned int uiBoucle = 0; uiBoucle < iNbSommet; uiBoucle++) {
@@ -61,8 +61,8 @@ CGraphe CAnalyseurSyntaxique::ANSAnalyserFichier(const char* pcCheminFichier)
 	}
 
 	//Ajout des arcs dans les Sommets
-	for (unsigned int uiBoucleI = 0; uiBoucleI < iNbArc; uiBoucleI++) {
-		GRAMonGraphe.GRAAjouterArc(LISListeArc[uiBoucleI * 2], LISListeArc[uiBoucleI * 2 + 1]);
+	for (unsigned int uiBoucle = 0; uiBoucle < iNbArc; uiBoucle++) {
+		GRAMonGraphe.GRAAjouterArc(LISListeArc[uiBoucle * 2], LISListeArc[uiBoucle * 2 + 1]);
 	}
 
 	//Libere la memore de la liste des mots

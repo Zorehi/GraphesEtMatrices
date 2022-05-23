@@ -107,21 +107,6 @@ public:
 	 * @param pArcPartant Arc à ajouter
 	 */
 	void SOMAjouterPartant(CArc* pArcPartant);
-	
-	
-	/**
-	 * @brief Methode pour supprimer un Arc arrivant
-	 * 
-	 * @param pArcArrivant Arc a supprimer
-	 */
-	//void SOMSupprimerArrivant(CArc* pArcArrivant);
-
-	/**
-	 * @brief Methode pour supprimer un Arc partant
-	 * 
-	 * @param pArcPartant Arc a supprimer
-	 */
-	//void SOMSupprimerPartant(CArc* pArcPartant);
 
 	/**
 	 * @brief 

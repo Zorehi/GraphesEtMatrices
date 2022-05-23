@@ -50,14 +50,14 @@ public:
 	 * 
 	 * @return int Valeur de l'exception
 	 */
-	int EXCLireVal();
+	int EXCLireVal()const;
 
 	/**
 	 * @brief Getter pour le message de l'exception
 	 * 
 	 * @return const char* Message de l'exception
 	 */
-	const char* EXCLireMsg();
+	const char* EXCLireMsg()const;
 
 	/**
 	 * @brief Setter pour la valeur de l'exception

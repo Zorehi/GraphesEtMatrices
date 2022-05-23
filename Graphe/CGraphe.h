@@ -3,7 +3,7 @@
  * @author LJ BV JM
  * @brief Contient la declaration de la classe CGraphe
  * CGraphe permet de creer et gerer un graphe contenant
- * des sommets relier par des arcs
+ * des sommets relie par des arcs
  *
  * @version 0.1
  * @date 2022-05-02

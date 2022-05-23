@@ -2,7 +2,7 @@
  * @file CAnalyseurLexical.h
  * @author LJ BV JM
  * @brief Contient la declaration de la classe CAnalyseurLexical
- * CAnalyseurLexical permet de 
+ * CAnalyseurLexical permet de segmenter le fichier texte en une ligne de mots
  * 
  * @version 0.1
  * @date 2022-05-02
