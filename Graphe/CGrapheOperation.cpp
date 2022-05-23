@@ -26,10 +26,10 @@ CGraphe CGrapheOperation::GROInverserArc(const CGraphe& GRAArg)
 		unsigned int uiNombreArcPartant = GRAArg.GRALireSommet()[iBoucle2]->SOMLirePartant().LISLireTaille();
 
 		for (int iBoucle3 = 0; iBoucle3 < uiNombreArcPartant; iBoucle3++) { // pour chaque arcPartant dans chaque sommet dans GRAArg
-			int destination = GRAArg.GRALireSommet()[iBoucle2]->SOMLireNumero(); // numéro du sommet de destination du nouveau arc
-			int depart = GRAArg.GRALireSommet()[iBoucle2]->SOMLirePartant()[iBoucle3]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
+			int iDestination = GRAArg.GRALireSommet()[iBoucle2]->SOMLireNumero(); // numéro du sommet de destination du nouveau arc
+			int iDepart = GRAArg.GRALireSommet()[iBoucle2]->SOMLirePartant()[iBoucle3]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
 
-			GrapheNew.GRAAjouterArc(depart, destination); //ajout de l'arc dans les sommets arrivant et partant du nouveau graphe
+			GrapheNew.GRAAjouterArc(iDepart, iDestination); //ajout de l'arc dans les sommets arrivant et partant du nouveau graphe
 
 		}
 	}
@@ -49,11 +49,11 @@ CGraphe CGrapheOperation::GROCreeNonOriente(const CGraphe& GRAArgOriente)
 		unsigned int uiNombreArcPartant = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLirePartant().LISLireTaille();
 
 		for (int iBoucleJ = 0; iBoucleJ < uiNombreArcPartant; iBoucleJ++) { // pour chaque arcPartant dans chaque sommet dans GRAArgOriente
-			int destination = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLireNumero(); // numéro du sommet de destination du nouveau arc
-			int depart = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLirePartant()[iBoucleJ]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
+			int iDestination = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLireNumero(); // numéro du sommet de destination du nouveau arc
+			int iDepart = GRAArgOriente.GRALireSommet()[iBoucleI]->SOMLirePartant()[iBoucleJ]->ARCLireDestination(); // numéro du sommet d'où va partir le nouveau arc
 
-			GrapheNew.GRAAjouterArc(depart, destination); //ajout de l'arc dans les sommets arrivant et partant du nouveau graphe
-			GrapheNew.GRAAjouterArc(destination, depart);
+			GrapheNew.GRAAjouterArc(iDepart, iDestination); //ajout de l'arc dans les sommets arrivant et partant du nouveau graphe
+			GrapheNew.GRAAjouterArc(iDestination, iDepart);
 		}
 	}
 	return GrapheNew;
