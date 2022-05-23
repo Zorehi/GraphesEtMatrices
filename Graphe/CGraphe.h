@@ -79,6 +79,13 @@ public:
 	void GRAAjouterSommet(CSommet* pSommet);
 
 	/**
+	 * @brief Methode pour ajouter un sommet au graphe
+	 *
+	 * @param pSommet Pointeur sur l'objet sommet à ajouter
+	 */
+	void GRAAjouterSommet(int iNumSommet);
+
+	/**
 	 * @brief Modifie le numero du Sommet
 	 * 
 	 * @param pSommet Pointeur du Sommet a modifier
