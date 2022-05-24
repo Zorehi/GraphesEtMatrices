@@ -243,7 +243,7 @@ CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
 
 	return MAPMatriceRetour;
 }
-
+/*
 template<class MType>
 double CMatricePlus<MType>::MAPCalcDet()
 {
@@ -255,7 +255,7 @@ double CMatricePlus<MType>::MAPCalcDet()
 	for (int iBoucle = 0; iBoucle < MABLireNbLignes(); iBoucle++) {
 		//Cas d'une matrice 2*2
 		if (MABLireNbLignes() == 2) {
-			det = ((*this)[1][1]) * ((*this)[2][2]) - ((*this)[2][1]) * ((*this)[1][2])
+			det = ((*this)[1][1]) * ((*this)[2][2]) - ((*this)[2][1]) * ((*this)[1][2]);
 		}
 		//Recursivite sur tout les autres cas
 		else {
@@ -266,3 +266,4 @@ double CMatricePlus<MType>::MAPCalcDet()
 
 	return det;
 }
+*/

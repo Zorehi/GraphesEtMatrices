@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <math.h>
 
 #include "CListe.h"
 #include "CProxy_row.h"
@@ -130,6 +131,8 @@ class CMatriceBase {
 		 * 
 		 */
 		void MABAfficherMatrice();
+
+		double MAPCalcDet();
 };
 
 

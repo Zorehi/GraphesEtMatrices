@@ -19,25 +19,66 @@
 int main(int iArgc, char * ppcArgv[])
 {
 	if (iArgc == 1) {
-		CMatriceBase<double> MABMatrice;
+		/*
 		CMatriceBase<double> MABMatrice2;
-		MABMatrice = CMatriceBase<double>(3, 3);
-		MABMatrice[0][0] = 0;
-		MABMatrice[0][1] = 1;
-		MABMatrice[0][2] = 2;
-		MABMatrice[1][0] = 3;
-		MABMatrice[1][1] = 4;
-		MABMatrice[1][2] = 5;
-		MABMatrice[2][0] = 6;
-		MABMatrice[2][1] = 7;
-		MABMatrice[2][2] = 8;
+		MABMatrice2 = CMatriceBase<double>(2, 2);
+		MABMatrice2[0][0] = 1;
+		MABMatrice2[0][1] = 2;
+		MABMatrice2[1][0] = 3;
+		MABMatrice2[1][1] = 4;
 
+		MABMatrice2.MABAfficherMatrice();
+		cout << MABMatrice2.MAPCalcDet();
+		*/
+
+		/*
+		CMatriceBase<double> MABMatrice;
+		MABMatrice = CMatriceBase<double>(3, 3);
+		MABMatrice[0][0] = 5;
+		MABMatrice[0][1] = 2;
+		MABMatrice[0][2] = 1;
+		MABMatrice[1][0] = 6;
+		MABMatrice[1][1] = 20;
+		MABMatrice[1][2] = 3;
+		MABMatrice[2][0] = 7;
+		MABMatrice[2][1] = 9;
+		MABMatrice[2][2] = 11;
 		MABMatrice.MABAfficherMatrice();
+		cout << MABMatrice.MAPCalcDet();
+		*/
+
 		
+		CMatriceBase<double> MABMatrice;
+		MABMatrice = CMatriceBase<double>(4, 4);
+		MABMatrice[0][0] = 10;
+		MABMatrice[0][1] = 3;
+		MABMatrice[0][2] = 6;
+		MABMatrice[0][3] = 9;
+		MABMatrice[1][0] = 1;
+		MABMatrice[1][1] = 5;
+		MABMatrice[1][2] = 7;
+		MABMatrice[1][3] = 12;
+		MABMatrice[2][0] = 14;
+		MABMatrice[2][1] = 6;
+		MABMatrice[2][2] = 9;
+		MABMatrice[2][3] = 10;
+		MABMatrice[3][0] = 3;
+		MABMatrice[3][1] = 5;
+		MABMatrice[3][2] = 16;
+		MABMatrice[3][3] = 2;
+		MABMatrice.MABAfficherMatrice();
+		cout << MABMatrice.MAPCalcDet();
+		
+
+		
+		
+		
+
+		/*
 		MABMatrice2 = CMatriceBase<double>(MABMatrice, 1);
 
 		MABMatrice2.MABAfficherMatrice();
-
+		*/
 	}
 
 	if (iArgc > 1) {

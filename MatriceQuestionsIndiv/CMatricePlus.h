@@ -102,7 +102,7 @@ public:
 	 */
 	CMatricePlus<MType> MAPTranspose();
 
-	double MAPCalcDet();
+	//double MAPCalcDet();
 };
 
 #include "CMatricePlus.cpp"
