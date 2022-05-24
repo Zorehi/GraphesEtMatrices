@@ -22,9 +22,25 @@ int main(int iArgc, char * ppcArgv[])
 
 		try
 		{
-			/* Test avec une matrice 2x2
-			CMatriceBase<double> MABMatrice2;
-			MABMatrice2 = CMatriceBase<double>(2, 2);
+			/*
+			CMatricePlus<double> MAPMatrice;
+			
+			MAPMatrice = CMatricePlus<double>(3, 3);
+			MAPMatrice[0][0] = 1;
+			MAPMatrice[0][1] = 2;
+			MAPMatrice[1][0] = 3;
+			MAPMatrice[1][1] = 4;
+
+			CMatricePlus<double> MAPMatrice2(MAPMatrice, 1);
+
+			MAPMatrice2.MABAfficherMatrice();
+			//cout << MABMatrice2.MAPCalcDet();
+			*/
+
+			/*
+			//Test avec une matrice 2x2
+			CMatricePlus<double> MABMatrice2;
+			MABMatrice2 = CMatricePlus<double>(2, 2);
 			MABMatrice2[0][0] = 1;
 			MABMatrice2[0][1] = 2;
 			MABMatrice2[1][0] = 3;
@@ -34,9 +50,10 @@ int main(int iArgc, char * ppcArgv[])
 			cout << MABMatrice2.MAPCalcDet();
 			*/
 
-			/* Test avec une matrice 3x3
-			CMatriceBase<double> MABMatrice;
-			MABMatrice = CMatriceBase<double>(3, 3);
+			/*
+			//Test avec une matrice 3x3
+			CMatricePlus<double> MABMatrice;
+			MABMatrice = CMatricePlus<double>(3, 3);
 			MABMatrice[0][0] = 5;
 			MABMatrice[0][1] = 2;
 			MABMatrice[0][2] = 1;
@@ -50,7 +67,8 @@ int main(int iArgc, char * ppcArgv[])
 			cout << MABMatrice.MAPCalcDet();
 			*/
 
-			/* Test avec une matrice 4x4
+			/* 
+			//Test avec une matrice 4x4
 			CMatriceBase<double> MABMatrice;
 			MABMatrice = CMatriceBase<double>(4, 4);
 			MABMatrice[0][0] = 10;
@@ -73,7 +91,8 @@ int main(int iArgc, char * ppcArgv[])
 			cout << MABMatrice.MAPCalcDet();
 			*/
 
-			/* Test avec une matrice non carree 
+			/*
+			//Test avec une matrice non carree 
 			CMatriceBase<double> MABMatrice;
 			MABMatrice = CMatriceBase<double>(2, 3);
 			MABMatrice.MABAfficherMatrice();

@@ -38,6 +38,7 @@ CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam)
 	pLISMATListe = new CListe<MType>(*(MABParam.pLISMATListe));
 }
 
+/*
 template <class MType>
 CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam, unsigned int uiLigne)
 {
@@ -64,6 +65,7 @@ CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam, unsigned int ui
 	}
 	
 }
+*/
 
 template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
@@ -140,29 +142,6 @@ void CMatriceBase<MType>::MABAfficherMatrice() {
 			}
 		}
 	}
-}
-
-template<class MType>
-double CMatriceBase<MType>::MAPCalcDet()
-{
-	//Si la matrice n'est pas carree
-	if (MABLireNbColonnes() != MABLireNbLignes()) {
-		throw CException(160, "Exception : La matrice n'est pas carree");
-	}
-	double det = 0;
-	if (MABLireNbLignes() == 2) {
-		det += ((*this)[0][0]) * ((*this)[1][1]) - ((*this)[1][0]) * ((*this)[0][1]);
-		
-	}
-	else {
-		for (int iBoucle = 0; iBoucle < MABLireNbLignes(); iBoucle++) {
-			CMatriceBase newMat;
-			newMat = CMatriceBase((*this), iBoucle);
-			det += pow(-1, iBoucle)*(*this)[iBoucle][0]*newMat.MAPCalcDet();
-		}
-	}
-
-	return det;
 }
 
 

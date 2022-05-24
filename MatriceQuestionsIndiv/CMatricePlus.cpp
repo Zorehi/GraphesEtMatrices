@@ -23,6 +23,32 @@ CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiP
 {
 }
 
+template <class MType>
+CMatricePlus<MType>::CMatricePlus(CMatriceBase<MType>& MABParam, unsigned int uiLigne)
+{
+
+	(*this).uiMABNbLignes = MABParam.MABLireNbLignes() - 1;
+	(*this).uiMABNbColonnes = MABParam.MABLireNbColonnes() - 1;
+	unsigned int uiTailleListe = (*this).uiMABNbLignes * (*this).uiMABNbColonnes;
+	(*this).pLISMATListe = new CListe<MType>(uiTailleListe);
+
+
+	unsigned int nbElementPlace = 0;
+	for (unsigned int uiBoucleI = 0; uiBoucleI < MABParam.MABLireNbLignes(); uiBoucleI++) {
+		for (unsigned int uiBoucleJ = 1; uiBoucleJ < MABParam.MABLireNbColonnes(); uiBoucleJ++) {
+
+			if (uiBoucleI != uiLigne) {
+
+				(*this)[nbElementPlace / (*this).uiMABNbColonnes][nbElementPlace % (*this).uiMABNbColonnes] = MABParam[uiBoucleI][uiBoucleJ];
+				//pLISMATListe[nbElementPlace] = MABParam[uiBoucleI][uiBoucleJ];
+				nbElementPlace++;
+
+			}
+
+		}
+	}
+}
+
 
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
@@ -243,27 +269,27 @@ CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
 
 	return MAPMatriceRetour;
 }
-/*
+
 template<class MType>
 double CMatricePlus<MType>::MAPCalcDet()
 {
 	//Si la matrice n'est pas carree
-	if (MABLireNbColonnes() != MABLireNbLignes()) {
+	if ((*this).MABLireNbColonnes() != (*this).MABLireNbLignes()) {
 		throw CException(160, "Exception : La matrice n'est pas carree");
 	}
-	double det;
-	for (int iBoucle = 0; iBoucle < MABLireNbLignes(); iBoucle++) {
-		//Cas d'une matrice 2*2
-		if (MABLireNbLignes() == 2) {
-			det = ((*this)[1][1]) * ((*this)[2][2]) - ((*this)[2][1]) * ((*this)[1][2]);
-		}
-		//Recursivite sur tout les autres cas
-		else {
-			CMatriceBase newMat = new CMatriceBase((*this), iBoucle);
-			det = newMat.MAPCalcDet;
+	double det = 0;
+	if ((*this).MABLireNbLignes() == 2) {
+		det += ((*this)[0][0]) * ((*this)[1][1]) - ((*this)[1][0]) * ((*this)[0][1]);
+
+	}
+	else {
+		for (int iBoucle = 0; iBoucle < (*this).MABLireNbLignes(); iBoucle++) {
+			CMatricePlus newMat;
+			newMat = CMatricePlus((*this), iBoucle);
+			det += pow(-1, iBoucle)*(*this)[iBoucle][0]*newMat.MAPCalcDet();
 		}
 	}
 
 	return det;
 }
-*/
+

@@ -32,7 +32,7 @@ template <class MType>
 class CMatriceBase {
 	using MATPROProxy = CProxy_row<CListe<MType>>;
 
-	private :
+	protected :
 		unsigned int uiMABNbLignes;
 		unsigned int uiMABNbColonnes;
 		CListe<MType> * pLISMATListe;
@@ -59,13 +59,6 @@ class CMatriceBase {
 		 * @param MABParam Matrice a dupliquer
 		 */
 		CMatriceBase(CMatriceBase<MType>& MABParam);
-
-		/**
-		 * @brief Constructeur de recopie : Creer une sous Matrice en commencant a une coordonnees precise
-		 *
-		 * @param MABParam Matrice a dupliquer
-		 */
-		CMatriceBase(CMatriceBase<MType>& MABParam, unsigned int uiLigne);
 
 		/**
 		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
@@ -132,7 +125,7 @@ class CMatriceBase {
 		 */
 		void MABAfficherMatrice();
 
-		double MAPCalcDet();
+		//double MAPCalcDet();
 };
 
 

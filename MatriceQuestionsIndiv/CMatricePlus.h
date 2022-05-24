@@ -40,6 +40,13 @@ public:
 	CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiParamNbColonnes);
 
 	/**
+	 * @brief Constructeur permettant de creer la sous matrice permettant de reasliser le calcul du determinant de la matrice
+	 * @param MABParam matrice mere de la sous matrice a creer
+	 * @param uiLigne numero de la ligne a ne pas inclure dans la sous matrice
+	*/
+	CMatricePlus(CMatriceBase<MType>& MABParam, unsigned int uiLigne);
+
+	/**
 	 * @brief Surcharge de l'operateur *, pour la multiplication entre la matrice et un nombre
 	 *
 	 * @param dFacteur Facteur de la multiplication
@@ -102,7 +109,7 @@ public:
 	 */
 	CMatricePlus<MType> MAPTranspose();
 
-	//double MAPCalcDet();
+	double MAPCalcDet();
 };
 
 #include "CMatricePlus.cpp"
