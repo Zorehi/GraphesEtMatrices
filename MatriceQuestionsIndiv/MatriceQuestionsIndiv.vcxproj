@@ -18,34 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CAnalyseurLexical.h" />
-    <ClInclude Include="CAnalyseurSyntaxique.h" />
-    <ClInclude Include="CArc.h" />
-    <ClInclude Include="CException.h" />
-    <ClInclude Include="CGraphe.h" />
-    <ClInclude Include="CGrapheOperation.h" />
-    <ClInclude Include="CListe.h" />
-    <ClInclude Include="CSommet.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CAnalyseurLexical.cpp" />
-    <ClCompile Include="CAnalyseurSyntaxique.cpp" />
-    <ClCompile Include="CArc.cpp" />
-    <ClCompile Include="CException.cpp" />
-    <ClCompile Include="CGraphe.cpp" />
-    <ClCompile Include="CGrapheOperation.cpp" />
-    <ClCompile Include="CListe.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="CSommet.cpp" />
-    <ClCompile Include="Graphe.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{02a95d11-7dfa-4a69-95cf-c0f4f8a0e545}</ProjectGuid>
-    <RootNamespace>GrapheQuestionsIndividuelles</RootNamespace>
+    <ProjectGuid>{70e9b1b0-6983-4be1-93e6-64ee27057521}</ProjectGuid>
+    <RootNamespace>MatriceQuestionsIndiv</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -161,6 +138,28 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CException.h" />
+    <ClInclude Include="CListe.h" />
+    <ClInclude Include="CMatriceBase.h" />
+    <ClInclude Include="CMatricePlus.h" />
+    <ClInclude Include="CParseur.h" />
+    <ClInclude Include="CProxy_row.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CListe.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CMatriceBase.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CMatricePlus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CParseur.cpp" />
+    <ClCompile Include="Matrice.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
