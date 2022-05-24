@@ -23,6 +23,7 @@ CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiP
 {
 }
 
+
 template <class MType>
 CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
 {

@@ -60,6 +60,13 @@ class CMatriceBase {
 		CMatriceBase(CMatriceBase<MType>& MABParam);
 
 		/**
+		 * @brief Constructeur de recopie : Creer une sous Matrice en commencant a une coordonnees precise
+		 *
+		 * @param MABParam Matrice a dupliquer
+		 */
+		CMatriceBase(CMatriceBase<MType>& MABParam, unsigned int uiLigne);
+
+		/**
 		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
 		 * 
 		 */

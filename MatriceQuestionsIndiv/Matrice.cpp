@@ -18,6 +18,28 @@
 
 int main(int iArgc, char * ppcArgv[])
 {
+	if (iArgc == 1) {
+		CMatriceBase<double> MABMatrice;
+		CMatriceBase<double> MABMatrice2;
+		MABMatrice = CMatriceBase<double>(3, 3);
+		MABMatrice[0][0] = 0;
+		MABMatrice[0][1] = 1;
+		MABMatrice[0][2] = 2;
+		MABMatrice[1][0] = 3;
+		MABMatrice[1][1] = 4;
+		MABMatrice[1][2] = 5;
+		MABMatrice[2][0] = 6;
+		MABMatrice[2][1] = 7;
+		MABMatrice[2][2] = 8;
+
+		MABMatrice.MABAfficherMatrice();
+		
+		MABMatrice2 = CMatriceBase<double>(MABMatrice, 1);
+
+		MABMatrice2.MABAfficherMatrice();
+
+	}
+
 	if (iArgc > 1) {
 		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
 		CMatricePlus<double> MAPResultat;
