@@ -242,3 +242,26 @@ CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
 
 	return MAPMatriceRetour;
 }
+
+template<class MType>
+double CMatricePlus<MType>::MAPCalcDet()
+{
+	//Si la matrice n'est pas carree
+	if (MABLireNbColonnes() != MABLireNbLignes()) {
+		throw CException(160, "Exception : La matrice n'est pas carree");
+	}
+	double det;
+	for (int iBoucle = 0; iBoucle < MABLireNbLignes(); iBoucle++) {
+		//Cas d'une matrice 2*2
+		if (MABLireNbLignes() == 2) {
+			det = ((*this)[1][1]) * ((*this)[2][2]) - ((*this)[2][1]) * ((*this)[1][2])
+		}
+		//Recursivite sur tout les autres cas
+		else {
+			CMatriceBase newMat = new CMatriceBase((*this), iBoucle);
+			det = newMat.MAPCalcDet;
+		}
+	}
+
+	return det;
+}
