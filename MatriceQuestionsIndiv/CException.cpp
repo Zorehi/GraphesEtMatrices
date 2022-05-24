@@ -36,13 +36,13 @@ CException::~CException()
 }
 
 
-int CException::EXCLireVal()
+int CException::EXCLireVal()const
 {
 	return iEXCVal;
 }
 
 
-const char* CException::EXCLireMsg()
+const char* CException::EXCLireMsg()const
 {
 	return pcEXCMsg;
 }

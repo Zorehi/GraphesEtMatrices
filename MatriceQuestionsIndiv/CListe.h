@@ -49,7 +49,7 @@ public:
 	 * 
 	 * @param LISParam Liste a dupliquer
 	 */
-	CListe(CListe &LISParam);
+	CListe(const CListe &LISParam);
 
 	/**
 	 * @brief Destructeur : Libere la memoire alloue pour l'objet Liste
@@ -64,7 +64,7 @@ public:
 	 * 
 	 * @return unsigned int, la taille de la liste actuelle
 	 */
-	unsigned int LISLireTaille();
+	unsigned int LISLireTaille()const;
 
 	/**
 	 * @brief Setter pour la taille de la liste
@@ -72,6 +72,14 @@ public:
 	 * @param uiTaille Nouvelle taile souhaite de la liste 
 	 */
 	void LISModifierTaille(unsigned int uiTaille);
+
+	/**
+	 * @brief Surcharge de l'operateur d'indice du tableau
+	 *
+	 * @param uiIndex Indice de l'element souhaite dans la liste
+	 * @return MType& Reference de l'element souhaite
+	 */
+	const MType& operator[](unsigned int uiIndex)const;
 
 	/**
 	 * @brief Surcharge de l'operateur d'indice du tableau

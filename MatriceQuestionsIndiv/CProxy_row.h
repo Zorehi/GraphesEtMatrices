@@ -21,6 +21,7 @@
 template <class MType>
 class CProxy_row {
 	using PROReference = decltype(std::declval<MType>()[0]);
+	using const_PROReference = decltype(std::declval<MType const>()[0]);
 
 private:
 	MType& pePROTableau;
@@ -41,6 +42,19 @@ public:
 	/**
 	 * @brief Surcharge de l'operateur d'indice du tableau
 	 * 
+	 * @param uiColonneIndex L'index de la colonne
+	 * @return PROReference L'element de la matrice correspondant a la ligne et la colonne
+	 */
+	const_PROReference operator[](unsigned int uiColonneIndex)const {
+		if (uiColonneIndex > uiPROColonnes) {
+			throw CException(Index_non_compris, "Exception : Index colonne non compris dans la matrice");
+		}
+		return pePROTableau[uiPROLigneIndex * uiPROColonnes + uiColonneIndex];
+	}
+
+	/**
+	 * @brief Surcharge de l'operateur d'indice du tableau
+	 *
 	 * @param uiColonneIndex L'index de la colonne
 	 * @return PROReference L'element de la matrice correspondant a la ligne et la colonne
 	 */

@@ -26,11 +26,10 @@
 #define Matrice_Vide 100
 #define Index_non_compris 105
 
-using namespace std;
-
 template <class MType>
 class CMatriceBase {
 	using MATPROProxy = CProxy_row<CListe<MType>>;
+	using const_MATPROProxy = const CProxy_row<const CListe<MType>>;
 
 	protected :
 		unsigned int uiMABNbLignes;
@@ -58,7 +57,7 @@ class CMatriceBase {
 		 *
 		 * @param MABParam Matrice a dupliquer
 		 */
-		CMatriceBase(CMatriceBase<MType>& MABParam);
+		CMatriceBase(const CMatriceBase<MType>& MABParam);
 
 		/**
 		 * @brief Destructeur : Libere la memoire alloue pour l'objet MatriceBase
@@ -97,12 +96,29 @@ class CMatriceBase {
 		unsigned int MABLireNbColonnes()const;
 
 		/**
-		 * @brief Surcharge de l'operateur d'indice du tableau, cette surcharge permet
-		 * l'appel de deux operateurs d'indice ex : Matrice[1][1] ce qui permet de choisir 
-		 * respectivement la ligne et la colonne
+		 * @brief Surcharge de l'operateur d'indice du tableau en lecture uniquement.
+		 * Cette surcharge permet l'appel de deux operateurs d'indice
+		 * ex : Matrice[1][1] ce qui permet de choisir respectivement 
+		 * la ligne et la colonne
 		 * 
 		 * @param uiLignes Numéro de la ligne choisi
-		 * @return l'objet MATPROProxy 
+		 * @return l'objet const_MATPROProxy 
+		 */
+		const_MATPROProxy operator[](unsigned int uiLignes)const {
+			if (uiLignes > uiMABNbLignes) {
+				throw CException(105, "Exception : Index ligne non compris dans la matrice");
+			}
+			return const_MATPROProxy(*pLISMATListe, uiLignes, uiMABNbColonnes);
+		}
+
+		/**
+		 * @brief Surcharge de l'operateur d'indice du tableau.
+		 * Cette surcharge permet l'appel de deux operateurs d'indice
+		 * ex : Matrice[1][1] ce qui permet de choisir respectivement
+		 * la ligne et la colonne
+		 *
+		 * @param uiLignes Numéro de la ligne choisi
+		 * @return l'objet MATPROProxy
 		 */
 		MATPROProxy operator[](unsigned int uiLignes) {
 			if (uiLignes > uiMABNbLignes) {
@@ -123,10 +139,7 @@ class CMatriceBase {
 		 * @brief Affiche la matrice dans le shell
 		 * 
 		 */
-		void MABAfficherMatrice();
-
-		//double MAPCalcDet();
+		void MABAfficherMatrice()const;
 };
-
 
 #include "CMatriceBase.cpp"

@@ -44,7 +44,7 @@ public:
 	 * @param MABParam matrice mere de la sous matrice a creer
 	 * @param uiLigne numero de la ligne a ne pas inclure dans la sous matrice
 	*/
-	CMatricePlus(CMatriceBase<MType>& MABParam, unsigned int uiLigne);
+	CMatricePlus(const CMatriceBase<MType>& MABParam, unsigned int uiLigne);
 
 	/**
 	 * @brief Surcharge de l'operateur *, pour la multiplication entre la matrice et un nombre
@@ -52,7 +52,7 @@ public:
 	 * @param dFacteur Facteur de la multiplication
 	 * @return CMatricePlus<MType> Matrice resultat de la multiplication
 	 */
-	CMatricePlus<MType> operator*(double dFacteur);
+	CMatricePlus<MType> operator*(double dFacteur)const;
 
 	/**
 	 * @brief Surcharge de l'operateur *, pour la multiplication entre deux matrices
@@ -60,7 +60,7 @@ public:
 	 * @param MAPProduit Matrice a multiplier avec la matrice appelante
 	 * @return CMatricePlus<MType> Matrice resultat de la multiplication
 	 */
-	CMatricePlus<MType> operator*(CMatricePlus<MType>& MAPProduit);
+	CMatricePlus<MType> operator*(const CMatricePlus<MType>& MAPProduit)const;
 
 	/**
 	 * @brief Surcharge de l'operateur /, pour la division de la matrice par un nombre
@@ -68,7 +68,7 @@ public:
 	 * @param dDiviseur Diviseur
 	 * @return CMatricePlus<MType> Matrice resultat de la division
 	 */
-	CMatricePlus<MType> operator/(double dDiviseur);
+	CMatricePlus<MType> operator/(double dDiviseur)const;
 
 	/**
 	 * @brief Surcharge de l'operateur +, pour l'addition d'une constante a une matrice
@@ -76,7 +76,7 @@ public:
 	 * @param dValeurAddition Valeur(double) a ajouter a chaque membre de la matrice appelante
 	 * @return CMatricePlus<MType> Matrice resultat de l'addition
 	 */
-	CMatricePlus<MType> operator+(double dValeurAddition);
+	CMatricePlus<MType> operator+(double dValeurAddition)const;
 
 	/**
 	 * @brief Surcharge de l'operateur +, pour l'addition de deux matrices
@@ -84,7 +84,7 @@ public:
 	 * @param MAPParam Matrice a additionner avec la matrice appelante
 	 * @return CMatricePlus<MType> Matrice resultat de l'addition
 	 */
-	CMatricePlus<MType> operator+(CMatricePlus<MType>& MAPParam);
+	CMatricePlus<MType> operator+(const CMatricePlus<MType>& MAPParam)const;
 
 	/**
 	 * @brief Surcharge de l'operateur -, pour la soustraction d'une constante a une matrice
@@ -92,7 +92,7 @@ public:
 	 * @param dValeurSoustraction Valeur(double) a soustraire a chaque membre de la matrice appelante
 	 * @return CMatricePlus<MType> Matrice resultat de l'addition
 	 */
-	CMatricePlus<MType> operator-(double dValeurSoustraction);
+	CMatricePlus<MType> operator-(double dValeurSoustraction)const;
 
 	/**
 	 * @brief Surcharge de l'operateur -, pour la soustraction de deux matrices
@@ -100,16 +100,16 @@ public:
 	 * @param MAPParam Matrice a soustraire a la matrice appelante
 	 * @return CMatricePlus<MType> Matrice resultat de la soustraction
 	 */
-	CMatricePlus<MType> operator-(CMatricePlus<MType>& MAPParam);
+	CMatricePlus<MType> operator-(const CMatricePlus<MType>& MAPParam)const;
 
 	/**
 	 * @brief Effectue la transposee de la matrice
 	 *
 	 * @return CMatricePlus<MType> Matrice resultat de la transposee
 	 */
-	CMatricePlus<MType> MAPTranspose();
+	CMatricePlus<MType> MAPTranspose()const;
 
-	double MAPCalcDet();
+	double MAPCalcDet()const;
 };
 
 #include "CMatricePlus.cpp"

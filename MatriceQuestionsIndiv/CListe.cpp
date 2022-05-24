@@ -34,7 +34,7 @@ CListe<MType>::CListe(unsigned int uiTaille)
 }
 
 template <class MType>
-CListe<MType>::CListe(CListe& LISParam)
+CListe<MType>::CListe(const CListe& LISParam)
 {
 	uiLISTaille = LISParam.LISLireTaille();
 	pMLISTableau = new MType[uiLISTaille];
@@ -53,12 +53,14 @@ CListe<MType>::~CListe()
 }
 
 template <class MType>
-unsigned int CListe<MType>::LISLireTaille() {
+unsigned int CListe<MType>::LISLireTaille()const
+{
 	return uiLISTaille;
 }
 
 template <class MType>
-void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
+void CListe<MType>::LISModifierTaille(unsigned int uiTaille)
+{
 	MType* pTableau = new MType[uiTaille];
 	if (!pTableau) {
 		throw CException(120, "Exception : Erreur lors de la modification de la taille");
@@ -75,6 +77,14 @@ void CListe<MType>::LISModifierTaille(unsigned int uiTaille) {
 	delete[] pMLISTableau;
 	pMLISTableau = pTableau;
 	uiLISTaille = uiTaille;
+}
+
+template <class MType>
+const MType& CListe<MType>::operator[](unsigned int uiIndex)const {
+	if (uiIndex > uiLISTaille) {
+		throw CException(130, "Exception : Index non compris dans la liste");
+	}
+	return pMLISTableau[uiIndex];
 }
 
 template <class MType>

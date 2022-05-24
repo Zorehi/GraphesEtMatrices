@@ -13,6 +13,8 @@
 
 #include "CMatriceBase.h"
 
+using std::cout;
+
 template <class MType>
 CMatriceBase<MType>::CMatriceBase()
 {
@@ -31,41 +33,12 @@ CMatriceBase<MType>::CMatriceBase(unsigned int uiParamNbLignes, unsigned int uiP
 }
 
 template <class MType>
-CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam)
+CMatriceBase<MType>::CMatriceBase(const CMatriceBase<MType>& MABParam)
 {
 	uiMABNbLignes = MABParam.MABLireNbLignes();
 	uiMABNbColonnes = MABParam.MABLireNbColonnes();
 	pLISMATListe = new CListe<MType>(*(MABParam.pLISMATListe));
 }
-
-/*
-template <class MType>
-CMatriceBase<MType>::CMatriceBase(CMatriceBase<MType>& MABParam, unsigned int uiLigne)
-{
-	
-	uiMABNbLignes = MABParam.MABLireNbLignes() - 1;
-	uiMABNbColonnes = MABParam.MABLireNbColonnes() - 1;
-	unsigned int uiTailleListe = uiMABNbLignes * uiMABNbColonnes;
-	pLISMATListe = new CListe<MType>(uiTailleListe);
-
-	
-	unsigned int nbElementPlace = 0;
-	for (unsigned int uiBoucleI = 0; uiBoucleI < MABParam.MABLireNbLignes(); uiBoucleI++) {
-		for (unsigned int uiBoucleJ = 1; uiBoucleJ < MABParam.MABLireNbColonnes(); uiBoucleJ++) {
-			
-			if(uiBoucleI != uiLigne){
-				
-				(*this)[nbElementPlace/uiMABNbColonnes][nbElementPlace % uiMABNbColonnes] = MABParam[uiBoucleI][uiBoucleJ];
-				//pLISMATListe[nbElementPlace] = MABParam[uiBoucleI][uiBoucleJ];
-				nbElementPlace++;
-				
-			}
-			
-		}
-	}
-	
-}
-*/
 
 template <class MType>
 CMatriceBase<MType>::~CMatriceBase()
@@ -128,7 +101,7 @@ CMatriceBase<MType>& CMatriceBase<MType>::operator=(const CMatriceBase<MType>& M
 }
 
 template <class MType>
-void CMatriceBase<MType>::MABAfficherMatrice() {
+void CMatriceBase<MType>::MABAfficherMatrice()const {
 	if ((uiMABNbLignes == 0) && (uiMABNbColonnes == 0)) {
 		throw CException(100, "Exception : la matrice est vide");
 	}

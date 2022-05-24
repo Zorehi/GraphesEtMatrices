@@ -11,10 +11,12 @@
  * 
  */
 
-#include "CMatricePlus.h"
-#include "CParseur.h"
 #include "CMatriceBase.h"
+#include "CParseur.h"
+#include "CMatricePlus.h"
 #include "CException.h"
+
+using namespace std;
 
 int main(int iArgc, char * ppcArgv[])
 {
@@ -67,10 +69,9 @@ int main(int iArgc, char * ppcArgv[])
 			cout << MABMatrice.MAPCalcDet();
 			*/
 
-			/* 
+			 
 			//Test avec une matrice 4x4
-			CMatriceBase<double> MABMatrice;
-			MABMatrice = CMatriceBase<double>(4, 4);
+			CMatricePlus<double> MABMatrice(4, 4);
 			MABMatrice[0][0] = 10;
 			MABMatrice[0][1] = 3;
 			MABMatrice[0][2] = 6;
@@ -89,7 +90,7 @@ int main(int iArgc, char * ppcArgv[])
 			MABMatrice[3][3] = 2;
 			MABMatrice.MABAfficherMatrice();
 			cout << MABMatrice.MAPCalcDet();
-			*/
+			
 
 			/*
 			//Test avec une matrice non carree 

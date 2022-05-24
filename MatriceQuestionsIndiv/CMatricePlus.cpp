@@ -24,14 +24,13 @@ CMatricePlus<MType>::CMatricePlus(unsigned int uiParamNbLignes, unsigned int uiP
 }
 
 template <class MType>
-CMatricePlus<MType>::CMatricePlus(CMatriceBase<MType>& MABParam, unsigned int uiLigne)
+CMatricePlus<MType>::CMatricePlus(const CMatriceBase<MType>& MABParam, unsigned int uiLigne)
 {
 
 	(*this).uiMABNbLignes = MABParam.MABLireNbLignes() - 1;
 	(*this).uiMABNbColonnes = MABParam.MABLireNbColonnes() - 1;
 	unsigned int uiTailleListe = (*this).uiMABNbLignes * (*this).uiMABNbColonnes;
 	(*this).pLISMATListe = new CListe<MType>(uiTailleListe);
-
 
 	unsigned int nbElementPlace = 0;
 	for (unsigned int uiBoucleI = 0; uiBoucleI < MABParam.MABLireNbLignes(); uiBoucleI++) {
@@ -51,7 +50,7 @@ CMatricePlus<MType>::CMatricePlus(CMatriceBase<MType>& MABParam, unsigned int ui
 
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
+CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)const
 {
 	
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
@@ -74,13 +73,13 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(double dFacteur)
 }
 
 template <class MType>
-CMatricePlus<MType> operator*(double dFacteur, CMatricePlus<MType>& MAPProduit)
+CMatricePlus<MType> operator*(double dFacteur, const CMatricePlus<MType>& MAPProduit)
 {
 	return MAPProduit * dFacteur;
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProduit)
+CMatricePlus<MType> CMatricePlus<MType>::operator*(const CMatricePlus<MType>& MAPProduit)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -116,7 +115,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator*(CMatricePlus<MType>& MAPProdu
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur)
+CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -139,7 +138,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator/(double dDiviseur)
 }
 
 template<class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
+CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -162,7 +161,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator+(double dValeurAddition)
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam)
+CMatricePlus<MType> CMatricePlus<MType>::operator+(const CMatricePlus<MType>& MAPParam)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -197,7 +196,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator+(CMatricePlus<MType>& MAPParam
 }
 
 template<class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
+CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -219,7 +218,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(double dValeurSoustraction)
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam)
+CMatricePlus<MType> CMatricePlus<MType>::operator-(const CMatricePlus<MType>& MAPParam)const
 {
 	//Si on ne peut pas faire de multiplication sur ce type de matrice
 	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
@@ -253,7 +252,7 @@ CMatricePlus<MType> CMatricePlus<MType>::operator-(CMatricePlus<MType>& MAPParam
 }
 
 template <class MType>
-CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
+CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()const
 {
 	//Recuperation des nombres de lignes et de colonnes de la matrice appelante
 	unsigned int uiNbLignes = this->MABLireNbLignes();
@@ -271,7 +270,7 @@ CMatricePlus<MType> CMatricePlus<MType>::MAPTranspose()
 }
 
 template<class MType>
-double CMatricePlus<MType>::MAPCalcDet()
+double CMatricePlus<MType>::MAPCalcDet()const
 {
 	//Si la matrice n'est pas carree
 	if ((*this).MABLireNbColonnes() != (*this).MABLireNbLignes()) {
