@@ -20,6 +20,7 @@
 
 #define Type_non_Valide 140
 #define Matrices_Incompatibles 150
+#define Matrice_non_carre 160
 
 template <class MType>
 class CMatricePlus : public CMatriceBase<MType> {
@@ -100,6 +101,8 @@ public:
 	 * @return CMatricePlus<MType> Matrice resultat de la transposee
 	 */
 	CMatricePlus<MType> MAPTranspose();
+
+	double MAPCalcDet();
 };
 
 #include "CMatricePlus.cpp"
