@@ -26,7 +26,7 @@ CListe<MType>::CListe(unsigned int uiTaille)
 	uiLISTaille = uiTaille;
 	pMLISTableau = (MType*)malloc(uiTaille * sizeof(MType));
 	if (!pMLISTableau) {
-		throw CException(110, "Exception : Allocation mémoire impossible");
+		throw CException(110, "Exception : Allocation memoire impossible");
 	}
 }
 
@@ -36,7 +36,7 @@ CListe<MType>::CListe(const CListe& LISParam)
 	uiLISTaille = LISParam.uiLISTaille;
 	pMLISTableau = (MType*)malloc(uiLISTaille * sizeof(MType));
 	if (!pMLISTableau) {
-		throw CException(110, "Exception : Allocation mémoire impossible");
+		throw CException(110, "Exception : Allocation memoire impossible");
 	}
 	for (unsigned int uiBoucle = 0; uiBoucle < uiLISTaille; uiBoucle++) {
 		pMLISTableau[uiBoucle] = LISParam[uiBoucle];

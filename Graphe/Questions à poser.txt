@@ -1,1 +1,0 @@
-Est-ce que si un arc n'a pas d'arc partants ou arrivants, on affiche quand meme une liste vide a l'affichage ?

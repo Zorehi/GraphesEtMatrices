@@ -85,7 +85,7 @@ int CAnalyseurSyntaxique::ANSExtraireNbSommet(CListe<char*>& LISListeMot)
 		}
 	}
 	if (iNbSommet < 1) {
-		throw CException(999, "Pas de nombre de sommets d�clar� dans le fichier texte");
+		throw CException(999, "Pas de nombre de sommets declare dans le fichier texte");
 	}
 	return iNbSommet;
 }
@@ -99,7 +99,7 @@ int CAnalyseurSyntaxique::ANSExtraireNbArc(CListe<char*>& LISListeMot)
 		}
 	}
 	if (iNbArc < 1) {
-		throw CException(998, "Pas de nombre d'arc d�clar� dans le fichier texte");
+		throw CException(998, "Pas de nombre d'arc declare dans le fichier texte");
 	}
 	return iNbArc;
 }
@@ -121,7 +121,7 @@ CListe<int> CAnalyseurSyntaxique::ANSExtraireSommets(CListe<char*>& LISListeMot,
 	}
 
 	if (LISListeNumSommet.LISLireTaille() != iNbSommet) {
-		throw CException(997, "Le nombre de sommet d�fini est different du nomnbre de sommet annonce");
+		throw CException(997, "Le nombre de sommet defini est different du nomnbre de sommet annonce");
 	}
 
 	return LISListeNumSommet;
@@ -140,14 +140,14 @@ CListe<int> CAnalyseurSyntaxique::ANSExtraireArcs(CListe<char*>& LISListeMot, in
 					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 1]);
 				}
 				else {
-					throw CException(996, "Arc mal d�fini (Debut=x, Fin=x)");
+					throw CException(996, "Arc mal defini (Debut=x, Fin=x)");
 				}
 				if (strcmp(LISListeMot[iIndice + uiBoucleJ + 2], "Fin") == 0) {
 					LISListeNumArc.LISModifierTaille(LISListeNumArc.LISLireTaille() + 1);
 					LISListeNumArc[LISListeNumArc.LISLireTaille() - 1] = atoi(LISListeMot[iIndice + uiBoucleJ + 3]);
 				}
 				else {
-					throw CException(996, "Arc mal d�fini (Debut=x, Fin=x)");
+					throw CException(996, "Arc mal defini (Debut=x, Fin=x)");
 				}
 			}
 		}

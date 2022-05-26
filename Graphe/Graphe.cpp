@@ -61,4 +61,7 @@ int main(int iArgc, char* ppcArgv[])
 		}
 			
 	}
+	else {
+		cout << "Aucun fichier a ete donne a lappel du programme";
+	}
 }
