@@ -282,7 +282,7 @@ double CMatricePlus<MType>::MAPCalcDet()const
 
 	}
 	else {
-		for (unsigned int uiBoucle = 0; iBoucle < (*this).MABLireNbLignes(); uiBoucle++) {
+		for (unsigned int uiBoucle = 0; uiBoucle < (*this).MABLireNbLignes(); uiBoucle++) {
 			CMatricePlus newMat;
 			newMat = CMatricePlus((*this), uiBoucle);
 			det += pow(-1, uiBoucle)*(*this)[uiBoucle][0]*newMat.MAPCalcDet();

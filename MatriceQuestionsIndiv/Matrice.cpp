@@ -316,7 +316,7 @@ int main(int iArgc, char * ppcArgv[])
 		}
 	}
 	else {
-		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
+		cout << "\nVeuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
 	}
 
 	return 0;
