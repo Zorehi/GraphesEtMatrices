@@ -276,6 +276,12 @@ double CMatricePlus<MType>::MAPCalcDet()const
 	if ((*this).MABLireNbColonnes() != (*this).MABLireNbLignes()) {
 		throw CException(160, "Exception : La matrice n'est pas carree");
 	}
+
+	//Si on ne peut pas calculer le determinant sur ce type de matrice
+	if (typeid(MType) != typeid(double) && typeid(MType) != typeid(int) && typeid(MType) != typeid(float)) {
+		throw CException(140, "Exception : Impossible de faire cette operation sur ce type de matrice");
+	}
+
 	double det = 0;
 	if ((*this).MABLireNbLignes() == 2) {
 		det += ((*this)[0][0]) * ((*this)[1][1]) - ((*this)[1][0]) * ((*this)[0][1]);
