@@ -109,6 +109,11 @@ public:
 	 */
 	CMatricePlus<MType> MAPTranspose()const;
 
+	/**
+	 * @brief Calcul le determinant de la matrice
+	 *
+	 * @return double Determinant de la matrice
+	 */
 	double MAPCalcDet()const;
 };
 
