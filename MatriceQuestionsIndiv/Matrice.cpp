@@ -20,105 +20,6 @@ using namespace std;
 
 int main(int iArgc, char * ppcArgv[])
 {
-	if (iArgc == 1) {
-
-		try
-		{
-			/*
-			CMatricePlus<double> MAPMatrice;
-			
-			MAPMatrice = CMatricePlus<double>(3, 3);
-			MAPMatrice[0][0] = 1;
-			MAPMatrice[0][1] = 2;
-			MAPMatrice[1][0] = 3;
-			MAPMatrice[1][1] = 4;
-
-			CMatricePlus<double> MAPMatrice2(MAPMatrice, 1);
-
-			MAPMatrice2.MABAfficherMatrice();
-			//cout << MABMatrice2.MAPCalcDet();
-			*/
-
-			/*
-			//Test avec une matrice 2x2
-			CMatricePlus<double> MABMatrice2;
-			MABMatrice2 = CMatricePlus<double>(2, 2);
-			MABMatrice2[0][0] = 1;
-			MABMatrice2[0][1] = 2;
-			MABMatrice2[1][0] = 3;
-			MABMatrice2[1][1] = 4;
-
-			MABMatrice2.MABAfficherMatrice();
-			cout << MABMatrice2.MAPCalcDet();
-			*/
-
-			/*
-			//Test avec une matrice 3x3
-			CMatricePlus<double> MABMatrice;
-			MABMatrice = CMatricePlus<double>(3, 3);
-			MABMatrice[0][0] = 5;
-			MABMatrice[0][1] = 2;
-			MABMatrice[0][2] = 1;
-			MABMatrice[1][0] = 6;
-			MABMatrice[1][1] = 20;
-			MABMatrice[1][2] = 3;
-			MABMatrice[2][0] = 7;
-			MABMatrice[2][1] = 9;
-			MABMatrice[2][2] = 11;
-			MABMatrice.MABAfficherMatrice();
-			cout << MABMatrice.MAPCalcDet();
-			*/
-
-			 
-			//Test avec une matrice 4x4
-			CMatricePlus<double> MABMatrice(4, 4);
-			MABMatrice[0][0] = 10;
-			MABMatrice[0][1] = 3;
-			MABMatrice[0][2] = 6;
-			MABMatrice[0][3] = 9;
-			MABMatrice[1][0] = 1;
-			MABMatrice[1][1] = 5;
-			MABMatrice[1][2] = 7;
-			MABMatrice[1][3] = 12;
-			MABMatrice[2][0] = 14;
-			MABMatrice[2][1] = 6;
-			MABMatrice[2][2] = 9;
-			MABMatrice[2][3] = 10;
-			MABMatrice[3][0] = 3;
-			MABMatrice[3][1] = 5;
-			MABMatrice[3][2] = 16;
-			MABMatrice[3][3] = 2;
-			MABMatrice.MABAfficherMatrice();
-			cout << MABMatrice.MAPCalcDet();
-			
-
-			/*
-			//Test avec une matrice non carree 
-			CMatriceBase<double> MABMatrice;
-			MABMatrice = CMatriceBase<double>(2, 3);
-			MABMatrice.MABAfficherMatrice();
-			cout << MABMatrice.MAPCalcDet();
-			*/
-
-		}
-		catch (CException& EXCException)
-		{
-			cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-			cout << EXCException.EXCLireMsg() << "\n\n";
-		}
-		
-
-		
-		
-		
-
-		/*
-		MABMatrice2 = CMatriceBase<double>(MABMatrice, 1);
-
-		MABMatrice2.MABAfficherMatrice();
-		*/
-	}
-
 	if (iArgc > 1) {
 		CListe<CMatricePlus<double>> LISListeMatrices(iArgc - 1);
 		CMatricePlus<double> MAPResultat;
@@ -139,9 +40,15 @@ int main(int iArgc, char * ppcArgv[])
 				cCharactere = 'A' + iNbReelMatrice;
 				cout << "Matrice " << cCharactere << " =\n";
 				LISListeMatrices[iNbReelMatrice].MABAfficherMatrice();
+				
+
+				cout << "Determinant de la matrice : ";
+				cout << LISListeMatrices[iNbReelMatrice].MAPCalcDet();
 				cout << "\n";
 
 				iNbReelMatrice += 1;
+
+				
 			}
 			catch (CException& EXCException)
 			{
@@ -150,173 +57,10 @@ int main(int iArgc, char * ppcArgv[])
 			}
 		}
 
-		cout << "Veuillez saisir une valeur de C : ";
-		cin >> dC;
-		cout << "\n";
-
-		// Multiplication des matrices par une constante
-		cout << "Resultat de la multiplication des matrices par " << dC << " :\n";
-		for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
-		{
-			try
-			{
-				MAPResultat = LISListeMatrices[iBoucleI] * dC;
-
-				//Affichage
-				cCharactere = 'A' + iBoucleI;
-				cout << cCharactere << " * " << dC << " =\n";
-				MAPResultat.MABAfficherMatrice();
-			}
-			catch (CException& EXCException)
-			{
-				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n\n";
-			}
-
-			cout << "\n";
-		}
-
-		// Division des matrices par une constante
-		cout << "Resultat de la division des matrices par " << dC << " :\n";
-		for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
-		{
-			try
-			{
-				MAPResultat = LISListeMatrices[iBoucleI] / dC;
-
-				//Affichage
-				cCharactere = 'A' + iBoucleI;
-				cout << cCharactere << " / " << dC << " =\n";
-				MAPResultat.MABAfficherMatrice();
-			}
-			catch (CException& EXCException)
-			{
-				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n\n";
-			}
-			
-			cout << "\n";
-		}
 		
-		// Si le nombre de matrice est egale a 1 la suite des operations ne sert a rien
-		if (iNbReelMatrice > 1) {
-			// Addition de toutes les matrices
-			cout << "Resultat de l'addition de toutes les matrices :\n";
-			CMatricePlus<double> MAPResultatAddition(LISListeMatrices[0]);
-
-			try
-			{
-				for (iBoucleI = 1; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					MAPResultatAddition = MAPResultatAddition + LISListeMatrices[iBoucleI];
-				}
-
-				//Affichage
-				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					if (iBoucleI == 0) {
-						cCharactere = 'A';
-						cout << cCharactere;
-					}
-					else {
-						cCharactere = 'A' + iBoucleI;
-						cout << " + " << cCharactere;
-					}
-				}
-				cout << " =\n";
-
-				MAPResultatAddition.MABAfficherMatrice();
-				cout << "\n";
-			}
-			catch (CException& EXCException)
-			{
-				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n\n";
-			}
-
-			// Operation (M1-M2+M3-M4+...)
-			cout << "Resultat de l'operation suivante (M1-M2+M3-M4+M5-M6+...) :\n";
-			CMatricePlus<double> MAPResultatOperation(LISListeMatrices[0]);
-			try
-			{
-				for (iBoucleI = 1; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					if (iBoucleI % 2 == 0) {
-						MAPResultatOperation = MAPResultatOperation + LISListeMatrices[iBoucleI];
-					}
-					else {
-						MAPResultatOperation = MAPResultatOperation - LISListeMatrices[iBoucleI];
-					}
-				}
-
-				//Affichage
-				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					if (iBoucleI == 0) {
-						cCharactere = 'A';
-						cout << cCharactere;
-					}
-					else {
-						cCharactere = 'A' + iBoucleI;
-						if (iBoucleI % 2 == 0) {
-							cout << " + " << cCharactere;
-						}
-						else {
-							cout << " - " << cCharactere;
-						}
-					}
-				}
-				cout << " =\n";
-
-				MAPResultatOperation.MABAfficherMatrice();
-				cout << "\n";
-			}
-			catch (CException& EXCException)
-			{
-				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n\n";
-			}
-
-			// Multiplication des matrices entre elles
-			cout << "Resultat de la multiplication des matrices entre elles :\n";
-			CMatricePlus<double> MAPResultatProduit(LISListeMatrices[0]);
-			try
-			{
-				for (iBoucleI = 1; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					MAPResultatProduit = MAPResultatProduit * LISListeMatrices[iBoucleI];
-				}
-
-				//Affichage
-				for (iBoucleI = 0; iBoucleI < iNbReelMatrice; iBoucleI++)
-				{
-					if (iBoucleI == 0) {
-						cCharactere = 'A';
-						cout << cCharactere;
-					}
-					else {
-						cCharactere = 'A' + iBoucleI;
-						cout << " * " << cCharactere;
-					}
-				}
-				cout << " =\n";
-
-				MAPResultatProduit.MABAfficherMatrice();
-				cout << "\n";
-			}
-			catch (CException& EXCException)
-			{
-				cout << "ERREUR : " << EXCException.EXCLireVal() << "\n";
-				cout << EXCException.EXCLireMsg() << "\n\n";
-			}
-		}
-		else {
-			cout << "Pour realiser les operations telles que : \n\t- La somme de toutes les matrices\n\t- La multplication de toutes les matrices entre elles\n";
-			cout << "Il faut donner plus de 1 fichier lors du lancement du programme !";
-		}
 	}
 	else {
-		cout << "Veuillez donner le nom d'un fichier lors de l'appel du programme" << "\n";
+		cout << "Veuillez donner le chemin d'au moins un fichier lors de l'appel du programme" << "\n";
 	}
 
 	return 0;
