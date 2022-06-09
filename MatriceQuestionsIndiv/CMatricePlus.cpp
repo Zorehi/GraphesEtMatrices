@@ -288,10 +288,10 @@ double CMatricePlus<MType>::MAPCalcDet()const
 
 	}
 	else {
-		for (int iBoucle = 0; iBoucle < (*this).MABLireNbLignes(); iBoucle++) {
+		for (unsigned int uiBoucle = 0; uiBoucle < (*this).MABLireNbLignes(); uiBoucle++) {
 			CMatricePlus newMat;
-			newMat = CMatricePlus((*this), iBoucle);
-			det += pow(-1, iBoucle)*(*this)[iBoucle][0]*newMat.MAPCalcDet();
+			newMat = CMatricePlus((*this), uiBoucle);
+			det += pow(-1, uiBoucle)*(*this)[uiBoucle][0]*newMat.MAPCalcDet();
 		}
 	}
 
